@@ -847,3 +847,6 @@
   .gaba-guide .guide-header-share{justify-content:center;gap:0;font-size:0}
   .gaba-guide .guide-header-share svg{display:block}
 }
+
+.guide-reading-progress-track{height:3px}.guide-reading-progress-meta{min-height:35px;font-size:11px}.guide-reading-progress-meta>span{font-size:10px}.guide-reading-progress-meta strong{font-size:13px}.guide-reading-progress-meta small{font-size:11px}
+@media(max-width:700px){.guide-reading-progress-meta{min-height:32px}.guide-reading-progress-meta small{font-size:10px}}
