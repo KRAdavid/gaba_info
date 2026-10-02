@@ -134,7 +134,7 @@ requireMatch(styles, /@media\(max-width:680px\)\{\.header>\.button\{display:none
 requireMatch(publicGuideStyles, /\.gaba-guide\{overflow:clip\}/, 'public GABA guide must avoid an ancestor overflow container that can break sticky mobile navigation');
 requireMatch(publicGuideStyles, /\.guide-research-detail\{scroll-margin-top:116px\}/, 'public GABA research detail must clear the sticky header and reading progress bar after a deep-link jump');
 requireMatch(publicGuideStyles, /@media \(max-width:700px\)\{[\s\S]*?\.guide-research-detail\{scroll-margin-top:106px\}/, 'public GABA mobile research detail must clear the 70px header and reading progress bar after a deep-link jump');
-requireMatch(publicGuideStyles, /\.guide-section\{scroll-margin-top:116px\}/, 'public GABA section anchors must clear the sticky header and reading progress bar');
+requireMatch(publicGuide, /const target = document\.getElementById\(id\);[\s\S]*?window\.scrollTo\(\{ top: target\.offsetTop - 116, behavior \}\)/, 'public GABA section anchors must clear the sticky header and reading progress bar');
 requireMatch(publicGuideStyles, /@media \(max-width:700px\)\{[\s\S]*?\.guide-header nav\{top:70px/, 'public GABA mobile menu must begin below its 70px header');
 requireMatch(publicGuideStyles, /\.guide-library-filters\{grid-template-columns:1fr\}/, 'public GABA mobile research filters must remain one readable column');
 if (/대표 연구 보기|대표 논문 먼저 보기|궁금한 연구를\s*직접 확인해 보세요|href="#library"/.test(publicGuide)) fail('public GABA guide must keep research summaries in the reading flow instead of jump links');

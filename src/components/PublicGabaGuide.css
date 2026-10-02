@@ -847,7 +847,3 @@
   .gaba-guide .guide-header-share{justify-content:center;gap:0;font-size:0}
   .gaba-guide .guide-header-share svg{display:block}
 }
-
-/* Keep fixed header and reading progress clear of section anchors. */
-.guide-section{scroll-margin-top:116px}
-@media(max-width:700px){.guide-section{scroll-margin-top:106px}}
