@@ -654,7 +654,6 @@ export default function PublicGabaGuide() {
   const [recoveryInView, setRecoveryInView] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
   const menuToggleRef = useRef<HTMLButtonElement | null>(null);
-  const firstNavLinkRef = useRef<HTMLAnchorElement | null>(null);
   const recoveryBreakRef = useRef<HTMLElement | null>(null);
   const recoveryMapRef = useRef<HTMLDivElement | null>(null);
   const recoveryTouchStart = useRef<{ x: number; y: number } | null>(null);
@@ -685,7 +684,7 @@ export default function PublicGabaGuide() {
 
   useEffect(() => {
     if (!menuOpen) return;
-    window.requestAnimationFrame(() => firstNavLinkRef.current?.focus());
+    requestAnimationFrame(() => document.querySelector<HTMLElement>('nav a')?.focus());
     const closeOnEscape = (event: globalThis.KeyboardEvent) => {
       if (event.key !== 'Escape') return;
       setMenuOpen(false);
@@ -864,7 +863,7 @@ export default function PublicGabaGuide() {
       <header className="guide-header" ref={headerRef}>
         <a className="guide-logo" href="#top" onClick={() => scrollTo('top')} aria-label="GABA Guide 홈"><span>뇌와 우리</span><small>GABA를 쉽게 읽는 공개 안내서</small></a>
         <nav id="guide-primary-navigation" className={menuOpen ? 'is-open' : ''} aria-label="주 메뉴">
-          <a ref={firstNavLinkRef} href="#history" aria-current={isNavCurrent('history') ? 'page' : undefined} onClick={(event) => { event.preventDefault(); scrollTo('history'); }}>발견</a>
+          <a href="#history" aria-current={isNavCurrent('history') ? 'page' : undefined} onClick={(event) => { event.preventDefault(); scrollTo('history'); }}>발견</a>
           <a href="#basics" aria-current={isNavCurrent('basics') ? 'page' : undefined} onClick={(event) => { event.preventDefault(); scrollTo('basics'); }}>GABA란</a>
           <a href="#academic" aria-current={isNavCurrent('academic') ? 'page' : undefined} onClick={(event) => { event.preventDefault(); scrollTo('academic'); }}>연구 지도</a>
           <a href="#applications" aria-current={isNavCurrent('applications') ? 'page' : undefined} onClick={(event) => { event.preventDefault(); scrollTo('applications'); }}>활용 사례</a>
@@ -954,11 +953,11 @@ export default function PublicGabaGuide() {
             <div ref={recoveryMapRef} className="guide-recovery-map" role="group" aria-label={`수면과 회복의 흐름 ${recoveryCards.length}단계`}>
               {recoveryCards.map((card, index) => {
                 const Icon = recoveryIcons[index];
-                return <button key={card.eyebrow} type="button" className={`guide-recovery-map-step${index === activeRecoveryCard ? ' is-active' : ''}`} data-recovery-index={index} aria-label={`${card.eyebrow} · ${index + 1}단계${index === activeRecoveryCard ? ' · 현재 선택됨' : ''}`} aria-controls="recovery-story-card" aria-pressed={index === activeRecoveryCard} onClick={() => selectRecoveryCard(index)}><span className="guide-recovery-map-icon"><Icon size={17} strokeWidth={1.8} aria-hidden="true" /></span></button>;
+                return <button key={card.eyebrow} type="button" className={`guide-recovery-map-step${index === activeRecoveryCard ? ' is-active' : ''}`} data-recovery-index={index} aria-label={`${card.eyebrow} · ${index + 1}단계`} aria-controls="recovery-story-card" aria-pressed={index === activeRecoveryCard} onClick={() => selectRecoveryCard(index)}><span className="guide-recovery-map-icon"><Icon size={17} strokeWidth={1.8} aria-hidden="true" /></span></button>;
               })}
             </div>
-            <div id="recovery-story-card" className={`guide-recovery-card is-${recoveryCard.tone}${recoveryPaused ? ' is-paused' : ''}`} role="group" aria-roledescription="자동 넘김 카드" aria-label={`수면과 회복 카드 ${activeRecoveryCard + 1} / ${recoveryCards.length}: ${recoveryCard.eyebrow}`} tabIndex={0} onKeyDown={handleRecoveryKeyDown} onTouchStart={handleRecoveryTouchStart} onTouchEnd={handleRecoveryTouchEnd}>
-              <span className="sr-only" aria-live="polite">읽는 카드: {recoveryCard.eyebrow}, {activeRecoveryCard + 1}단계 / {recoveryCards.length}단계</span>
+            <div id="recovery-story-card" className={`guide-recovery-card is-${recoveryCard.tone}${recoveryPaused ? ' is-paused' : ''}`} role="group" aria-label={`수면과 회복 카드 ${activeRecoveryCard + 1} / ${recoveryCards.length}: ${recoveryCard.eyebrow}`} tabIndex={0} onKeyDown={handleRecoveryKeyDown} onTouchStart={handleRecoveryTouchStart} onTouchEnd={handleRecoveryTouchEnd}>
+              <span className="sr-only" aria-live="polite">카드: {recoveryCard.eyebrow}, {activeRecoveryCard + 1}단계 / {recoveryCards.length}단계</span>
               <div className="guide-recovery-card-top">
                 <div className="guide-recovery-card-copy">
                   <h3 className="guide-recovery-card-eyebrow">{recoveryCard.eyebrow}</h3>
