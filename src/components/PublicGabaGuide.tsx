@@ -956,7 +956,7 @@ export default function PublicGabaGuide() {
               })}
             </div>
             <div id="recovery-story-card" className={`guide-recovery-card is-${recoveryCard.tone}${recoveryPaused ? ' is-paused' : ''}`} role="group" aria-roledescription="자동 넘김 카드" aria-label={`수면과 회복 카드 ${activeRecoveryCard + 1} / ${recoveryCards.length}: ${recoveryCard.eyebrow}`} tabIndex={0} onKeyDown={handleRecoveryKeyDown} onTouchStart={handleRecoveryTouchStart} onTouchEnd={handleRecoveryTouchEnd}>
-              <span className="sr-only" aria-live="polite" aria-atomic="true">현재 읽는 카드: {recoveryCard.eyebrow}, {activeRecoveryCard + 1}단계 / {recoveryCards.length}단계</span>
+              <span className="sr-only" aria-live="polite">읽는 카드: {recoveryCard.eyebrow}, {activeRecoveryCard + 1}단계 / {recoveryCards.length}단계</span>
               <div className="guide-recovery-card-top">
                 <div className="guide-recovery-card-copy">
                   <h3 className="guide-recovery-card-eyebrow">{recoveryCard.eyebrow}</h3>
