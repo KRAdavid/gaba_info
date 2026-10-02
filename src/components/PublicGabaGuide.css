@@ -186,6 +186,12 @@
 .guide-expert-thread span{color:var(--guide-teal-dark);font-weight:850}
 .guide-expert-thread strong{color:var(--guide-ink);font-size:15px}
 .guide-expert-thread i{color:#9ab4c0;font-style:normal}
+.guide-final{position:relative;overflow:hidden}
+.guide-final>.guide-container{position:relative;z-index:1}
+@media(min-width:1100px){
+  .guide-final:before{content:"GABA";position:absolute;right:-.08em;top:50%;color:rgba(161,224,225,.065);font-size:clamp(220px,26vw,370px);font-weight:900;letter-spacing:-.14em;line-height:1;transform:translateY(-50%)}
+  .guide-final:after{content:"";position:absolute;top:50%;right:9%;width:clamp(270px,25vw,370px);aspect-ratio:1;border:1px solid rgba(137,210,211,.16);border-radius:50%;box-shadow:0 0 0 26px rgba(137,210,211,.035);transform:translateY(-50%)}
+}
 .guide-reading-note{padding:38px 0;background:#f7fbfd}
 .guide-reading-note-copy{max-width:70ch;margin:0;color:#637d91;font-size:15px;line-height:1.8;letter-spacing:-.035em}
 .guide-final-actions{grid-template-columns:minmax(0,390px)}
