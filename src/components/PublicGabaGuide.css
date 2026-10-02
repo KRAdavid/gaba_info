@@ -775,3 +775,6 @@
   .guide-header nav a[aria-current="page"]{border-radius:9px;background:#eef8f8;color:var(--guide-teal-dark);font-weight:850}
   .guide-header nav a[aria-current="page"]:after{right:auto;bottom:50%;left:0;width:3px;height:20px;transform:translateY(50%)}
 }
+
+.guide-final{background-image:radial-gradient(circle at 88% 50%,transparent 0 140px,rgba(139,223,219,.14) 141px 142px,transparent 143px)}
+@media(max-width:700px){.guide-final{background-image:none}}
