@@ -2228,5 +2228,8 @@
   .guide-outcome-lane-top>strong{overflow-wrap:break-word}
 }
 
-/* v163 print publishing @page{size=A4} @media print .guide-video-board display:none!important .guide-editorial-band break-inside:avoid .guide-reading-note-source a::after */
-@media print{.guide-video-board{display:none!important}.guide-editorial-band{break-inside:avoid}.guide-reading-note-source a::after{}}
+/* v163 print publishing: hide the video board and keep editorial imagery together on paper. */
+@media print{.guide-video-board{display:none!important}.guide-editorial-band{break-inside:avoid}}
+
+/* v166 narrow-phone expert hero: keep the selected poster and its identity in one unit. */
+@media(max-width:350px){.guide-video-feature{grid-template-columns:104px 1fr;align-items:start}.guide-video-feature-media{grid-row:1}.guide-video-feature-copy{grid-column:2;grid-row:1}.guide-video-feature-meta>span:first-child{white-space:nowrap}}
