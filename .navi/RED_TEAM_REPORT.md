@@ -2194,7 +2194,6 @@
 - 보호된 main 배포 후 공개 Pages의 실제 인쇄 스타일 응답·computed style·PDF 렌더를 재검증해야 한다. 기존 RT-001·RT-002·RT-003과 teaser `HOLD`, 외부 브라우저·실기기·실제 고령 사용자·독립 과학·규제 검토 조건은 유지한다.
 
 증적: `E-LOCAL-BUILD-PRINT-FLOW-20261008`, `E-UI-CONTRACT-PRINT-FLOW-20261008`, `E-CDP-PRINT-FLOW-20261008`, `E-DEPLOY-PIPELINE-PRINT-FLOW-20261008`, `E-LIVE-PUBLIC-PRINT-FLOW-20261008`.
-
 ## Red-team recheck — 인쇄·PDF 공개 배포 — aa4ea2f — 2026-10-07
 
 - 공개 배포 후 print stylesheet가 누락되거나 screen-only chrome이 다시 나타나는 경로를 공격적으로 확인했다.

@@ -1944,7 +1944,6 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 로컬 인쇄 미디어 렌더와 전체 build를 통과했다. 공개 Pages 재배포·라이브 인쇄 검증은 다음 배포 게이트에서 수행한다.
 
 증적: `C-227`, `E-LOCAL-BUILD-PRINT-FLOW-20261008`, `E-UI-CONTRACT-PRINT-FLOW-20261008`, `E-CDP-PRINT-FLOW-20261008`, `E-DEPLOY-PIPELINE-PRINT-FLOW-20261008`, `E-LIVE-PUBLIC-PRINT-FLOW-20261008`.
-
 ## 2026-10-07 — 인쇄·PDF 공개 배포 재검증
 
 - 공개 Pages candidate `aa4ea2f`에 인쇄 지연 렌더링 보정이 반영됐다.
