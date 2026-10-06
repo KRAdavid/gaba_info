@@ -1255,6 +1255,12 @@
   .gaba-guide .guide-header-share{font-size:0}
 }
 
+/* v155 tablet growth path: keep the six-step research sequence visibly connected across two rows. */
+@media(min-width:701px) and (max-width:1100px){
+  .guide-growth-flow .guide-growth-step:nth-child(3n) .guide-growth-arrow{display:none}
+  .guide-growth-flow .guide-growth-step:not(:nth-child(3n)) .guide-growth-arrow{display:block}
+}
+
 /* v19 compact mobile header: preserve 44px touch targets on narrow phones. */
 @media(max-width:380px){
   .guide-header{gap:8px;padding-inline:12px}
@@ -1830,6 +1836,19 @@
 /* v152 narrow-phone layout stability: disable deferred chapter measurement where
    compact Korean wrapping can exceed the intrinsic placeholder before a deep jump. */
 @media(max-width:380px){
+  .gaba-guide .guide-applications,
+  .gaba-guide .guide-fermented-safety,
+  .gaba-guide .guide-growth-story,
+  .gaba-guide .guide-expert-videos,
+  .gaba-guide .guide-reading-note,
+  .gaba-guide .guide-final{
+    content-visibility:visible;
+    contain-intrinsic-size:none;
+  }
+}
+
+/* v156 tablet deep-link stability: measure deferred editorial chapters before direct jumps on tablet and compact laptop widths. */
+@media(min-width:701px) and (max-width:1199px){
   .gaba-guide .guide-applications,
   .gaba-guide .guide-fermented-safety,
   .gaba-guide .guide-growth-story,
