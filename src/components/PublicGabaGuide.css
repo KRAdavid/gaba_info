@@ -1255,10 +1255,10 @@
   .gaba-guide .guide-header-share{font-size:0}
 }
 
-/* v155 tablet growth path: keep the six-step research sequence visibly connected across two rows. */
+/* v155 */
 @media(min-width:701px) and (max-width:1100px){
-  .guide-growth-flow .guide-growth-step:nth-child(3n) .guide-growth-arrow{display:none}
-  .guide-growth-flow .guide-growth-step:not(:nth-child(3n)) .guide-growth-arrow{display:block}
+  .guide-growth-arrow{display:block}
+  .guide-growth-step:nth-child(3n) .guide-growth-arrow{display:none}
 }
 
 /* v19 compact mobile header: preserve 44px touch targets on narrow phones. */
@@ -1847,17 +1847,9 @@
   }
 }
 
-/* v156 tablet deep-link stability: measure deferred editorial chapters before direct jumps on tablet and compact laptop widths. */
+/* v156 */
 @media(min-width:701px) and (max-width:1199px){
-  .gaba-guide .guide-applications,
-  .gaba-guide .guide-fermented-safety,
-  .gaba-guide .guide-growth-story,
-  .gaba-guide .guide-expert-videos,
-  .gaba-guide .guide-reading-note,
-  .gaba-guide .guide-final{
-    content-visibility:visible;
-    contain-intrinsic-size:none;
-  }
+  .gaba-guide section{content-visibility:visible}
 }
 
 /* v91 editorial typography: keep Korean display lines balanced and body copy naturally grouped. */
