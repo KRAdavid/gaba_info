@@ -124,6 +124,7 @@
   .guide-header nav{top:70px;padding-left:max(19px,env(safe-area-inset-left));padding-right:max(19px,env(safe-area-inset-right))}
   .guide-menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0}
   .guide-header-share{min-height:44px}
+  .guide-library-filters{grid-template-columns:1fr}
   .guide-research-detail{scroll-margin-top:106px}
 }
 /* v5 reading flow: research appears in place instead of behind jump links. */
