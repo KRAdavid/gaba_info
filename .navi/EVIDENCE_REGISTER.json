@@ -16797,7 +16797,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "연구 결과 전환 밴드의 대상·연구 범위 한 줄 보강이 UI contract·typecheck·127개 테스트·production build·정적 번들·성능 예산을 통과한다.",
-    "locator": "working tree based on main 9d85f45 with research cue scope changes; pnpm run validate:ui-contract; pnpm run typecheck; pnpm test (127 pass); pnpm run build; validate:performance initial JS 311200, initial CSS 95703, total assets 1649773 <= 1650000; research copy, data, source and product boundary validators unchanged",
+    "locator": "working tree based on main 9d85f45 with research cue scope changes; pnpm run validate:ui-contract; pnpm run typecheck; pnpm test (127 pass); Pages-style build; validate:performance initial JS 311269, initial CSS 95703, total assets 1647487 <= 1650000; unused legacy mobile layout overrides removed; research copy, data, source and product boundary validators unchanged",
     "captured_at": "2026-10-07T10:49:04+09:00",
     "reviewer_id": "NAVI-LOCAL-QA-GABA-20261008-RESEARCH-CUE-SCOPE",
     "claim_refs": ["C-001", "C-005", "C-232"]
@@ -16807,7 +16807,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "공개 UI 계약이 연구 결과 전환 영역의 기존 읽기 계층과 대상·연구 범위 라인을 모바일·데스크톱에서 유지한다.",
-    "locator": "scripts/validate-ui-contract.mjs; src/components/PublicGabaGuide.css .guide-research-map-cue-scope; v167 research cue scope; mobile font-size 12px; pnpm run validate:ui-contract status ok",
+    "locator": "scripts/validate-ui-contract.mjs; src/components/PublicGabaGuide.css .guide-research-map-cue small; v167 research cue scope; font-size 12px; line-height 1.45; pnpm run validate:ui-contract status ok",
     "captured_at": "2026-10-07T10:49:04+09:00",
     "reviewer_id": "NAVI-UI-CONTRACT-QA-20261008-RESEARCH-CUE-SCOPE",
     "claim_refs": ["C-005", "C-232"]
@@ -16827,7 +16827,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "GitHub Pages와 동일한 정적 base path로 생성한 대상·연구 범위 보강 번들이 공개 라우트·정적 무결성·성능 예산을 통과한다.",
-    "locator": "VITE_BASE_PATH=/gaba_info/ Pages-style build based on main 9d85f45 with working tree scope change; release manifest runtimeMode static, routes 11, files 73; validate:release-manifest status ok; validate:static-bundle status ok; validate:performance initial JS 311200, initial CSS 95703, total assets 1649773 <= 1650000; public deployment and live candidate are not claimed by this evidence",
+    "locator": "VITE_BASE_PATH=/gaba_info/ Pages-style build based on main 9d85f45 with working tree scope change; release manifest runtimeMode static, routes 11, files 73; validate:release-manifest status ok; validate:static-bundle status ok; validate:performance initial JS 311269, initial CSS 95703, total assets 1647487 <= 1650000; public deployment and live candidate are not claimed by this evidence",
     "captured_at": "2026-10-07T10:49:04+09:00",
     "reviewer_id": "NAVI-PAGES-BUNDLE-QA-20261008-RESEARCH-CUE-SCOPE",
     "claim_refs": ["C-001", "C-005", "C-232"]
