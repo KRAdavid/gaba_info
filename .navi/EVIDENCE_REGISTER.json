@@ -16817,7 +16817,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "Playwright Chromium fallback 렌더에서 연구 지도 아래 결과·범위 라인이 모바일·데스크톱에 표시되고 주제 선택 시 피부 연구 범위로 갱신되며 가로 넘침이나 실행 오류가 없다.",
-    "locator": "local Playwright Chromium fallback because Browser plugin was unavailable; URL http://127.0.0.1:5173/?view=guide#research; viewports 390x844 and 1440x1000; initial cue scope labels 사람 63명 · 비교 연구; 피부 selection cue scope 생쥐 피부·사람 피부 세포 실험 and active card true; document scrollWidth matched viewport width; page errors 0; console errors 0; screenshots C:/Users/computer/AppData/Local/Temp/gaba-local-research-cue-scope-390.png and gaba-local-research-cue-scope-1440.png",
+    "locator": "local Playwright Chromium fallback because Browser plugin was unavailable; URL http://127.0.0.1:5173/?view=guide#research; viewports 390x844 and 1440x1000; initial cue scope labels 사람 63명 · 비교 연구; 피부 selection cue scope 생쥐 피부·사람 피부 세포 실험 and active card true; document scrollWidth matched viewport width; page errors 0; console errors 0; screenshots stored outside the repository",
     "captured_at": "2026-10-07T10:49:04+09:00",
     "reviewer_id": "NAVI-PLAYWRIGHT-QA-20261008-RESEARCH-CUE-SCOPE",
     "claim_refs": ["C-003", "C-006", "C-232"]
