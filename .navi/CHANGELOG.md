@@ -1,5 +1,13 @@
 # Project Changelog
 
+## 06·연구의 확장 대표 결과 선행 노출 — working tree — 2026-10-07
+
+- 연구 지도 아래에 선택 전에는 인지 대표 결과, 선택 후에는 선택한 결과의 요약을 먼저 노출하고 `연구 카드 보기`로 상세 카드에 이어지게 했다. 모바일에서 지도와 연구 결과가 한 흐름으로 읽힌다.
+- UI contract·typecheck·127개 테스트·production build·정적 bundle·성능 예산을 통과했다. 초기 JS 311,199 bytes·CSS 95,703 bytes·총 자산 1,649,960 bytes다.
+- 공개 main 배포와 라이브 URL 재검증 전 기록이며, 연구 카피·수치·출처·제품 독립 공개 경계는 변경하지 않았다. NAVI는 `USER_DECISION`, 완료 게이트는 `NOT_READY`다.
+
+증적: `E-LOCAL-BUILD-RESEARCH-PREVIEW-20261008`, `E-UI-CONTRACT-RESEARCH-PREVIEW-20261008`, `E-STATIC-BUNDLE-RESEARCH-PREVIEW-20261008`.
+
 ## 공유 API 회복 보정·공개 배포 완료 — main 93fa62f — 2026-10-07
 
 - 첫 PR 후보 `45cb2ce`에서 Pages 성능 예산이 `1,650,086 > 1,650,000`으로 86 bytes 초과해 배포가 중단됐다. 공유 회복 동작은 유지하면서 불필요한 외부 예외 래퍼를 줄여 `47f1cf8`로 재검증했고, PR·main release-verify가 통과했다.

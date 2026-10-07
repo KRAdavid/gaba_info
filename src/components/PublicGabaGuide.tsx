@@ -958,6 +958,7 @@ export default function PublicGabaGuide() {
   const activeChapterIndex = readingChapters.findIndex((chapter) => chapter.id === activeChapterId);
   const activeChapter = activeChapterId === 'top' ? { label: '도입' } : readingChapters[Math.max(0, activeChapterIndex)];
   const activeResearchTopic = researchTopics.find((topic) => topic.id === activeResearchTopicId);
+  const researchPreviewTopic = activeResearchTopic ?? researchTopics[0];
   const activeResearchTopicIndex = activeResearchTopic ? researchTopics.findIndex((topic) => topic.id === activeResearchTopic.id) : -1;
   // Keep the final source-reading example connected to the research card the reader just saw.
   // The first card remains the calm default for a direct visit to the reading note.
@@ -1956,7 +1957,8 @@ export default function PublicGabaGuide() {
               <div className="guide-research-orbit-core" aria-label={activeResearchTopic ? `현재 읽는 연구: ${activeResearchTopic.title}, 다섯 연구 영역` : 'GABA 연구 지도의 중심, 다섯 연구 영역'}><strong>GABA</strong><span>{activeResearchTopic ? `현재 · ${activeResearchTopic.title}` : '연구의 중심'}</span><small>5개 연구 영역</small></div>
               {researchTopics.map((topic) => <button type="button" className={`guide-research-map-item${activeResearchTopicId === topic.id ? ' is-active' : ''}`} key={topic.id} onClick={() => { setActiveResearchTopicId(topic.id); scrollTo(`research-${topic.id}`); focusResearchCard(topic.id); }} aria-current={activeResearchTopicId === topic.id ? 'true' : undefined} aria-pressed={activeResearchTopicId === topic.id} aria-describedby="research-map-guide" aria-controls="research-flow" aria-label={`${topic.title} 연구 카드로 이동`}><span className="guide-research-map-dot" aria-hidden="true"><ResearchMapIcon id={topic.id} /></span><span><strong>{topic.title}</strong></span></button>)}
             </div>
-            <div className="guide-research-map-cue" id="research-map-guide" role="status" aria-live="polite" aria-atomic="true"><ArrowDown size={15} aria-hidden="true" /><p><strong>{activeResearchTopic ? `현재 선택 · ${activeResearchTopic.title}` : '주제를 선택하면'}</strong><span>{activeResearchTopic ? '아래 연구 카드에서 대상·결과·해석을 읽을 수 있습니다.' : '아래 연구 카드의 대상·결과·해석으로 바로 이어집니다.'}</span></p></div>
+            <div className="guide-research-map-cue" id="research-map-guide" role="status" aria-live="polite" aria-atomic="true"><ArrowDown size={15} aria-hidden="true" /><p><strong>{activeResearchTopic ? `현재 선택 · ${activeResearchTopic.title}` : '대표 결과부터 읽기'}</strong><span>{activeResearchTopic ? '아래 연구 카드에서 대상·결과·해석을 읽을 수 있습니다.' : '대표 결과를 본 뒤, 원하는 연구 영역으로 이어집니다.'}</span></p></div>
+            <div className="guide-outcome-summary" aria-live="polite"><span><i aria-hidden="true" />{researchPreviewTopic.title} · {activeResearchTopic ? '선택한 결과' : '대표 결과'}</span><strong>{researchPreviewTopic.chart.summary}</strong><button type="button" className="guide-research-next" onClick={() => { setActiveResearchTopicId(researchPreviewTopic.id); scrollTo(`research-${researchPreviewTopic.id}`); focusResearchCard(researchPreviewTopic.id); }}><span><strong>연구 카드 보기</strong></span><ArrowRight size={16} aria-hidden="true" /></button></div>
             <div className="guide-rail guide-research-read-order"><b>읽는 순서</b><ol><li><b>01</b><span>지도</span></li><li><b>02</b><span>대상</span></li><li><b>03</b><span>결과</span></li><li><b>04</b><span>해석</span></li></ol></div>
             <div className="guide-research-key" aria-label="연구 카드 표시 기준">
               <strong>연구를 읽는 기준</strong>

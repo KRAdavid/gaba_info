@@ -1,5 +1,13 @@
 # Completion Report
 
+## Current Work Recheck — research representative result preview — working tree — 2026-10-07
+
+- AC-003/AC-004: PASS_WITH_CONDITIONS. 06장 연구 지도 아래에 대표 결과 요약과 실제 연구 카드로 이어지는 continuation action을 추가해 모바일에서 결과를 먼저 읽고 다음 상세로 이동하는 흐름을 만들었다.
+- AC-005: PASS. UI contract·typecheck·127개 테스트·production build·정적 bundle·release manifest·성능 예산이 통과했다. 초기 JS 311,199 bytes·CSS 95,703 bytes·총 자산 1,649,960 bytes다.
+- 공개 main 배포·라이브 URL·신규 브라우저 시각 캡처는 아직 이 작업 기록으로 검증하지 않았다. 연구 카피·수치·출처·제품 독립 경계는 유지했고 새 CRITICAL/MAJOR 결함은 없다. Final Status는 `NOT_READY`, NAVI 상태는 `USER_DECISION`이다.
+
+증적: `E-LOCAL-BUILD-RESEARCH-PREVIEW-20261008`, `E-UI-CONTRACT-RESEARCH-PREVIEW-20261008`, `E-STATIC-BUNDLE-RESEARCH-PREVIEW-20261008`.
+
 ## Current Release Recheck — share API recovery deployed — main 93fa62f — 2026-10-07
 
 - AC-001/AC-005: PASS. PR #541 병합 후 main workflow `37549529638`의 release-verify·Pages·라이브 smoke·release-status가 성공했고 공개 validator는 HTTP 200·candidate `93fa62f101259bcfeb2b7947431337b482114dbf`·73개 bundle hash를 확인했다. 첫 후보의 86 bytes 예산 초과는 재작업 후 해소됐다.
