@@ -2209,3 +2209,6 @@
   .guide-recovery-map-head strong{min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .guide-recovery-map-head em{min-width:auto}
 }
+
+/* v177 large-text video topics: show every topic without a clipped horizontal rail. */
+@media(max-width:700px){.gaba-guide.is-large-text .guide-video-filters-wrap{overflow:visible}.gaba-guide.is-large-text .guide-video-filters{flex-wrap:wrap;width:auto;min-width:0}.gaba-guide.is-large-text .guide-video-filters-wrap:after,.gaba-guide.is-large-text .guide-video-filters-cue{display:none}}
