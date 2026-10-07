@@ -2473,7 +2473,7 @@
   },
   {
     "id": "C-229",
-    "statement": "06·연구의 확장 화면은 연구 지도 아래에 선택 전 대표 결과를 먼저 보여주고, 실제 연구 카드로 이어지는 단일 행동을 제공해 모바일 첫 읽기 흐름을 짧게 만든다. 연구 카피·수치·출처·제품 독립 공개 경계는 유지한다.",
+    "statement": "06·연구의 확장 화면은 연구 지도 아래의 기존 전환 영역에서 선택 전 대표 결과를 먼저 보여주고, 바로 이어지는 연구 카드 흐름으로 연결해 모바일 첫 읽기 흐름을 짧게 만든다. 연구 카피·수치·출처·제품 독립 공개 경계는 유지한다.",
     "evidence_refs": [
       "E-LOCAL-BUILD-RESEARCH-PREVIEW-20261008",
       "E-UI-CONTRACT-RESEARCH-PREVIEW-20261008",
@@ -16593,7 +16593,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "연구 지도 대표 결과 미리보기 보정이 typecheck·UI 계약·127개 테스트·production build·정적 번들·성능 예산을 통과한다.",
-    "locator": "working tree based on HEAD 811fe11; pnpm run typecheck; pnpm run validate:ui-contract; pnpm test (127 pass); pnpm run build; validate:performance initial JS 311199, initial CSS 95703, total assets 1649960 <= 1650000; no research copy, source or product-boundary validator changes",
+    "locator": "working tree based on HEAD d8964b6 before final commit; pnpm run typecheck; pnpm run validate:ui-contract; pnpm test (127 pass); pnpm run build; validate:performance initial JS 311199, initial CSS 95703, total assets 1649406 <= 1650000; no research copy, source or product-boundary validator changes",
     "captured_at": "2026-10-07T09:31:16+09:00",
     "reviewer_id": "NAVI-LOCAL-QA-GABA-20261008-RESEARCH-PREVIEW",
     "claim_refs": ["C-001", "C-005", "C-229"]
@@ -16602,8 +16602,8 @@
     "id": "E-UI-CONTRACT-RESEARCH-PREVIEW-20261008",
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
-    "statement": "공개 UI 계약이 연구 지도에 대표 결과 요약과 실제 연구 카드로 이어지는 continuation action을 요구한다.",
-    "locator": "scripts/validate-ui-contract.mjs; src/components/PublicGabaGuide.tsx researchPreviewTopic.chart.summary, guide-outcome-summary, guide-research-next, 대표 결과부터 읽기, 연구 카드 보기; pnpm run validate:ui-contract status ok",
+    "statement": "공개 UI 계약이 연구 지도 전환 영역에 대표 결과 요약을 먼저 보여주고 읽기 순서·연구 카드로 이어지는 흐름을 요구한다.",
+    "locator": "scripts/validate-ui-contract.mjs; src/components/PublicGabaGuide.tsx research-map-guide, researchPreviewTopic.chart.summary, guide-research-read-order, 대표 결과부터 읽기; pnpm run validate:ui-contract status ok",
     "captured_at": "2026-10-07T09:31:16+09:00",
     "reviewer_id": "NAVI-UI-CONTRACT-QA-20261008-RESEARCH-PREVIEW",
     "claim_refs": ["C-005", "C-229"]
@@ -16613,7 +16613,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "GitHub Pages와 동일한 정적 base path로 생성한 연구 대표 결과 미리보기 번들이 공개 라우트·정적 무결성·성능 예산을 통과한다.",
-    "locator": "working tree build with VITE_BASE_PATH=/gaba_info/ equivalent public export; release manifest candidateSha 811fe11fe648d81af86f236ced47147dd7949d48, runtimeMode static, routes 11, files 73; validate:release-manifest status ok; validate:static-bundle status ok; validate:performance total assets 1649960 <= 1650000; public deployment and live candidate are not claimed by this evidence",
+    "locator": "working tree Pages-style build based on HEAD d8964b6 before final commit; release manifest runtimeMode static, routes 11, files 73; validate:release-manifest status ok; validate:static-bundle status ok; validate:performance initial JS 311269, initial CSS 95703, total assets 1649610 <= 1650000; public deployment and live candidate are not claimed by this evidence",
     "captured_at": "2026-10-07T09:31:16+09:00",
     "reviewer_id": "NAVI-PAGES-BUNDLE-QA-20261008-RESEARCH-PREVIEW",
     "claim_refs": ["C-001", "C-005", "C-229"]
