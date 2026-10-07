@@ -1117,6 +1117,12 @@
   .guide-research-map-cue p span{overflow-wrap:anywhere}
 }
 
+/* v167 research cue scope: connect the selected result to its study population or model. */
+.guide-research-map-cue-scope{display:block;color:#86a0ad;font-size:11px;line-height:1.4;font-weight:800;letter-spacing:-.02em}
+@media(max-width:700px){
+  .guide-research-map-cue-scope{font-size:12px;line-height:1.45}
+}
+
 /* v52 share and research touch targets: keep public-guide copy actions comfortable for mobile and older readers. */
 .guide-share-line-copy{min-height:44px!important}
 .guide-share-copy-all,.guide-research-copy{min-height:44px}
