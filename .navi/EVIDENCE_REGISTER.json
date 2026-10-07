@@ -17140,7 +17140,7 @@
     "kind": "TEST",
     "status": "INDEPENDENTLY_CONFIRMED",
     "statement": "Playwright Chromium fallback에서 공개 연구 라우트가 390px에서 읽기 쉬운 결과 우선 화면으로 렌더되고, 새 메타데이터·증거 안내·연구 카드·비교 문구가 표시되며 가로 넘침과 실행 오류가 없다.",
-    "locator": "Browser plugin unavailable; Playwright Chromium fallback against https://kradavid.github.io/gaba_info/?view=research&release=9c3f174; viewport 390x844; title `사람 연구의 결과를 한눈에 읽습니다 | 뇌와 우리`; heading `사람 연구의 결과를 한눈에 읽습니다`; brand `뇌와 우리 / GABA를 쉽게 읽는 공개 안내서`; evidence note and comparison wording present; scrollWidth 390 equals clientWidth; page errors 0; console errors 0; screenshot C:/Users/computer/AppData/Local/Temp/gaba-public-research-final-390.png",
+    "locator": "Browser plugin unavailable; Playwright Chromium fallback against https://kradavid.github.io/gaba_info/?view=research&release=9c3f174; viewport 390x844; title `사람 연구의 결과를 한눈에 읽습니다 | 뇌와 우리`; heading `사람 연구의 결과를 한눈에 읽습니다`; brand `뇌와 우리 / GABA를 쉽게 읽는 공개 안내서`; evidence note and comparison wording present; scrollWidth 390 equals clientWidth; page errors 0; console errors 0; screenshot captured outside repository",
     "captured_at": "2026-10-07T12:51:37+09:00",
     "reviewer_id": "NAVI-PLAYWRIGHT-QA-GABA-20261007-RESEARCH-ROUTE",
     "claim_refs": ["C-003", "C-006", "C-239"]
