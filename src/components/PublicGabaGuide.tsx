@@ -2304,9 +2304,9 @@ export default function PublicGabaGuide() {
               <div className="guide-share-intro-actions">{selectedMessageIndices.map(index => <button key={index} className="guide-share-copy-all" type="button" onClick={() => toggleMessageSelection(index)}>{messageKitLabels[index]} ×</button>)}</div>
             </div>
             <div className="guide-share-flow" role="list" aria-label="자료 전달 순서"><div className="guide-share-flow-step" role="listitem"><strong>01</strong><span>대상 선택</span></div><ArrowRight className="guide-share-flow-arrow" size={15} aria-hidden="true" /><div className="guide-share-flow-step" role="listitem"><strong>02</strong><span>자료 {selectedMessageCount}개 선택</span></div><ArrowRight className="guide-share-flow-arrow" size={15} aria-hidden="true" /><div className="guide-share-flow-step" role="listitem"><strong>03</strong><span>공유 또는 복사</span></div></div>
-            <details className="guide-share-lines" aria-label="공유 내용 미리보기">
-              <summary aria-label={`공유 내용 미리보기, ${selectedMessageCount}개 문장`}><span>공유 내용 미리보기</span><b>{selectedMessageCount}개 문장</b></summary>
-              <div>{selectedMessageIndices.map(index => <article key={`preview-${index}`}><div className="guide-share-card-head"><span>{messageKitLabels[index]}</span><span>{messageKitSources[index] ? '출처 포함' : '공개 안내'}</span></div><p>{messageKit[index]}</p>{messageKitSources[index] && messageKitSourceUrls[index] ? <a className="guide-share-card-source" href={messageKitSourceUrls[index]} target="_blank" rel="noopener noreferrer">출처 · {messageKitSources[index]} <ExternalLink size={11} aria-hidden="true" /></a> : null}</article>)}</div>
+            <details className="guide-share-lines">
+              <summary>공유 내용 미리보기 <b>{selectedMessageCount}개 문장</b></summary>
+              <div>{selectedMessageIndices.map(index => <article key={index}><span>{messageKitLabels[index]}</span><p>{messageKit[index]}{messageKitSources[index] ? <><br /><span>출처 · {messageKitSources[index]}</span></> : null}</p></article>)}</div>
             </details>
             <details open className="guide-share-lines">
               <summary aria-label={`${activeMessageAudienceLabel} GABA 자료, 선택 ${selectedMessageCount}개, 전체 ${messageKit.length}개`}><span>{activeMessageAudienceLabel} GABA 자료</span><b>선택 {selectedMessageCount}개 · 전체 {messageKit.length}개</b></summary>
