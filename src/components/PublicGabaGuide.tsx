@@ -1778,6 +1778,29 @@ export default function PublicGabaGuide() {
     if (!copied) announceShareStatus('이 환경에서는 직접 공유를 지원하지 않아요. 추천 자료 복사 버튼을 이용해 보세요.');
   };
 
+  const shareMessageKit = async () => {
+    const recommendedIndices = getRecommendedMessageIndices();
+    const audienceLabel = messageKitAudienceLabels[activeMessageAudienceMask] ?? '공개 자료';
+    const shareUrl = getGuideShareUrl('top');
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `GABA 공개 자료 · ${audienceLabel}`,
+          text: formatMessageKitBundle(recommendedIndices, audienceLabel, false),
+          url: shareUrl,
+        });
+        announceShareStatus(`${recommendedIndices.length}개 추천 자료를 공유했어요.`);
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          announceShareStatus('공유를 취소했어요.');
+          return;
+        }
+      }
+    }
+    await copyMessageKit();
+  };
+
   const copyAllMessageKit = async () => {
     const text = `[GABA 공개 자료 · 전체 5개]\n\n${messageKit.map((message, index) => `${String(index + 1).padStart(2, '0')}. ${formatMessageKitText(message, index)}`).join('\n\n')}\n\n공개 안내서: ${getGuideShareUrl('top')}`;
     const copied = await writeClipboardText(text);
