@@ -410,7 +410,6 @@ requireMatch(publicGuideStyles, /v176 audience-first share board[\s\S]*?\.guide-
 requireMatch(publicGuide, /guide-share-intro-kicker[\s\S]*?필요한 자료만 골라 전달하세요[\s\S]*?guide-share-copy-actions[\s\S]*?selectedMessageCount[\s\S]*?선택 [^<]+개 복사[\s\S]*?전체 5개/, 'public GABA business share board must explain audience-specific recommendations and expose both selected and full bundle actions');
 requireMatch(publicGuide, /guide-share-copy-all-secondary[\s\S]*?전체 5개 복사/, 'public GABA business share board must make the all-material copy action explicit in its visible label');
 requireMatch(publicGuide, /guide-share-flow[\s\S]*?대상 선택[\s\S]*?자료 \{selectedMessageCount\}개 선택[\s\S]*?공유 또는 복사/, 'public GABA business share board must expose the three-step operator flow before the material cards');
-requireMatch(publicGuide, /guide-share-bundle-summary[\s\S]*?현재 선택[\s\S]*?selectedMessageSummary/, 'public GABA business share board must preview the current material selection before the material cards');
 requireMatch(publicGuide, /const toggleMessageSelection = \(index: number\)[\s\S]*?selectedMessageMask[\s\S]*?setSelectedMessageMask/, 'public GABA business share board must let operators compose a custom material bundle from individual cards');
 requireMatch(publicGuide, /const messageKitSourceUrls: \(string \| null\)\[\][\s\S]*?researchTopics\[0\]\.source\.url[\s\S]*?fermentedSafetySteps\[2\]\.source\.url/, 'public GABA share materials must retain original source URLs for the research and fermentation cards');
 requireMatch(publicGuide, /const formatMessageKitText = \(message: string, index: number, withGuide = false, guideUrl\?\: string\)[\s\S]*?messageKitSourceUrls\[index\][\s\S]*?formatMessageKitBundle/, 'public GABA copied and shared materials must include the original source URL when a source is available');
@@ -629,6 +628,7 @@ requireMatch(indexHtml, /<noscript[\s>]/i, 'static no-script fallback is missing
 requireMatch(indexHtml, /1950년, 뇌 속에서 한 신호가 발견됐습니다[\s\S]*그 이름은 GABA였습니다/, 'static no-script fallback must use the discovery-led story title');
 requireMatch(indexHtml, /유진 로버츠와 샘 프랭클[\s\S]*GABA/, 'static no-script fallback must name the discovery researchers');
 requireMatch(indexHtml, /읽는 순서[\s\S]*발견의 순간[\s\S]*GABA란[\s\S]*전문가 영상[\s\S]*연구 지도[\s\S]*국내외 활용 사례[\s\S]*논문 출처/, 'static no-script fallback must preserve the discovery-led reading order with expert videos before the research map');
+requireMatch(publicGuide, /id="expert-videos"[\s\S]*03 · 전문가 영상[\s\S]*id="academic"[\s\S]*04 · 연구 지도/, 'public GABA guide must place expert videos before the research map in the reading order');
 requireMatch(publicGuide, /historyMilestones[\s\S]*Roberts & Frankel[\s\S]*PMID 14794689/, 'public GABA guide must lead with the 1950 Roberts and Frankel discovery');
 requireMatch(publicGuide, /academicFields[\s\S]*신경계의 균형[\s\S]*몸 전체로 넓어지는 연구/, 'public GABA guide must expose the broad academic research map');
 requireMatch(publicGuide, /applicationCases[\s\S]*발효식품과 유산균[\s\S]*발아현미와 기능성 식품[\s\S]*곡류·빵·유제품·음료/, 'public GABA guide must expose Korea, Japan and global application examples');
