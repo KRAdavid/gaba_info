@@ -779,8 +779,6 @@
 .guide-share-full-copy-label-compact{display:none}
 .guide-share-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:19px}
 .guide-share-card-head>span{color:#90d6d6;font-size:11px;font-weight:850;line-height:1.35}
-.guide-share-card-head>b{padding:4px 7px;border:1px solid rgba(145,219,217,.42);border-radius:999px;color:#b9f0ec;font-size:10px;font-weight:900;line-height:1;white-space:nowrap}
-.guide-share-card-head>small{color:#8caab9;font-size:10px;line-height:1;white-space:nowrap}
 .guide-share-card-use{display:block;margin-top:9px;color:#c3dfe5;font-size:12px;font-weight:750;line-height:1.45;letter-spacing:-.03em}
 .guide-share-lines article.is-rec{background:linear-gradient(180deg,rgba(37,177,178,.14),rgba(255,255,255,.06));box-shadow:inset 0 2px 0 rgba(145,219,217,.55)}
 /* v177 share flow: make the operator's next action visible before the material cards. */
@@ -788,9 +786,6 @@
 .guide-share-flow-step{display:flex;align-items:center;gap:9px;min-height:44px;padding:9px 12px;border:1px solid rgba(145,219,217,.24);border-radius:11px;background:rgba(255,255,255,.045);color:#c9e3e7;font-size:12px;font-weight:800;letter-spacing:-.035em}
 .guide-share-flow-step strong{display:inline-flex;align-items:center;justify-content:center;flex:0 0 25px;width:25px;height:25px;border-radius:50%;background:rgba(145,219,217,.16);color:#a9e4e1;font-size:10px;font-weight:900;letter-spacing:.04em}
 .guide-share-flow-arrow{color:#8ed9d7;opacity:.8}
-.guide-share-bundle-summary{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:10px;max-width:790px;margin-top:10px;padding:10px 12px;border-top:1px solid rgba(145,219,217,.16);border-bottom:1px solid rgba(145,219,217,.16)}
-.guide-share-bundle-summary span{color:#8ed9d7;font-size:11px;font-weight:900;letter-spacing:-.02em;white-space:nowrap}
-.guide-share-bundle-summary strong{min-width:0;color:#e0f5f3;font-size:12px;font-weight:750;line-height:1.55;letter-spacing:-.035em;overflow-wrap:anywhere}
 .guide-share-card-source{color:#b7e9e5;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){
   .guide-share-intro-actions{display:grid!important;grid-template-columns:minmax(0,1fr);align-items:stretch;gap:12px}
@@ -803,8 +798,6 @@
   .guide-share-flow{grid-template-columns:1fr;gap:4px;margin-top:12px}
   .guide-share-flow-step{min-height:40px;padding:7px 11px}
   .guide-share-flow-arrow{justify-self:center;transform:rotate(90deg)}
-  .guide-share-bundle-summary{grid-template-columns:1fr;gap:4px;margin-top:10px;padding:10px 0}
-  .guide-share-bundle-summary strong{font-size:13px;line-height:1.6}
 }
 @media(max-width:350px){
   .guide-share-copy-actions{grid-template-columns:minmax(0,1fr) auto}
