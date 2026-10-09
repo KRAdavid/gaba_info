@@ -825,8 +825,15 @@
 .guide-share-selected-chips{display:flex;flex-wrap:wrap;gap:6px}.guide-share-selected-chip{padding:0 9px;border-radius:999px;background:#129aa326}
 .guide-share-selection-status>small{color:#a9c5d0;font-size:11px;line-height:1.5;letter-spacing:-.025em}
 .guide-share-card-source,.guide-share-selected-chips a{color:#b7e9e5;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+/* v182 audience-first operator flow: selection precedes the delivery copy preview. */
+.guide-share-intro-head{display:grid!important;gap:5px!important}
+.guide-share-audience-top{margin-top:0;padding-top:16px;border-top:1px solid rgba(145,219,217,.2)}
+.guide-share-intro-actions{margin-top:0;padding-top:16px;border-top:1px solid rgba(145,219,217,.2)}
+.guide-share-message{margin-top:0}
 @media(max-width:700px){
   .guide-share-intro-actions{display:block!important}
+  .guide-share-audience-top{padding-top:14px}
+  .guide-share-intro-actions{padding-top:14px}
   .guide-share-message{grid-template-columns:auto minmax(0,1fr);gap:7px 10px;padding:12px}
   .guide-share-message p{grid-column:1 / -1;grid-row:2;font-size:13px}
   .guide-share-intro-copy{grid-column:2;grid-row:1;justify-self:end}
