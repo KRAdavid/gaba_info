@@ -2825,3 +2825,12 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 신규 CRITICAL/MAJOR 결함은 없으며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
 
 증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-TYPO-20261009`, `E-UI-CONTRACT-CONTEXT-TYPO-20261009`, `E-PR-CONTEXT-TYPO-20261009`, `E-DEPLOY-CONTEXT-TYPO-20261009`, `E-LIVE-PUBLIC-CONTEXT-TYPO-20261009`, `E-NAVI-STATE-CONTEXT-TYPO-20261009`.
+
+## 2026-10-09 — 공유 보드 본문 위치 링크 12px 가독성 보정 및 공개 배포
+
+- `본문 위치` 링크를 11px에서 12px로 올려 모바일·큰 글씨 사용자도 본문 맥락을 읽기 쉽게 했다. 추가 굵기·행간 속성은 정적 자산 예산을 위해 제외했으며 자료 범위·본문 해시·출처·제품 독립 경계는 유지했다.
+- PR #758과 main workflow `37881114122`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했다. 공개 validator는 candidate SHA `7933ac05f028eaeaaba940577d468828b6fb504c`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- 공개 DOM에서 `본문 위치` 5개 링크, `03 · 전문가 영상 → 04 · 연구 지도` 순서, 사업자 공유 보드 렌더를 확인했고 배포 CSS에도 12px 규칙이 반영됐다. 실제 iOS·Android 실기기와 실제 사용자 독해성은 외부 검증 조건으로 남긴다.
+- 신규 CRITICAL/MAJOR 결함은 없으며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-READABILITY-20261009`, `E-UI-CONTRACT-CONTEXT-READABILITY-20261009`, `E-PR-CONTEXT-READABILITY-20261009`, `E-DEPLOY-CONTEXT-READABILITY-20261009`, `E-LIVE-PUBLIC-CONTEXT-READABILITY-20261009`, `E-NAVI-STATE-CONTEXT-READABILITY-20261009`.

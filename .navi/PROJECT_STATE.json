@@ -4,7 +4,7 @@
   "project_name": "셀핀다가바 GABA 공개 안내서",
   "status": "USER_DECISION",
   "previous_status": "RED_TEAM",
-  "updated_at": "2026-10-09T03:38:14.611Z",
+  "updated_at": "2026-10-09T03:54:35.941Z",
   "goal_lock": {
     "status": "LOCKED",
     "project_name": "셀핀다가바 GABA 공개 안내서 공개 배포 품질 고도화",
@@ -7152,6 +7152,13 @@
       "from_status": "RED_TEAM",
       "to_status": "USER_DECISION",
       "recorded_at": "2026-10-09T12:38:14+09:00"
+    },
+    {
+      "id": "H-425",
+      "event": "NAVI 자동 공개 배포 점검에서 공유 보드 `본문 위치` 링크가 11px로 작아 고령 사용자와 사업자 실무자의 모바일 가독성에 여유가 적은 잔여 리스크를 확인했다. 링크를 12px로 올리고 추가 굵기·행간 CSS는 정적 자산 예산을 위해 제외했으며, 자료별 audience·materials·본문 해시·원문 출처·제품 독립 경계와 공개 읽기 순서 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도`는 유지했다. 초기 PR #758의 추가 속성은 CI 성능 한도에서 21 bytes 초과로 실패했지만, 속성을 제거한 수정 커밋이 required checks를 통과했다. PR #758 merge SHA 7933ac05f028eaeaaba940577d468828b6fb504c와 main workflow 37881114122 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했다. 공개 validator는 HTTP 200·STATIC·candidate SHA 7933ac05f028eaeaaba940577d468828b6fb504c·bundle hash 73개·claims 12개·master records 6개·share pages 6개·teaser HOLD·smartStoreOnly=true·removed750=true·provenance matched를 확인했고, Chrome headless live DOM과 배포 CSS에서 5개 본문 위치 링크·12px 규칙·전문가 영상 선행 순서를 재현했다. 신규 CRITICAL/MAJOR 결함은 없으며 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 외부 검증 조건으로 유지하고 NAVI 상태는 USER_DECISION, 완료 게이트는 NOT_READY다. C-321과 새 증거를 등록한다.",
+      "from_status": "RED_TEAM",
+      "to_status": "USER_DECISION",
+      "recorded_at": "2026-10-09T12:54:35+09:00"
     }
   ]
 }
