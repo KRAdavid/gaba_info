@@ -2853,3 +2853,13 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 공개 validator는 candidate SHA `4209c991eb0e29f13a08eb12cf59bc223e2b2ce2`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
 
 증적: `C-321`, `E-LOCAL-BUILD-BUSINESS-DEFAULT-20261009`, `E-UI-CONTRACT-BUSINESS-DEFAULT-20261009`, `E-PR-BUSINESS-DEFAULT-20261009`, `E-DEPLOY-BUSINESS-DEFAULT-20261009`, `E-LIVE-PUBLIC-BUSINESS-DEFAULT-20261009`, `E-NAVI-STATE-BUSINESS-DEFAULT-20261009`.
+
+## 2026-10-09 — 사업자 공유 보드 대상·자료·공유 순서 보정 및 공개 배포
+
+- 공유 보드의 실제 조작 순서를 `전달 대상 선택 → 공유 목적·자료 묶음 선택 → 링크 공유 또는 내용 복사`로 맞췄다. 옵션은 `소비자에게`·`사업자에게`·`교육에 활용`으로 표시하고, 공유 액션은 자료 묶음 아래에 배치했다.
+- 사업자 기본 4개 추천·명시적 `materials` 복원·개별 선택·전체 5개 복사·원문 출처·본문 위치 딥링크·`GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서와 제품 독립 경계는 유지했다.
+- 로컬 UI contract·typecheck·`pnpm test` 127 pass·production build·정적 번들·성능 예산(totalAssets=1659931 <= 1660500)이 통과했다. PR #764와 main workflow `37885177813`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 Worker는 `STATIC_ONLY` 정책으로 skipped됐다.
+- 공개 validator는 candidate SHA `3ea217675b5f9bfd34941ef5b8867c939b9fe24d`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- 신규 CRITICAL/MAJOR 결함은 없으며 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 외부 검증 조건으로 유지한다. NAVI는 `USER_DECISION / NOT_READY`다.
+
+증적: `C-322`, `E-LOCAL-BUILD-SHARE-RECIPIENT-FLOW-20261009`, `E-UI-CONTRACT-SHARE-RECIPIENT-FLOW-20261009`, `E-PR-SHARE-RECIPIENT-FLOW-20261009`, `E-DEPLOY-SHARE-RECIPIENT-FLOW-20261009`, `E-LIVE-PUBLIC-SHARE-RECIPIENT-FLOW-20261009`, `E-NAVI-STATE-SHARE-RECIPIENT-FLOW-20261009`.
