@@ -3036,6 +3036,14 @@
 
 증적: `C-321`, `E-UI-CONTRACT-CONTEXT-TYPO-20261009`, `E-DEPLOY-CONTEXT-TYPO-20261009`, `E-LIVE-PUBLIC-CONTEXT-TYPO-20261009`, `E-NAVI-STATE-CONTEXT-TYPO-20261009`.
 
+## Red-team recheck — 공유 보드 본문 위치 링크 12px 가독성 — 7933ac05 — 2026-10-09
+
+- 공격 관점에서 라이브 사업자 공유 보드의 본문 위치 링크 5개·정확한 본문 hash·`audience=31`·단일 `materials` 범위와 `03 · 전문가 영상 → 04 · 연구 지도` 순서를 재현했다.
+- 배포 CSS는 `.guide-share-selected-chips a`에 `font-size:12px`를 적용했고, 공개 validator는 HTTP 200·STATIC·candidate `7933ac05f028eaeaaba940577d468828b6fb504c`·공개 데이터 정합성을 확인했다. 새 CRITICAL/MAJOR 결함은 없다.
+- 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 Chrome headless fallback으로 대체하지 않으며 `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-321`, `E-UI-CONTRACT-CONTEXT-READABILITY-20261009`, `E-DEPLOY-CONTEXT-READABILITY-20261009`, `E-LIVE-PUBLIC-CONTEXT-READABILITY-20261009`, `E-NAVI-STATE-CONTEXT-READABILITY-20261009`.
+
 ## Red-team recheck — 공유 자료별 본문 맥락 연결 — 5d08e6a4 — 2026-10-09
 
 - 공격 관점에서 선택 자료 복사와 전체 묶음 복사의 URL 구성을 재검토했다. 개별 자료는 대상·단일 `materials`·정확한 본문 해시를 함께 사용하고, 선택 묶음은 선택 범위를 유지하는 최종 공유 보드 링크를 추가한다.

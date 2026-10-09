@@ -3977,3 +3977,15 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-TYPO-20261009`, `E-UI-CONTRACT-CONTEXT-TYPO-20261009`, `E-PR-CONTEXT-TYPO-20261009`, `E-DEPLOY-CONTEXT-TYPO-20261009`, `E-LIVE-PUBLIC-CONTEXT-TYPO-20261009`, `E-NAVI-STATE-CONTEXT-TYPO-20261009`.
+
+## 공유 보드 본문 위치 링크 12px 가독성 보정 — 7933ac05 — 2026-10-09
+
+- AC-003/AC-004 모바일 가독성: PASS_WITH_CONDITIONS. `본문 위치` 링크를 12px로 올리고 추가 CSS 장식은 제거해 고령 사용자 가독성과 정적 자산 예산을 함께 지켰다.
+- AC-001 공개 배포: PASS. PR #758과 main workflow `37881114122`에서 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 deploy-worker는 `STATIC_ONLY`로 skipped됐다. 공개 validator는 candidate `7933ac05f028eaeaaba940577d468828b6fb504c`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, `teaser HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- AC-005 자동 게이트: PASS. UI contract·typecheck·127개 테스트·Pages base-path 성능 계산 `totalAssets=1660172 <= 1660500`이 통과했다. 초기 PR에서 추가 속성으로 21 bytes 초과한 실패를 확인한 뒤 속성을 제거해 재검증했다.
+- AC-006 제품 독립 경계: PASS. 공유 맥락 링크의 표시 크기만 보정했으며 연구 카피·수치·출처·제품 독립 공개 경계는 변경하지 않았다.
+- AC-007 감사·레드팀: PASS_WITH_CONDITIONS. 라이브 DOM에서 본문 위치 5개 링크·전문가 영상 선행 순서·사업자 보드가 표시되고, 배포 CSS의 12px 규칙을 확인했다. 실제 실기기·실사용자·독립 과학·규제 감수는 대체하지 않으며 `USER_DECISION / NOT_READY`를 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-READABILITY-20261009`, `E-UI-CONTRACT-CONTEXT-READABILITY-20261009`, `E-PR-CONTEXT-READABILITY-20261009`, `E-DEPLOY-CONTEXT-READABILITY-20261009`, `E-LIVE-PUBLIC-CONTEXT-READABILITY-20261009`, `E-NAVI-STATE-CONTEXT-READABILITY-20261009`.
