@@ -2368,7 +2368,7 @@ export default function PublicGabaGuide() {
               <button type="button" className="guide-quiet-button" onClick={() => window.print()}>인쇄 · PDF 저장 <ArrowRight size={17} aria-hidden="true" /></button>
             </div>
             <div className="guide-share-intro" aria-label={`${activeMessageAudienceLabel} GABA 공유 자료 안내`}>
-              <div className="guide-share-intro-head"><span className="guide-share-intro-kicker">{activeMessageAudienceLabel} 공유 자료</span><strong>필요한 자료만 골라 전달하세요</strong><p>먼저 받는 사람을 정하고, 목적에 맞는 묶음을 고른 뒤 바로 공유할 수 있습니다.</p></div>
+              <div><span className="guide-share-intro-kicker">{activeMessageAudienceLabel} 공유 자료</span><strong>필요한 자료만 골라 전달하세요</strong><p>먼저 받는 사람을 정하고, 목적에 맞는 묶음을 고른 뒤 바로 공유할 수 있습니다.</p></div>
               <label className="guide-share-audience guide-share-audience-top"><span>전달 대상</span><select value={activeMessageAudienceMask} onChange={e => changeMessageAudience(+e.target.value)}><option value={21}>소비자에게</option><option value={31}>사업자에게</option><option value={15}>교육에 활용</option></select></label>
               <div className="guide-share-pack" aria-label="공유 목적 선택">
                 <div className="guide-share-pack-head"><span>공유 목적</span><strong>읽는 목적에 맞는 묶음 · {selectedMessageCount}개</strong></div>
