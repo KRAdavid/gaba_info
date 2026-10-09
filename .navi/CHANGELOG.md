@@ -2806,3 +2806,13 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 공개 읽기 순서 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도`와 제품 독립 과학 안내 경계는 변경하지 않았다. 신규 CRITICAL/MAJOR 결함은 없으며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
 
 증적: `C-321`, `E-LOCAL-BUILD-MATERIAL-CONTEXT-20261009`, `E-UI-CONTRACT-MATERIAL-CONTEXT-20261009`, `E-PR-MATERIAL-CONTEXT-20261009`, `E-DEPLOY-MATERIAL-CONTEXT-20261009`, `E-LIVE-PUBLIC-MATERIAL-CONTEXT-20261009`, `E-NAVI-STATE-MATERIAL-CONTEXT-20261009`.
+
+## 2026-10-09 — 사업자 공유 보드 본문 위치 레일 및 공개 배포
+
+- 사업자 공유 보드 카드 위에 `본문 위치` 탐색 레일을 추가해 기본 소개·신경계 역할·연구의 확장·사람 연구 결과·발효·안전 연구를 해당 안내서 본문으로 바로 연결했다. 각 링크는 대상(`audience`)·자료 범위(`materials`)·정확한 본문 해시를 유지한다.
+- 기존 자료별 복사·공유 payload·원문 출처·제품 독립 과학 안내·`GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서는 변경하지 않았고, 기존 칩·출처 링크 스타일을 재사용해 모바일 정보량과 정적 자산 예산을 함께 지켰다.
+- 로컬 UI contract·typecheck·127개 테스트·GitHub Pages base-path 성능 계산(totalAssets=1660182 <= 1660500)이 통과했다. PR #754와 main workflow `37878730743`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 Worker는 `STATIC_ONLY` 정책으로 skipped됐다.
+- 공개 validator는 candidate SHA `be784a5abb2f3af9fb6e84c391c3457364cdf9c7`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, `teaser HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- 신규 CRITICAL/MAJOR 결함은 없다. Browser plugin 부재·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 외부 검증 조건으로 남기며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-RAIL-20261009`, `E-UI-CONTRACT-CONTEXT-RAIL-20261009`, `E-PR-CONTEXT-RAIL-20261009`, `E-DEPLOY-CONTEXT-RAIL-20261009`, `E-LIVE-PUBLIC-CONTEXT-RAIL-20261009`, `E-NAVI-STATE-CONTEXT-RAIL-20261009`.

@@ -3036,6 +3036,14 @@
 
 증적: `C-321`, `E-LOCAL-BUILD-MATERIAL-CONTEXT-20261009`, `E-UI-CONTRACT-MATERIAL-CONTEXT-20261009`, `E-PR-MATERIAL-CONTEXT-20261009`, `E-DEPLOY-MATERIAL-CONTEXT-20261009`, `E-LIVE-PUBLIC-MATERIAL-CONTEXT-20261009`, `E-NAVI-STATE-MATERIAL-CONTEXT-20261009`.
 
+## Red-team public share-context recheck — be784a5a — 2026-10-09
+
+- 공격 관점에서 공유 보드의 새 `본문 위치` 레일이 5개 재사용 자료를 빠뜨리지 않고, 각 링크가 현재 대상·단일 자료 범위·정확한 본문 해시를 유지하는지 UI contract와 공개 validator 기준으로 확인했다. 링크 표면은 기존 칩·출처 링크 스타일을 재사용하며 정적 자산 예산 안에 있다.
+- PR #754 required checks·main Pages 배포·라이브 smoke·release-status가 통과했고 공개 candidate는 merge SHA와 일치한다. HTTP 200·STATIC·bundle hash 73개·claims 12개·master records 6개·share pages 6개·제품 독립 경계·Smart Store 단일 경로를 유지한다.
+- 신규 CRITICAL/MAJOR 결함은 없다. 실제 모바일 렌더·공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검증은 이 환경에서 확인하지 않았고 외부 검증 조건으로 유지한다. teaser `HOLD`, `USER_DECISION / NOT_READY`도 유지한다.
+
+증적: `C-321`, `E-UI-CONTRACT-CONTEXT-RAIL-20261009`, `E-PR-CONTEXT-RAIL-20261009`, `E-DEPLOY-CONTEXT-RAIL-20261009`, `E-LIVE-PUBLIC-CONTEXT-RAIL-20261009`, `E-NAVI-STATE-CONTEXT-RAIL-20261009`.
+
 ## Red-team recheck — 사업자 공유 전달 범위·출처 상태 패널 — c0511729 — 2026-10-09
 
 - 공격 관점에서 선택 자료가 바뀐 뒤 상태 패널의 제목·출처 수·공유 범위 안내가 낡은 값으로 남는지 확인했다. `materials=24`에서 선택 2개로 시작한 뒤 `신경계 역할` 자료를 선택하면 선택 3개와 제목 요약이 갱신됐다.

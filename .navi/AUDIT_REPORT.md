@@ -3955,3 +3955,13 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 - 신규 CRITICAL/MAJOR 결함은 없으며 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 외부 검증 조건으로 남긴다. Final Status는 `NOT_READY`, NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-321`, `E-LOCAL-BUILD-MATERIAL-CONTEXT-20261009`, `E-UI-CONTRACT-MATERIAL-CONTEXT-20261009`, `E-PR-MATERIAL-CONTEXT-20261009`, `E-DEPLOY-MATERIAL-CONTEXT-20261009`, `E-LIVE-PUBLIC-MATERIAL-CONTEXT-20261009`, `E-NAVI-STATE-MATERIAL-CONTEXT-20261009`.
+
+## 공유 보드 본문 위치 레일 재감리 — be784a5a — 2026-10-09
+
+- 사업자 공유 보드의 `본문 위치` 레일이 5개 자료를 각각 정확한 안내서 본문으로 연결하고, 개별 링크에 audience·materials·본문 해시를 함께 보존한다. 기존 선택·복사·공유·원문 출처와 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서는 유지된다.
+- UI contract·typecheck·127개 테스트·GitHub Pages base-path 성능 계산(totalAssets=1660182 <= 1660500)이 통과했고 PR #754 보호 검사와 main workflow `37878730743`의 release-verify·Pages·라이브 smoke·release-status가 성공했다. 공개 validator는 candidate `be784a5abb2f3af9fb6e84c391c3457364cdf9c7`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, `teaser HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- 신규 CRITICAL/MAJOR 결함은 없다. 이번 변경은 보드 발견성·딥링크 표면과 UI contract에 한정되며 연구 카피·수치·출처·제품 독립 공개 경계는 변경하지 않는다. Browser plugin 부재와 Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 외부 검증 조건으로 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-RAIL-20261009`, `E-UI-CONTRACT-CONTEXT-RAIL-20261009`, `E-PR-CONTEXT-RAIL-20261009`, `E-DEPLOY-CONTEXT-RAIL-20261009`, `E-LIVE-PUBLIC-CONTEXT-RAIL-20261009`, `E-NAVI-STATE-CONTEXT-RAIL-20261009`.
