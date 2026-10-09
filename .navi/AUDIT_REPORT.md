@@ -4002,3 +4002,16 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-321`, `E-LOCAL-BUILD-AUDIENCE-RECOMMENDATION-20261009`, `E-UI-CONTRACT-AUDIENCE-RECOMMENDATION-20261009`, `E-PR-AUDIENCE-RECOMMENDATION-20261009`, `E-DEPLOY-AUDIENCE-RECOMMENDATION-20261009`, `E-LIVE-PUBLIC-AUDIENCE-RECOMMENDATION-20261009`, `E-NAVI-STATE-AUDIENCE-RECOMMENDATION-20261009`.
+
+## 사업자 공유 자료 직접 진입 기본값 보정 — 4209c991 — 2026-10-09
+
+- AC-002 사업자 전달성: PASS. 명시적 `materials`가 없는 사업자 진입은 핵심 4개 자료(mask 15)로 시작하고, 명시적 선택 범위·소비자·교육 대상 기본값은 보존된다. 발효·안전 연구와 전체 5개 복사는 추가 선택으로 접근 가능하다.
+- AC-003 공유 정합성: PASS. 개별 자료·선택 묶음의 audience/materials·원문 출처·본문 위치 링크와 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 읽기 순서는 유지된다.
+- AC-001 공개 배포: PASS. PR #762 merge SHA `4209c991eb0e29f13a08eb12cf59bc223e2b2ce2`와 main workflow `37884106697`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했다. 공개 validator는 HTTP 200·STATIC·bundle hash 73개·claims 12개·master records 6개·share pages 6개·`teaser HOLD`·`smartStoreOnly=true`·`removed750=true`·`provenance=matched`를 확인했다.
+- AC-005 자동 게이트: PASS. UI contract·typecheck·127개 테스트·git diff 검사가 통과했고, 명시적 materials 우선 복원과 사업자 기본 mask 15 회귀 규칙을 UI contract에 추가했다.
+- AC-006 제품 독립 경계: PASS. 기본 선택 초기화만 변경했으며 제품 효능·가격·상담·구매 유도 문구는 추가하지 않았다.
+- AC-007 감사·레드팀: PASS_WITH_CONDITIONS. 신규 CRITICAL/MAJOR 결함은 없다. 과거 revision local-path 13개 생략 annotation, 실제 모바일·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 외부 조건으로 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-321`, `E-LOCAL-BUILD-BUSINESS-DEFAULT-20261009`, `E-UI-CONTRACT-BUSINESS-DEFAULT-20261009`, `E-PR-BUSINESS-DEFAULT-20261009`, `E-DEPLOY-BUSINESS-DEFAULT-20261009`, `E-LIVE-PUBLIC-BUSINESS-DEFAULT-20261009`, `E-NAVI-STATE-BUSINESS-DEFAULT-20261009`.

@@ -24481,6 +24481,72 @@
       "captured_at": "2026-10-09T04:16:49Z",
       "reviewer_id": "NAVI-AUDIT-QA-GABA-20261009-AUDIENCE-RECOMMENDATION",
       "claim_refs": ["C-321"]
+    },
+    {
+      "id": "E-LOCAL-BUILD-BUSINESS-DEFAULT-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "명시적 materials 범위가 없는 사업자 공유 보드가 핵심 4개 자료로 시작하도록 초기 선택 로직을 보정했고 UI contract·typecheck·127개 테스트·diff 검사를 통과했다.",
+      "locator": "getInitialMessageSelectionMask; audienceMask === 31 ? 15 : audienceMask; validate:ui-contract PASS; typecheck PASS; pnpm test 127/127; git diff --check PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/pull/762/checks",
+      "captured_at": "2026-10-09T04:30:15Z",
+      "reviewer_id": "NAVI-LOCAL-QA-GABA-20261009-BUSINESS-DEFAULT",
+      "claim_refs": ["C-321"]
+    },
+    {
+      "id": "E-UI-CONTRACT-BUSINESS-DEFAULT-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "UI contract가 명시적 materials 범위 우선 복원과 무범위 사업자 4개 기본 추천을 검사한다.",
+      "locator": "scripts/validate-ui-contract.mjs; getInitialMessageSelectionMask; explicit requestedMask return; audienceMask === 31 ? 15 : audienceMask",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/blob/main/scripts/validate-ui-contract.mjs",
+      "captured_at": "2026-10-09T04:30:15Z",
+      "reviewer_id": "NAVI-UI-CONTRACT-QA-GABA-20261009-BUSINESS-DEFAULT",
+      "claim_refs": ["C-321"]
+    },
+    {
+      "id": "E-PR-BUSINESS-DEFAULT-20261009",
+      "kind": "DELIVERY",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "사업자 공유 기본 선택 보정 PR이 보호 검사를 통과하고 main에 병합됐다.",
+      "locator": "PR #762 merged; merge SHA 4209c991eb0e29f13a08eb12cf59bc223e2b2ce2; release-verify PASS; site-quality-verify PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/pull/762",
+      "captured_at": "2026-10-09T04:30:15Z",
+      "reviewer_id": "NAVI-PR-QA-GABA-20261009-BUSINESS-DEFAULT",
+      "claim_refs": ["C-321"]
+    },
+    {
+      "id": "E-DEPLOY-BUSINESS-DEFAULT-20261009",
+      "kind": "DELIVERY",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "main workflow가 사업자 공유 기본 선택 보정을 정적 Pages에 배포하고 live smoke·release-status까지 성공했다.",
+      "locator": "workflow 37884106697; release-verify PASS; worker-readiness PASS; deploy-pages PASS; deploy-worker skipped by STATIC_ONLY; smoke-live PASS; release-status PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/actions/runs/37884106697",
+      "captured_at": "2026-10-09T04:30:15Z",
+      "reviewer_id": "NAVI-DEPLOY-QA-GABA-20261009-BUSINESS-DEFAULT",
+      "claim_refs": ["C-321"]
+    },
+    {
+      "id": "E-LIVE-PUBLIC-BUSINESS-DEFAULT-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "최신 공개 URL이 사업자 기본 선택 보정 main candidate와 일치하고 공개 데이터·제품 독립 경계를 유지한다.",
+      "locator": "pnpm run validate:live-public https://kradavid.github.io/gaba_info; page=200; runtimeMode=STATIC; candidateSha=4209c991eb0e29f13a08eb12cf59bc223e2b2ce2; bundleHashes=73; claims=12; masterRecords=6; products=1; sharePages=6; teaserPreview status=HOLD/publicUrl=false; internalOpsSnapshots=excluded; smartStoreOnly=true; removed750=true; provenance=matched",
+      "source_uri": "https://kradavid.github.io/gaba_info/",
+      "captured_at": "2026-10-09T04:30:15Z",
+      "reviewer_id": "NAVI-LIVE-PUBLIC-QA-GABA-20261009-BUSINESS-DEFAULT",
+      "claim_refs": ["C-321"]
+    },
+    {
+      "id": "E-NAVI-STATE-BUSINESS-DEFAULT-20261009",
+      "kind": "AUDIT",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "NAVI 기록이 사업자 무범위 진입의 핵심 4개 기본 선택 보정과 로컬 QA·PR·Pages 배포·라이브 validator 결과를 연결하고 USER_DECISION/NOT_READY와 외부 검증 조건을 유지한다.",
+      "locator": "DEC-044; H-427; PR #762 merge SHA 4209c991eb0e29f13a08eb12cf59bc223e2b2ce2; workflow 37884106697; live candidate matched; status USER_DECISION; completion gate NOT_READY",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/commits/main",
+      "captured_at": "2026-10-09T04:30:15Z",
+      "reviewer_id": "NAVI-AUDIT-QA-GABA-20261009-BUSINESS-DEFAULT",
+      "claim_refs": ["C-321"]
     }
   ]
 }

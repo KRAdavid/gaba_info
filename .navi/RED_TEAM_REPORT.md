@@ -3028,6 +3028,14 @@
 
 증적: `C-285`, `E-NAVI-STATE-RESEARCH-MAP-SCOPE-BASELINE-20261008`.
 
+## Red-team recheck — 사업자 공유 자료 직접 진입 기본값 — 4209c991 — 2026-10-09
+
+- 공격 관점에서 명시적 `materials`가 없는 기본 진입, 히어로의 사업자 자료 진입, 명시적 자료 링크 진입을 분리해 검토했다. 기본 사업자 상태는 4개 핵심 자료로 시작하고, 명시적 자료 링크는 요청 범위를 우선하며, 발효·안전 자료와 전체 5개 복사는 사라지지 않는다.
+- 소비자·교육 대상의 기본 선택이 사업자 mask로 오염되지 않는지, 개별 선택·원문 출처·본문 위치 링크·`GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서가 유지되는지 UI contract와 공개 validator 결과를 대조했다. 신규 CRITICAL/MAJOR 결함은 없다.
+- 이번 검증은 정적 공개 검증과 Chromium fallback 범위다. 실제 모바일 공유 시트, Safari/iOS/Android 실기기, 실제 사업자·고령 사용자 독해성, 독립 과학·규제 검토는 대체하지 않으므로 계속 OPEN으로 유지한다. 과거 revision local-path 13개 생략 annotation도 별도 기록한다.
+
+증적: `C-321`, `E-LOCAL-BUILD-BUSINESS-DEFAULT-20261009`, `E-UI-CONTRACT-BUSINESS-DEFAULT-20261009`, `E-DEPLOY-BUSINESS-DEFAULT-20261009`, `E-LIVE-PUBLIC-BUSINESS-DEFAULT-20261009`, `E-NAVI-STATE-BUSINESS-DEFAULT-20261009`.
+
 ## Red-team recheck — 사업자 추천 범위와 전문가 영상 선행 흐름 — f795f40f — 2026-10-09
 
 - 공격 관점에서 사업자 대상을 선택했을 때 첫 추천이 4개 핵심 자료로 시작하는지, 발효·안전 연구가 선택지에서 사라지지 않는지, `전체 5개 복사`와 개별 선택이 계속 접근 가능한지 확인했다. 추천 범위와 전체 범위가 혼동되지 않도록 UI contract의 `shareMask`와 카드 선택 상태를 함께 확인했다.

@@ -2844,3 +2844,12 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - release-verify에는 과거 revision의 local-path 패턴 13개를 의도적으로 생략했다는 기존 annotation이 남아 있다. 현재 공개 산출물 누출로 판정된 것은 아니며, 실제 모바일·실사용자·독립 과학·규제 검토는 계속 외부 조건으로 유지한다. NAVI는 `USER_DECISION / NOT_READY`다.
 
 증적: `C-321`, `E-LOCAL-BUILD-AUDIENCE-RECOMMENDATION-20261009`, `E-UI-CONTRACT-AUDIENCE-RECOMMENDATION-20261009`, `E-PR-AUDIENCE-RECOMMENDATION-20261009`, `E-DEPLOY-AUDIENCE-RECOMMENDATION-20261009`, `E-LIVE-PUBLIC-AUDIENCE-RECOMMENDATION-20261009`, `E-NAVI-STATE-AUDIENCE-RECOMMENDATION-20261009`.
+
+## 2026-10-09 — 사업자 공유 자료 직접 진입 기본값 보정 및 공개 배포
+
+- 사업자 자료에 히어로 버튼이 아닌 자료 모음 메뉴·공개 URL로 직접 도착해도 명시적 `materials`가 없으면 `기본 소개`·`신경계 역할`·`연구의 확장`·`사람 연구 결과` 4개를 먼저 선택하도록 보정했다. 명시적 공유 링크는 기존 선택을 복원하고, 발효·안전 연구·전체 5개 복사·개별 선택은 그대로 제공한다.
+- 소비자·교육 대상 기본 선택은 기존 대상 mask를 유지하며, `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서·원문 출처·본문 위치·제품 독립 경계는 변경하지 않았다.
+- UI contract·typecheck·`pnpm test` 127 pass·git diff 검사가 통과했다. PR #762와 main workflow `37884106697`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 Worker는 `STATIC_ONLY` 정책으로 skipped됐다.
+- 공개 validator는 candidate SHA `4209c991eb0e29f13a08eb12cf59bc223e2b2ce2`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+
+증적: `C-321`, `E-LOCAL-BUILD-BUSINESS-DEFAULT-20261009`, `E-UI-CONTRACT-BUSINESS-DEFAULT-20261009`, `E-PR-BUSINESS-DEFAULT-20261009`, `E-DEPLOY-BUSINESS-DEFAULT-20261009`, `E-LIVE-PUBLIC-BUSINESS-DEFAULT-20261009`, `E-NAVI-STATE-BUSINESS-DEFAULT-20261009`.
