@@ -3711,6 +3711,32 @@
         "E-NAVI-STATE-SHARE-RECIPIENT-FLOW-20261009"
       ],
       "status": "SUPPORTED"
+    },
+    {
+      "id": "C-323",
+      "statement": "네이티브 공유 시트의 GABA 공개 자료 제목은 수신 대상과 선택 자료 개수를 함께 보여주며, 공유 URL·선택 범위·원문 출처·제품 독립 경계를 유지한다.",
+      "evidence_refs": [
+        "E-LOCAL-BUILD-SHARE-TITLE-SCOPE-20261009",
+        "E-UI-CONTRACT-SHARE-TITLE-SCOPE-20261009",
+        "E-PR-SHARE-TITLE-SCOPE-20261009",
+        "E-DEPLOY-SHARE-TITLE-SCOPE-20261009",
+        "E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009",
+        "E-NAVI-STATE-SHARE-TITLE-SCOPE-20261009"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "C-324",
+      "statement": "사업자 공유 보드는 실제 화면과 DOM에서 전달 대상 선택 → 공유 목적·자료 묶음 선택 → 링크 공유 또는 내용 복사 → 대상별 전달 문구 확인 순서를 유지하며, 기존 선택 범위·출처·본문 위치 링크와 제품 독립 경계를 보존한다.",
+      "evidence_refs": [
+        "E-LOCAL-BUILD-SHARE-OPERATOR-ORDER-20261009",
+        "E-UI-CONTRACT-SHARE-OPERATOR-ORDER-20261009",
+        "E-PR-SHARE-OPERATOR-ORDER-20261009",
+        "E-DEPLOY-SHARE-OPERATOR-ORDER-20261009",
+        "E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009",
+        "E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009"
+      ],
+      "status": "SUPPORTED"
     }
   ],
   "evidence": [
@@ -24626,6 +24652,138 @@
       "captured_at": "2026-10-09T04:46:22Z",
       "reviewer_id": "NAVI-AUDIT-QA-GABA-20261009-SHARE-RECIPIENT-FLOW",
       "claim_refs": ["C-322"]
+    },
+    {
+      "id": "E-LOCAL-BUILD-SHARE-TITLE-SCOPE-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "네이티브 공유 제목에 대상 라벨과 선택 자료 개수를 추가하고 UI contract·typecheck·pnpm test 127/127·production build를 통과했다.",
+      "locator": "src/components/PublicGabaGuide.tsx; title: GABA 공개 자료 · audienceLabel · selectedIndices.length; pnpm run validate:ui-contract PASS; pnpm run typecheck PASS; pnpm test 127/127; pnpm run build PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/pull/766/checks",
+      "captured_at": "2026-10-09T04:57:31Z",
+      "reviewer_id": "NAVI-LOCAL-QA-GABA-20261009-SHARE-TITLE-SCOPE",
+      "claim_refs": ["C-323"]
+    },
+    {
+      "id": "E-UI-CONTRACT-SHARE-TITLE-SCOPE-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "UI contract가 네이티브 공유 제목의 audience 라벨과 선택 자료 개수 노출을 검사한다.",
+      "locator": "scripts/validate-ui-contract.mjs; title: GABA 공개 자료 · ${audienceLabel} · ${selectedIndices.length}개",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/blob/main/scripts/validate-ui-contract.mjs",
+      "captured_at": "2026-10-09T04:57:31Z",
+      "reviewer_id": "NAVI-UI-CONTRACT-QA-GABA-20261009-SHARE-TITLE-SCOPE",
+      "claim_refs": ["C-323"]
+    },
+    {
+      "id": "E-PR-SHARE-TITLE-SCOPE-20261009",
+      "kind": "DELIVERY",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "네이티브 공유 제목 개선 PR이 보호 검사를 통과하고 main에 병합됐다.",
+      "locator": "PR #766 merged; merge SHA fdc392fe91962160bd0363e5aada2ed1e6858fe0; release-verify PASS; site-quality-verify PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/pull/766",
+      "captured_at": "2026-10-09T04:57:31Z",
+      "reviewer_id": "NAVI-PR-QA-GABA-20261009-SHARE-TITLE-SCOPE",
+      "claim_refs": ["C-323"]
+    },
+    {
+      "id": "E-DEPLOY-SHARE-TITLE-SCOPE-20261009",
+      "kind": "DELIVERY",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "main workflow가 네이티브 공유 제목 개선을 정적 Pages에 배포하고 live smoke·release-status까지 성공했다.",
+      "locator": "workflow 37886196046; release-verify PASS; worker-readiness PASS; deploy-pages PASS; deploy-worker skipped by STATIC_ONLY; smoke-live PASS; release-status PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/actions/runs/37886196046",
+      "captured_at": "2026-10-09T04:58:39Z",
+      "reviewer_id": "NAVI-DEPLOY-QA-GABA-20261009-SHARE-TITLE-SCOPE",
+      "claim_refs": ["C-323"]
+    },
+    {
+      "id": "E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "최종 공개 URL이 네이티브 공유 제목 개선을 포함한 main candidate와 일치하고 공개 데이터·제품 독립 경계를 유지한다.",
+      "locator": "pnpm run validate:live-public; page=200; runtimeMode=STATIC; candidateSha=aa046b62e431b5f1b8a9ddddc2f169ac5afac927; bundleHashes=73; claims=12; masterRecords=6; products=1; sharePages=6; teaserPreview status=HOLD/publicUrl=false; internalOpsSnapshots=excluded; smartStoreOnly=true; removed750=true; provenance=matched",
+      "source_uri": "https://kradavid.github.io/gaba_info/",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-LIVE-PUBLIC-QA-GABA-20261009-SHARE-TITLE-SCOPE",
+      "claim_refs": ["C-323"]
+    },
+    {
+      "id": "E-NAVI-STATE-SHARE-TITLE-SCOPE-20261009",
+      "kind": "AUDIT",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "NAVI 기록이 네이티브 공유 제목 개선과 로컬 QA·PR·Pages 배포·최종 라이브 validator 결과를 연결하고 USER_DECISION/NOT_READY와 외부 검증 조건을 유지한다.",
+      "locator": "DEC-046; H-429; PR #766 merge SHA fdc392fe91962160bd0363e5aada2ed1e6858fe0; final workflow 37887101410; live candidate matched; status USER_DECISION; completion gate NOT_READY",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/commits/main",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-AUDIT-QA-GABA-20261009-SHARE-TITLE-SCOPE",
+      "claim_refs": ["C-323"]
+    },
+    {
+      "id": "E-LOCAL-BUILD-SHARE-OPERATOR-ORDER-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "공유 보드의 전달 문구 미리보기를 실행 컨트롤 뒤로 옮겨 전달 대상·목적·실행·확인 순서를 완성하고 UI contract·typecheck·pnpm test 127/127·production build를 통과했다.",
+      "locator": "src/components/PublicGabaGuide.tsx; guide-share-intro-kicker → guide-share-audience-top → guide-share-pack → guide-share-intro-actions → guide-share-message; pnpm run validate:ui-contract PASS; pnpm run typecheck PASS; pnpm test 127/127; Pages performance local totalAssets=1659897 <= 1660500",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/pull/767/checks",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-LOCAL-QA-GABA-20261009-SHARE-OPERATOR-ORDER",
+      "claim_refs": ["C-324"]
+    },
+    {
+      "id": "E-UI-CONTRACT-SHARE-OPERATOR-ORDER-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "UI contract가 공유 보드의 수신 대상·목적·실행·전달 문구 순서를 소스 계약으로 검사한다.",
+      "locator": "scripts/validate-ui-contract.mjs; guide-share-intro-kicker → guide-share-audience-top → guide-share-pack → guide-share-intro-actions → guide-share-message",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/blob/main/scripts/validate-ui-contract.mjs",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-UI-CONTRACT-QA-GABA-20261009-SHARE-OPERATOR-ORDER",
+      "claim_refs": ["C-324"]
+    },
+    {
+      "id": "E-PR-SHARE-OPERATOR-ORDER-20261009",
+      "kind": "DELIVERY",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "사업자 공유 보드의 실제 운영 순서 보정 PR이 required checks를 통과하고 main에 병합됐다.",
+      "locator": "PR #767 merged; merge SHA aa046b62e431b5f1b8a9ddddc2f169ac5afac927; release-verify PASS; site-quality-verify PASS",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/pull/767",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-PR-QA-GABA-20261009-SHARE-OPERATOR-ORDER",
+      "claim_refs": ["C-324"]
+    },
+    {
+      "id": "E-DEPLOY-SHARE-OPERATOR-ORDER-20261009",
+      "kind": "DELIVERY",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "최종 main workflow가 공유 보드 순서 보정을 정적 Pages에 배포하고 모든 공개 smoke·release-status 게이트를 통과했다.",
+      "locator": "workflow 37887101410; release-verify PASS; worker-readiness PASS; deploy-pages PASS; deploy-worker skipped by STATIC_ONLY; smoke-live PASS; release-status PASS; Pages totalAssets=1660418 <= 1660500",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/actions/runs/37887101410",
+      "captured_at": "2026-10-09T05:10:11Z",
+      "reviewer_id": "NAVI-DEPLOY-QA-GABA-20261009-SHARE-OPERATOR-ORDER",
+      "claim_refs": ["C-324"]
+    },
+    {
+      "id": "E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009",
+      "kind": "TEST",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "최종 공개 URL이 공유 보드 운영 순서 보정 main candidate와 일치하고 공개 데이터·제품 독립 경계를 유지한다.",
+      "locator": "pnpm run validate:live-public; page=200; runtimeMode=STATIC; candidateSha=aa046b62e431b5f1b8a9ddddc2f169ac5afac927; bundleHashes=73; claims=12; masterRecords=6; products=1; sharePages=6; teaserPreview status=HOLD/publicUrl=false; internalOpsSnapshots=excluded; smartStoreOnly=true; removed750=true; provenance=matched",
+      "source_uri": "https://kradavid.github.io/gaba_info/",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-LIVE-PUBLIC-QA-GABA-20261009-SHARE-OPERATOR-ORDER",
+      "claim_refs": ["C-324"]
+    },
+    {
+      "id": "E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009",
+      "kind": "AUDIT",
+      "status": "INDEPENDENTLY_CONFIRMED",
+      "statement": "NAVI 기록이 공유 보드 운영 순서 보정과 로컬 QA·PR·Pages 배포·최종 라이브 validator 결과를 연결하고 USER_DECISION/NOT_READY와 외부 검증 조건을 유지한다.",
+      "locator": "DEC-047; H-430; PR #767 merge SHA aa046b62e431b5f1b8a9ddddc2f169ac5afac927; workflow 37887101410; live candidate matched; status USER_DECISION; completion gate NOT_READY",
+      "source_uri": "https://github.com/KRAdavid/gaba_info/commits/main",
+      "captured_at": "2026-10-09T05:09:08Z",
+      "reviewer_id": "NAVI-AUDIT-QA-GABA-20261009-SHARE-OPERATOR-ORDER",
+      "claim_refs": ["C-324"]
     }
   ]
 }

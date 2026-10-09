@@ -4028,3 +4028,16 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-322`, `E-LOCAL-BUILD-SHARE-RECIPIENT-FLOW-20261009`, `E-UI-CONTRACT-SHARE-RECIPIENT-FLOW-20261009`, `E-PR-SHARE-RECIPIENT-FLOW-20261009`, `E-DEPLOY-SHARE-RECIPIENT-FLOW-20261009`, `E-LIVE-PUBLIC-SHARE-RECIPIENT-FLOW-20261009`, `E-NAVI-STATE-SHARE-RECIPIENT-FLOW-20261009`.
+
+## 네이티브 공유 범위 표시 및 공유 보드 운영 순서 — aa046b62 — 2026-10-09
+
+- AC-002 사업자 전달성: PASS. 네이티브 공유 제목에 수신 대상과 선택 자료 수를 표시하고, 공유 보드에서 전달 대상·목적·실행·전달 문구 확인 순서를 일치시켰다.
+- AC-003 공유 정합성: PASS. `audience`·`materials`·원문 출처·본문 위치 링크·사업자 기본 4개·전체 5개 복사와 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서를 유지했다.
+- AC-001 공개 배포: PASS. PR #767 merge SHA `aa046b62e431b5f1b8a9ddddc2f169ac5afac927`와 main workflow `37887101410`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 deploy-worker는 `STATIC_ONLY`로 skipped됐다. 공개 validator는 HTTP 200·STATIC·bundle hash 73개·claims 12개·master records 6개·share pages 6개·`teaser HOLD`·`smartStoreOnly=true`·`removed750=true`·`provenance=matched`를 확인했다.
+- AC-005 자동 게이트: PASS. UI contract·typecheck·127개 테스트·production build·Pages 성능 계산 `totalAssets=1660418 <= 1660500`이 통과했다. 첫 candidate의 성능 초과는 추가 스타일 제거 후 해소됐다.
+- AC-006 제품 독립 경계: PASS. 이번 변경은 네이티브 공유 제목과 사업자 공유 보드 순서에 한정되며 연구 카피·수치·출처·제품 효능·가격·구매 유도 문구를 추가하지 않았다.
+- AC-007 감사·레드팀: PASS_WITH_CONDITIONS. 신규 CRITICAL/MAJOR 결함은 없다. 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 자동 QA로 대체하지 않으며 `USER_DECISION / NOT_READY`를 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-323`, `C-324`, `E-LOCAL-BUILD-SHARE-TITLE-SCOPE-20261009`, `E-UI-CONTRACT-SHARE-TITLE-SCOPE-20261009`, `E-PR-SHARE-TITLE-SCOPE-20261009`, `E-DEPLOY-SHARE-TITLE-SCOPE-20261009`, `E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009`, `E-LOCAL-BUILD-SHARE-OPERATOR-ORDER-20261009`, `E-UI-CONTRACT-SHARE-OPERATOR-ORDER-20261009`, `E-PR-SHARE-OPERATOR-ORDER-20261009`, `E-DEPLOY-SHARE-OPERATOR-ORDER-20261009`, `E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009`, `E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009`.
