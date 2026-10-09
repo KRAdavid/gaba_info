@@ -3028,6 +3028,15 @@
 
 증적: `C-285`, `E-NAVI-STATE-RESEARCH-MAP-SCOPE-BASELINE-20261008`.
 
+## Red-team recheck — 사업자 추천 범위와 전문가 영상 선행 흐름 — f795f40f — 2026-10-09
+
+- 공격 관점에서 사업자 대상을 선택했을 때 첫 추천이 4개 핵심 자료로 시작하는지, 발효·안전 연구가 선택지에서 사라지지 않는지, `전체 5개 복사`와 개별 선택이 계속 접근 가능한지 확인했다. 추천 범위와 전체 범위가 혼동되지 않도록 UI contract의 `shareMask`와 카드 선택 상태를 함께 확인했다.
+- 공개 읽기 순서 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도`와 전문가 영상의 `연구 지도` 이어보기 버튼을 확인했다. 영상 선택·원문 보기·연구 카드의 출처 연결 및 사업자 공유 자료의 본문 위치 딥링크는 유지됐다.
+- 로컬 성능 예산 `totalAssets=1660087 <= 1660500`, 공개 HTTP 200·`provenance=matched`와 STATIC 경계를 확인했다. 신규 CRITICAL/MAJOR 결함은 없다.
+- 이번 검증은 정적 공개 검증과 Chromium fallback 범위다. 실제 모바일 공유 시트, Safari/iOS/Android 실기기, 실제 사업자·고령 사용자 독해성, 독립 과학·규제 검토는 대체하지 않으므로 계속 OPEN으로 유지한다. 과거 revision local-path 13개 생략 annotation도 별도 기록한다.
+
+증적: `C-321`, `E-LOCAL-BUILD-AUDIENCE-RECOMMENDATION-20261009`, `E-UI-CONTRACT-AUDIENCE-RECOMMENDATION-20261009`, `E-DEPLOY-AUDIENCE-RECOMMENDATION-20261009`, `E-LIVE-PUBLIC-AUDIENCE-RECOMMENDATION-20261009`, `E-NAVI-STATE-AUDIENCE-RECOMMENDATION-20261009`.
+
 ## Red-team recheck — 공유 보드 본문 위치 링크 모바일 계층 — 054cda4c — 2026-10-09
 
 - 공격 관점에서 라이브 공유 보드의 `본문 위치` 링크가 5개 자료를 각각 `basics`·`history`·`research-cognition`·`fermented-safety`로 연결하고 `audience=31`·단일 `materials` 범위를 보존하는지 확인했다. `03 · 전문가 영상`이 `04 · 연구 지도`보다 앞서는 실제 DOM 순서도 유지됐다.
