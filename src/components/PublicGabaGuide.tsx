@@ -1859,7 +1859,7 @@ export default function PublicGabaGuide() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `GABA 공개 자료 · ${audienceLabel}`,
+          title: `GABA 공개 자료 · ${audienceLabel} · ${selectedIndices.length}개`,
           text: formatMessageKitBundle(selectedIndices, audienceLabel, false),
           url: shareUrl,
         });
