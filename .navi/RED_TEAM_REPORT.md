@@ -3028,6 +3028,14 @@
 
 증적: `C-285`, `E-NAVI-STATE-RESEARCH-MAP-SCOPE-BASELINE-20261008`.
 
+## Red-team recheck — 사업자 공유 보드 대상 선택 순서 — 3ea21767 — 2026-10-09
+
+- 공격 관점에서 공유 보드의 DOM 순서를 확인했다. 전달 대상 선택이 목적별 자료 묶음보다 먼저 존재하고, 공유·복사 액션은 자료 묶음 아래에 배치되어 `대상 선택 → 자료 선택 → 링크 공유 또는 내용 복사` 안내와 일치한다.
+- 소비자에게·사업자에게·교육에 활용 옵션, 사업자 기본 4개 추천, 명시적 materials 복원, 개별·전체 복사·원문 출처·본문 위치 링크는 유지된다. UI contract·typecheck·127개 테스트·Pages 배포 smoke·live validator가 통과했으며 신규 CRITICAL/MAJOR 결함은 없다.
+- 이번 보정은 공유 보드의 정보 순서와 모바일 레이아웃에 한정되어 연구 카피·수치·출처·제품 독립 경계를 변경하지 않는다. Browser plugin 부재와 Safari/iOS/Android 실기기·실제 고령 사용자 독해성·독립 과학·규제 검토는 외부 조건으로 남기며 `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-322`, `E-LOCAL-BUILD-SHARE-RECIPIENT-FLOW-20261009`, `E-UI-CONTRACT-SHARE-RECIPIENT-FLOW-20261009`, `E-LIVE-PUBLIC-SHARE-RECIPIENT-FLOW-20261009`, `E-NAVI-STATE-SHARE-RECIPIENT-FLOW-20261009`.
+
 ## Red-team recheck — 사업자 공유 자료 직접 진입 기본값 — 4209c991 — 2026-10-09
 
 - 공격 관점에서 명시적 `materials`가 없는 기본 진입, 히어로의 사업자 자료 진입, 명시적 자료 링크 진입을 분리해 검토했다. 기본 사업자 상태는 4개 핵심 자료로 시작하고, 명시적 자료 링크는 요청 범위를 우선하며, 발효·안전 자료와 전체 5개 복사는 사라지지 않는다.

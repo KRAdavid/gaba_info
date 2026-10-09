@@ -4015,3 +4015,16 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-321`, `E-LOCAL-BUILD-BUSINESS-DEFAULT-20261009`, `E-UI-CONTRACT-BUSINESS-DEFAULT-20261009`, `E-PR-BUSINESS-DEFAULT-20261009`, `E-DEPLOY-BUSINESS-DEFAULT-20261009`, `E-LIVE-PUBLIC-BUSINESS-DEFAULT-20261009`, `E-NAVI-STATE-BUSINESS-DEFAULT-20261009`.
+
+## 사업자 공유 보드 대상·자료·공유 순서 보정 — 3ea21767 — 2026-10-09
+
+- AC-002 사업자 전달성: PASS. 전달 대상 선택을 목적별 자료 묶음보다 먼저 표시하고, 공유·복사 액션을 자료 선택 아래에 두어 화면 순서와 실제 조작 순서를 일치시켰다. 옵션은 소비자에게·사업자에게·교육에 활용으로 명확히 표시한다.
+- AC-003 공유 정합성: PASS. 사업자 기본 4개 추천, 명시적 materials 범위, 개별·전체 복사, 원문 출처·본문 위치 링크와 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서를 유지했다.
+- AC-001 공개 배포: PASS. PR #764 merge SHA `3ea217675b5f9bfd34941ef5b8867c939b9fe24d`와 main workflow `37885177813`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 deploy-worker는 `STATIC_ONLY`로 skipped됐다. 공개 validator는 candidate `3ea217675b5f9bfd34941ef5b8867c939b9fe24d`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- AC-005 자동 게이트: PASS. UI contract·typecheck·127개 테스트·production build·정적 번들·Pages 성능 계산 `totalAssets=1659931 <= 1660500`이 통과했다.
+- AC-006 제품 독립 경계: PASS. 이번 변경은 공유 보드의 화면 순서·수신 대상 문구·모바일 레이아웃에 한정되며 연구 카피·수치·출처·제품 효능·가격·구매 유도 문구를 추가하지 않았다.
+- AC-007 감사·레드팀: PASS_WITH_CONDITIONS. 신규 CRITICAL/MAJOR 결함은 없다. 실기기·실사용자·독립 과학·규제 검토는 자동 QA로 대체하지 않으며 `USER_DECISION / NOT_READY`를 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-322`, `E-LOCAL-BUILD-SHARE-RECIPIENT-FLOW-20261009`, `E-UI-CONTRACT-SHARE-RECIPIENT-FLOW-20261009`, `E-PR-SHARE-RECIPIENT-FLOW-20261009`, `E-DEPLOY-SHARE-RECIPIENT-FLOW-20261009`, `E-LIVE-PUBLIC-SHARE-RECIPIENT-FLOW-20261009`, `E-NAVI-STATE-SHARE-RECIPIENT-FLOW-20261009`.
