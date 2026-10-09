@@ -2873,3 +2873,13 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 신규 CRITICAL/MAJOR 결함은 없으며 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 외부 검증 조건으로 유지한다. NAVI는 `USER_DECISION / NOT_READY`다.
 
 증적: `C-323`, `C-324`, `E-LOCAL-BUILD-SHARE-TITLE-SCOPE-20261009`, `E-UI-CONTRACT-SHARE-TITLE-SCOPE-20261009`, `E-PR-SHARE-TITLE-SCOPE-20261009`, `E-DEPLOY-SHARE-TITLE-SCOPE-20261009`, `E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009`, `E-LOCAL-BUILD-SHARE-OPERATOR-ORDER-20261009`, `E-UI-CONTRACT-SHARE-OPERATOR-ORDER-20261009`, `E-PR-SHARE-OPERATOR-ORDER-20261009`, `E-DEPLOY-SHARE-OPERATOR-ORDER-20261009`, `E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009`, `E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009`.
+
+## 2026-10-09 — 공유 실행 전 선택 자료 확인
+
+- 목적별 묶음 바로 아래에 현재 선택된 자료 제목, 원문 출처 수, 링크 범위 보존 문구를 노출하고 공유·복사 액션보다 먼저 확인하게 했다.
+- 선택 칩의 개별 해제와 대상·묶음 변경 동작은 유지했다. 390px live CDP에서 `scrollWidth=390`, 선택 패널이 액션보다 선행, runtime errors 0을 확인했다.
+- PR #770 merge SHA `83302f51...`, main workflow `37889158559`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했고 Worker는 `STATIC_ONLY`로 skipped됐다.
+- 공개 validator: HTTP 200, STATIC, candidate SHA `83302f51f0acab6df7bb6093d6e7f0053e2a2b12`, bundle hash 73개, claims 12개, master records 6개, products 1개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`.
+- 제품 카피·연구 결과·출처·제품 독립 경계는 변경하지 않았다. 외부 실기기·실사용자·독립 과학·규제 검증과 NAVI `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-325` 및 위 7개 evidence ID.

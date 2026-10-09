@@ -4041,3 +4041,13 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-323`, `C-324`, `E-LOCAL-BUILD-SHARE-TITLE-SCOPE-20261009`, `E-UI-CONTRACT-SHARE-TITLE-SCOPE-20261009`, `E-PR-SHARE-TITLE-SCOPE-20261009`, `E-DEPLOY-SHARE-TITLE-SCOPE-20261009`, `E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009`, `E-LOCAL-BUILD-SHARE-OPERATOR-ORDER-20261009`, `E-UI-CONTRACT-SHARE-OPERATOR-ORDER-20261009`, `E-PR-SHARE-OPERATOR-ORDER-20261009`, `E-DEPLOY-SHARE-OPERATOR-ORDER-20261009`, `E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009`, `E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009`.
+
+## 공유 실행 전 선택 자료 패널 — 83302f51 — 2026-10-09
+
+- 사업자가 모바일에서 실제 보낼 자료를 공유 전에 확인할 수 있도록 선택 자료 요약을 목적 묶음 아래로 이동했다.
+- 로컬·라이브 390px CDP에서 선택 자료 패널이 공유 액션보다 앞에 있고, 대상·묶음 변경 시 선택 자료와 개수가 갱신되며 `scrollWidth=390`, runtime errors 0이었다.
+- UI contract, typecheck, 127 tests, production build, Pages budget `totalAssets=1659904 <= 1660500` PASS.
+- PR #770 merge, main release-verify·worker-readiness·deploy-pages·smoke-live·release-status PASS; live validator candidate matched.
+- 신규 CRITICAL/MAJOR 없음. Browser plugin 부재, Safari/iOS/Android 실기기, 실제 사용자, 독립 과학, 규제 검증은 외부 조건. NAVI `USER_DECISION / NOT_READY`.
+
+증적: `C-325` 및 evidence IDs.

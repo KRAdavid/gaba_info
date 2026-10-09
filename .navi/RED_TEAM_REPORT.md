@@ -3028,6 +3028,14 @@
 
 증적: `C-285`, `E-NAVI-STATE-RESEARCH-MAP-SCOPE-BASELINE-20261008`.
 
+## Red-team recheck — 공유 실행 전 선택 자료 확인 — 83302f51 — 2026-10-09
+
+- 공격 관점에서 390px live public DOM/screenshot을 확인했다. 선택 자료 4개·출처 4개가 공유 액션보다 먼저 표시되고, 390px 가로 넘침·runtime error는 없었다.
+- 대상 변경과 `출처까지` 묶음 선택 후 선택 2개로 갱신되는 상호작용을 재현했다.
+- 신규 CRITICAL/MAJOR 없음. CDP fallback은 Safari/iOS/Android 실기기·실제 고령 사용자·독립 과학·규제 검증을 대신하지 않는다. teaser HOLD와 NAVI `USER_DECISION / NOT_READY` 유지.
+
+증적: `C-325` 및 evidence IDs.
+
 ## Red-team recheck — 네이티브 공유 범위 및 사업자 조작 순서 — aa046b62 — 2026-10-09
 
 - 공격 관점에서 네이티브 공유 제목이 대상과 선택 자료 개수를 함께 노출하는지, 공유 보드가 `전달 대상 → 목적·자료 → 실행 → 전달 문구` 순서를 유지하는지 확인했다. 선택 범위·원문 출처·본문 위치 링크와 제품 독립 경계는 변하지 않았다.
