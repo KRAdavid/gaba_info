@@ -692,9 +692,6 @@ const messageKitSources: (string | null)[] = [gabaBasicsSource.label, gabaBasics
 const messageKitSourceUrls: (string | null)[] = [gabaBasicsSource.url, gabaBasicsSource.url, historyMilestones[2].source.url, researchTopics[0].source.url, fermentedSafetySteps[2].source.url];
 const messageKitGuideHashes = ['basics', 'basics', 'history', 'research-cognition', 'fermented-safety'] as const;
 const messageKitAudienceLabels: Record<number, string> = { 21: '소비자용', 31: '사업자용', 15: '교육용' };
-// Audience defaults should be a useful starting point, not a duplicate of the full five-card set.
-// Business operators can add fermentation/safety material when the conversation needs it.
-const messageKitAudienceRecommendations: Record<number, number> = { 21: 21, 31: 15, 15: 15 };
 const messageKitAudienceIntros: Record<number, string> = {
   21: 'GABA가 무엇인지, 일상과 공개 연구에서 어떤 주제로 다뤄지는지 쉽게 정리한 자료입니다.',
   31: 'GABA의 기본 역할과 공개 연구 흐름을 사업 설명에 활용하기 쉽게 정리한 자료입니다.',
@@ -707,7 +704,6 @@ const messageKitPacks = [
 ] as const;
 const validMessageAudienceMasks = new Set([21, 31, 15]);
 const messageKitMaskLimit = (1 << messageKit.length) - 1;
-const getRecommendedMessageKitMask = (audienceMask: number) => messageKitAudienceRecommendations[audienceMask] ?? audienceMask;
 
 const isValidMessageSelectionMask = (mask: number) => Number.isInteger(mask) && mask > 0 && mask <= messageKitMaskLimit;
 
@@ -720,7 +716,7 @@ const getInitialMessageAudienceMask = () => {
 const getInitialMessageSelectionMask = () => {
   if (typeof window === 'undefined') return messageKitMaskLimit;
   const requestedMask = Number(new URLSearchParams(window.location.search).get('materials'));
-  return isValidMessageSelectionMask(requestedMask) ? requestedMask : getRecommendedMessageKitMask(getInitialMessageAudienceMask());
+  return isValidMessageSelectionMask(requestedMask) ? requestedMask : getInitialMessageAudienceMask();
 };
 
 const getGuideShareUrl = (hash = 'top') => {
@@ -1915,11 +1911,11 @@ export default function PublicGabaGuide() {
   const selectedMessageCount = selectedMessageIndices.length;
   const selectedMessageSourceCount = selectedMessageIndices.filter(index => Boolean(messageKitSources[index] && messageKitSourceUrls[index])).length;
   const activeMessageAudienceLabel = messageKitAudienceLabels[activeMessageAudienceMask] ?? '공개 자료';
-  const activeMessageAudienceRecommendationMask = getRecommendedMessageKitMask(activeMessageAudienceMask);
-  const messageKitPackOptions = [['추천 자료', activeMessageAudienceRecommendationMask, `${activeMessageAudienceLabel}에 먼저 전달할 핵심 자료`] as const, ...messageKitPacks];
+  const activeMessageRecommendationMask = activeMessageAudienceMask === 31 ? 15 : activeMessageAudienceMask;
+  const messageKitPackOptions = [['추천 자료', activeMessageRecommendationMask, `${activeMessageAudienceLabel}에 먼저 전달할 핵심 자료`] as const, ...messageKitPacks];
   const changeMessageAudience = (nextMask: number) => {
     setActiveMessageAudienceMask(nextMask);
-    setSelectedMessageMask(getRecommendedMessageKitMask(nextMask));
+    setSelectedMessageMask(nextMask === 31 ? 15 : nextMask);
   };
 
   const toggleMessageSelection = (index: number) => {
@@ -1939,7 +1935,7 @@ export default function PublicGabaGuide() {
 
   const openBusinessMaterials = () => {
     setActiveMessageAudienceMask(31);
-    setSelectedMessageMask(31);
+    setSelectedMessageMask(15);
     setMessageKitCopied(false);
     scrollTo('final');
   };
@@ -2395,7 +2391,7 @@ export default function PublicGabaGuide() {
             <details open className="guide-share-lines">
               <summary aria-label={`${activeMessageAudienceLabel} GABA 자료, 선택 ${selectedMessageCount}개, 전체 ${messageKit.length}개`}><span>{activeMessageAudienceLabel} GABA 자료</span><b>선택 {selectedMessageCount}개 · 전체 {messageKit.length}개</b></summary>
               <nav className="guide-share-selected-chips"><span>본문 위치</span>{messageKitGuideHashes.map((hash, index) => <a key={index} href={getMessageKitShareUrl(activeMessageAudienceMask, 1 << index, hash)}>{messageKitLabels[index]}</a>)}</nav>
-              <div>{messageKit.map((message, index) => { const isMessageCopied = copiedMessageIndex === index; const isRecommended = Boolean(activeMessageAudienceRecommendationMask & (1 << index)); const isSelected = Boolean(selectedMessageMask & (1 << index)); const sourceUrl = messageKitSourceUrls[index]; return <article key={message} className={isRecommended ? 'is-rec' : undefined}><div className="guide-share-card-head"><span>{messageKitLabels[index]}</span><button type="button" className={`guide-share-copy-all${isSelected ? ' is-copied' : ''}`} aria-pressed={isSelected} aria-label={`${messageKitLabels[index]} 자료 ${isSelected ? '선택 해제' : '선택'}`} onClick={() => toggleMessageSelection(index)}><span>{isSelected ? '선택됨' : '선택'}</span></button></div><small className="guide-share-card-use">{messageKitUseCases[index]}</small><p>{message}{messageKitSources[index] && sourceUrl ? <><br /><a className="guide-share-card-source" href={sourceUrl} target="_blank" rel="noopener noreferrer">출처 · {messageKitSources[index]} <ExternalLink size={11} aria-hidden="true" /></a></> : null}</p><button type="button" className={`guide-share-line-copy${isMessageCopied ? ' is-copied' : ''}`} aria-label={`${messageKitLabels[index]} ${isMessageCopied ? '복사 완료' : '복사'}`} onClick={() => void copyMessageKitLine(message, index)}><span className="guide-share-line-copy-icon" aria-hidden="true">{isMessageCopied ? <Check size={13} /> : <Clipboard size={13} />}</span>{isMessageCopied ? '복사 완료' : '문장 복사'}</button></article>; })}</div>
+              <div>{messageKit.map((message, index) => { const isMessageCopied = copiedMessageIndex === index; const isRecommended = Boolean(activeMessageRecommendationMask & (1 << index)); const isSelected = Boolean(selectedMessageMask & (1 << index)); const sourceUrl = messageKitSourceUrls[index]; return <article key={message} className={isRecommended ? 'is-rec' : undefined}><div className="guide-share-card-head"><span>{messageKitLabels[index]}</span><button type="button" className={`guide-share-copy-all${isSelected ? ' is-copied' : ''}`} aria-pressed={isSelected} aria-label={`${messageKitLabels[index]} 자료 ${isSelected ? '선택 해제' : '선택'}`} onClick={() => toggleMessageSelection(index)}><span>{isSelected ? '선택됨' : '선택'}</span></button></div><small className="guide-share-card-use">{messageKitUseCases[index]}</small><p>{message}{messageKitSources[index] && sourceUrl ? <><br /><a className="guide-share-card-source" href={sourceUrl} target="_blank" rel="noopener noreferrer">출처 · {messageKitSources[index]} <ExternalLink size={11} aria-hidden="true" /></a></> : null}</p><button type="button" className={`guide-share-line-copy${isMessageCopied ? ' is-copied' : ''}`} aria-label={`${messageKitLabels[index]} ${isMessageCopied ? '복사 완료' : '복사'}`} onClick={() => void copyMessageKitLine(message, index)}><span className="guide-share-line-copy-icon" aria-hidden="true">{isMessageCopied ? <Check size={13} /> : <Clipboard size={13} />}</span>{isMessageCopied ? '복사 완료' : '문장 복사'}</button></article>; })}</div>
             </details>
           </div>
         </section>
