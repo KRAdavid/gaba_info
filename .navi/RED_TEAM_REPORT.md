@@ -3028,6 +3028,14 @@
 
 증적: `C-285`, `E-NAVI-STATE-RESEARCH-MAP-SCOPE-BASELINE-20261008`.
 
+## Red-team recheck — 네이티브 공유 범위 및 사업자 조작 순서 — aa046b62 — 2026-10-09
+
+- 공격 관점에서 네이티브 공유 제목이 대상과 선택 자료 개수를 함께 노출하는지, 공유 보드가 `전달 대상 → 목적·자료 → 실행 → 전달 문구` 순서를 유지하는지 확인했다. 선택 범위·원문 출처·본문 위치 링크와 제품 독립 경계는 변하지 않았다.
+- PR #767의 첫 candidate는 Pages 성능 한도를 247 bytes 초과했으나, 추가 스타일을 제거한 최종 candidate는 Pages `totalAssets=1660418 <= 1660500`을 통과했다. main workflow `37887101410`, 공개 smoke, release-status와 최종 live validator가 모두 성공했다.
+- 신규 CRITICAL/MAJOR 결함은 없다. 브라우저 공유 시트의 실제 수신 화면·Safari/iOS/Android 실기기·실제 고령 사용자 독해성·독립 과학·규제 검토는 자동 검증으로 대체하지 않으며 teaser `HOLD`, `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-323`, `C-324`, `E-PR-SHARE-TITLE-SCOPE-20261009`, `E-DEPLOY-SHARE-TITLE-SCOPE-20261009`, `E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009`, `E-PR-SHARE-OPERATOR-ORDER-20261009`, `E-DEPLOY-SHARE-OPERATOR-ORDER-20261009`, `E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009`, `E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009`.
+
 ## Red-team recheck — 사업자 공유 보드 대상 선택 순서 — 3ea21767 — 2026-10-09
 
 - 공격 관점에서 공유 보드의 DOM 순서를 확인했다. 전달 대상 선택이 목적별 자료 묶음보다 먼저 존재하고, 공유·복사 액션은 자료 묶음 아래에 배치되어 `대상 선택 → 자료 선택 → 링크 공유 또는 내용 복사` 안내와 일치한다.

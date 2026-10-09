@@ -2863,3 +2863,13 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 신규 CRITICAL/MAJOR 결함은 없으며 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 외부 검증 조건으로 유지한다. NAVI는 `USER_DECISION / NOT_READY`다.
 
 증적: `C-322`, `E-LOCAL-BUILD-SHARE-RECIPIENT-FLOW-20261009`, `E-UI-CONTRACT-SHARE-RECIPIENT-FLOW-20261009`, `E-PR-SHARE-RECIPIENT-FLOW-20261009`, `E-DEPLOY-SHARE-RECIPIENT-FLOW-20261009`, `E-LIVE-PUBLIC-SHARE-RECIPIENT-FLOW-20261009`, `E-NAVI-STATE-SHARE-RECIPIENT-FLOW-20261009`.
+
+## 2026-10-09 — 네이티브 공유 범위 표시 및 사업자 공유 보드 순서 완성
+
+- 네이티브 공유 제목에 수신 대상과 선택 자료 개수를 함께 표시해, 받는 사람이 공유 범위를 제목만으로 확인할 수 있게 했다. URL·`audience`·`materials`·원문 출처와 제품 독립 경계는 유지했다.
+- 공유 보드의 실제 순서를 `전달 대상 → 공유 목적·자료 묶음 → 링크 공유 또는 내용 복사 → 전달 문구 확인`으로 정렬했다. 기존 사업자 기본 4개 추천·전체 5개 복사·개별 선택·본문 위치 딥링크·`GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 흐름은 유지했다.
+- 로컬 UI contract·typecheck·`pnpm test` 127 pass·production build가 통과했다. 첫 PR candidate의 247 bytes 성능 초과는 추가 스타일을 제거해 해결했으며, 최종 Pages 번들 `totalAssets=1660418 <= 1660500`을 확인했다.
+- PR #767과 main workflow `37887101410`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 Worker는 `STATIC_ONLY` 정책으로 skipped됐다. 공개 validator는 candidate SHA `aa046b62e431b5f1b8a9ddddc2f169ac5afac927`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- 신규 CRITICAL/MAJOR 결함은 없으며 실제 모바일 공유 시트·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 외부 검증 조건으로 유지한다. NAVI는 `USER_DECISION / NOT_READY`다.
+
+증적: `C-323`, `C-324`, `E-LOCAL-BUILD-SHARE-TITLE-SCOPE-20261009`, `E-UI-CONTRACT-SHARE-TITLE-SCOPE-20261009`, `E-PR-SHARE-TITLE-SCOPE-20261009`, `E-DEPLOY-SHARE-TITLE-SCOPE-20261009`, `E-LIVE-PUBLIC-SHARE-TITLE-SCOPE-20261009`, `E-LOCAL-BUILD-SHARE-OPERATOR-ORDER-20261009`, `E-UI-CONTRACT-SHARE-OPERATOR-ORDER-20261009`, `E-PR-SHARE-OPERATOR-ORDER-20261009`, `E-DEPLOY-SHARE-OPERATOR-ORDER-20261009`, `E-LIVE-PUBLIC-SHARE-OPERATOR-ORDER-20261009`, `E-NAVI-STATE-SHARE-OPERATOR-ORDER-20261009`.
