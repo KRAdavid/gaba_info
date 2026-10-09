@@ -3965,3 +3965,15 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-RAIL-20261009`, `E-UI-CONTRACT-CONTEXT-RAIL-20261009`, `E-PR-CONTEXT-RAIL-20261009`, `E-DEPLOY-CONTEXT-RAIL-20261009`, `E-LIVE-PUBLIC-CONTEXT-RAIL-20261009`, `E-NAVI-STATE-CONTEXT-RAIL-20261009`.
+
+## 공유 보드 본문 위치 링크 모바일 가독성 보정 — 054cda4c — 2026-10-09
+
+- AC-003/AC-004 모바일 가독성: PASS_WITH_CONDITIONS. `본문 위치` 링크를 기존 칩·출처 링크와 같은 11px로 정리해 본문 글자와 탐색 링크의 계층을 분리했다. 5개 자료 링크의 audience·materials·본문 해시와 공유 흐름은 유지했다.
+- AC-001 공개 배포: PASS. PR #756과 main workflow `37879931493`에서 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 deploy-worker는 `STATIC_ONLY`로 skipped됐다. 공개 validator는 candidate `054cda4c3014ec2fe8869985f2d839c3cc689b90`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, `teaser HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- AC-005 자동 게이트: PASS. PR 보호 검사에서 UI contract·typecheck·연구 카피·테스트 127개·정적 빌드가 통과했고, Pages 성능 계산은 `totalAssets=1660172 <= 1660500`이었다.
+- AC-006 제품 독립 경계: PASS. 링크 글자 크기만 보정했으며 연구 카피·수치·출처·제품 독립 공개 경계는 변경하지 않았다.
+- AC-007 감사·레드팀: PASS_WITH_CONDITIONS. Chrome headless live DOM에서 `본문 위치` 5개 링크와 `03 · 전문가 영상 → 04 · 연구 지도` 순서를 확인했다. 스크린샷 렌더러·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 대체하지 않으며 `USER_DECISION / NOT_READY`를 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-TYPO-20261009`, `E-UI-CONTRACT-CONTEXT-TYPO-20261009`, `E-PR-CONTEXT-TYPO-20261009`, `E-DEPLOY-CONTEXT-TYPO-20261009`, `E-LIVE-PUBLIC-CONTEXT-TYPO-20261009`, `E-NAVI-STATE-CONTEXT-TYPO-20261009`.
