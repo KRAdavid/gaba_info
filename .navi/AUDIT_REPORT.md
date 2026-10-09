@@ -3989,3 +3989,16 @@ Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
 
 증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-READABILITY-20261009`, `E-UI-CONTRACT-CONTEXT-READABILITY-20261009`, `E-PR-CONTEXT-READABILITY-20261009`, `E-DEPLOY-CONTEXT-READABILITY-20261009`, `E-LIVE-PUBLIC-CONTEXT-READABILITY-20261009`, `E-NAVI-STATE-CONTEXT-READABILITY-20261009`.
+
+## 사업자 공유 기본 추천 범위 및 전문가 영상 선행 흐름 — f795f40f — 2026-10-09
+
+- AC-001 공개 배포: PASS. PR #760 merge SHA `f795f40f1e91ef786a8e73b22f46c3232bf9d8cf`와 main workflow `37883016618`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했다. 공개 validator는 HTTP 200·STATIC·bundle hash 73개·claims 12개·master records 6개·share pages 6개·`teaser HOLD`·`smartStoreOnly=true`·`removed750=true`·`provenance=matched`를 확인했다.
+- AC-002 사업자 전달성: PASS. 사업자 대상 기본 추천은 4개 핵심 자료로 좁혀져 첫 화면에서 선택 부담을 줄였고, 발효·안전 연구는 선택 자료로 남았다. 전체 5개 복사·개별 선택·원문 출처·자료별 본문 위치·audience/materials 딥링크는 유지됐다.
+- AC-003 읽기 흐름: PASS. 공개 DOM과 소스에서 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서를 확인했다. 전문가 영상에서 쉬운 설명을 먼저 접한 뒤 연구 지도에서 대상·결과·출처로 이어지는 연결 버튼이 존재한다.
+- AC-005 자동 게이트: PASS. UI contract·typecheck·`pnpm test` 127 pass와 Pages base-path 성능 계산 `totalAssets=1660087 <= 1660500`이 통과했다. 두 차례의 초기 성능 예산 초과 후보는 배포하지 않고 텍스트 축소 후 통과 후보만 병합했다.
+- AC-006 제품 독립 경계: PASS. 이번 변경은 사업자 공유 범위와 읽기 흐름에 한정되며 제품 효능·가격·상담·구매 유도 문구를 추가하지 않았다.
+- AC-007 감사·레드팀: PASS_WITH_CONDITIONS. 신규 CRITICAL/MAJOR 결함은 없다. release-verify의 과거 revision local-path 13개 생략 annotation, Browser fallback, Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 검토는 외부 조건으로 유지한다.
+
+Final Status: `NOT_READY`; NAVI 상태는 `USER_DECISION`이다.
+
+증적: `C-321`, `E-LOCAL-BUILD-AUDIENCE-RECOMMENDATION-20261009`, `E-UI-CONTRACT-AUDIENCE-RECOMMENDATION-20261009`, `E-PR-AUDIENCE-RECOMMENDATION-20261009`, `E-DEPLOY-AUDIENCE-RECOMMENDATION-20261009`, `E-LIVE-PUBLIC-AUDIENCE-RECOMMENDATION-20261009`, `E-NAVI-STATE-AUDIENCE-RECOMMENDATION-20261009`.

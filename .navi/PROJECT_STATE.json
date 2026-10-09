@@ -4,7 +4,7 @@
   "project_name": "셀핀다가바 GABA 공개 안내서",
   "status": "USER_DECISION",
   "previous_status": "RED_TEAM",
-  "updated_at": "2026-10-09T03:54:35.941Z",
+  "updated_at": "2026-10-09T04:16:49.526Z",
   "goal_lock": {
     "status": "LOCKED",
     "project_name": "셀핀다가바 GABA 공개 안내서 공개 배포 품질 고도화",
@@ -7159,6 +7159,13 @@
       "from_status": "RED_TEAM",
       "to_status": "USER_DECISION",
       "recorded_at": "2026-10-09T12:54:35+09:00"
+    },
+    {
+      "id": "H-426",
+      "event": "NAVI 자동 공개 배포 점검에서 사업자 공유 보드의 기본 추천이 전체 5개 자료와 같아 사업자가 먼저 전달할 범위를 다시 줄여야 하던 잔여 마찰을 확인했다. 사업자 대상의 추천 묶음을 기본 소개·신경계 역할·연구의 확장·사람 연구 결과 4개로 분리하고 발효·안전 연구는 필요할 때 추가하도록 변경했다. 대상 전환과 히어로 사업자 자료 진입도 4개 추천으로 시작하며 전체 5개 복사·개별 선택·원문 출처·audience·materials·본문 위치 딥링크와 공개 읽기 순서 'GABA란 → 03 · 전문가 영상 → 04 · 연구 지도'는 유지했다. 로컬 UI contract·typecheck·pnpm test 127 pass·Pages base-path 정적 번들·성능 예산(totalAssets=1660087 <= 1660500)을 확인했고, 첫 CI candidate의 69 bytes 초과와 두 번째 candidate의 39 bytes 초과를 공유 보드 중복 문구·내부 계산을 축약해 해소했다. PR #760 merge SHA f795f40f1e91ef786a8e73b22f46c3232bf9d8cf와 main workflow 37883016618의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 deploy-worker는 STATIC_ONLY로 skipped됐다. 공개 validator는 HTTP 200·STATIC·candidate SHA f795f40f1e91ef786a8e73b22f46c3232bf9d8cf·bundle hash 73개·claims 12개·master records 6개·share pages 6개·teaser HOLD·smartStoreOnly=true·removed750=true·provenance matched를 확인했다. 신규 CRITICAL/MAJOR 결함은 없으며 실제 사업자·소비자 공유 운영·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 외부 검증 조건으로 유지하고 NAVI 상태는 USER_DECISION, 완료 게이트는 NOT_READY다. C-321과 새 증거를 등록한다.",
+      "from_status": "RED_TEAM",
+      "to_status": "USER_DECISION",
+      "recorded_at": "2026-10-09T13:16:49+09:00"
     }
   ]
 }

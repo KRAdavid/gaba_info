@@ -2834,3 +2834,13 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 신규 CRITICAL/MAJOR 결함은 없으며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
 
 증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-READABILITY-20261009`, `E-UI-CONTRACT-CONTEXT-READABILITY-20261009`, `E-PR-CONTEXT-READABILITY-20261009`, `E-DEPLOY-CONTEXT-READABILITY-20261009`, `E-LIVE-PUBLIC-CONTEXT-READABILITY-20261009`, `E-NAVI-STATE-CONTEXT-READABILITY-20261009`.
+
+## 2026-10-09 — 사업자 공유 기본 추천 범위 정리 및 공개 배포
+
+- 사업자 대상 공유 보드의 첫 추천을 `기본 소개`·`신경계 역할`·`연구의 확장`·`사람 연구 결과` 4개 핵심 자료로 정리했다. `발효·안전 연구`는 필요할 때 추가할 수 있는 선택 자료로 남겼고, 소비자·교육 대상의 기존 선택 범위·전체 5개 복사·개별 선택·원문 출처·딥링크는 유지했다.
+- 공개 읽기 흐름은 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도`로 확인했다. 먼저 전문가의 일상 언어를 듣고 다음 장에서 연구 대상·결과·출처를 확인하게 되어, 사업자가 설명을 전달할 때도 소비자의 이해 순서가 자연스럽게 이어진다.
+- 로컬 UI contract·typecheck·`pnpm test` 127 pass와 GitHub Pages base-path 정적 빌드·성능 예산(totalAssets=1660087 <= 1660500)이 통과했다. PR #760과 main workflow `37883016618`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 Worker는 `STATIC_ONLY` 정책으로 skipped됐다.
+- 공개 validator는 candidate SHA `f795f40f1e91ef786a8e73b22f46c3232bf9d8cf`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- release-verify에는 과거 revision의 local-path 패턴 13개를 의도적으로 생략했다는 기존 annotation이 남아 있다. 현재 공개 산출물 누출로 판정된 것은 아니며, 실제 모바일·실사용자·독립 과학·규제 검토는 계속 외부 조건으로 유지한다. NAVI는 `USER_DECISION / NOT_READY`다.
+
+증적: `C-321`, `E-LOCAL-BUILD-AUDIENCE-RECOMMENDATION-20261009`, `E-UI-CONTRACT-AUDIENCE-RECOMMENDATION-20261009`, `E-PR-AUDIENCE-RECOMMENDATION-20261009`, `E-DEPLOY-AUDIENCE-RECOMMENDATION-20261009`, `E-LIVE-PUBLIC-AUDIENCE-RECOMMENDATION-20261009`, `E-NAVI-STATE-AUDIENCE-RECOMMENDATION-20261009`.
