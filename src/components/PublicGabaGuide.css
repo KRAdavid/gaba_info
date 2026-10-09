@@ -681,7 +681,7 @@
 .guide-share-intro span{color:#8ed9d7;font-size:11px;font-weight:900;letter-spacing:.1em}
 .guide-share-intro strong{color:#fff;font-size:17px;letter-spacing:-.045em}
 .guide-share-intro p{margin:0;color:#b8d1da;font-size:13px;line-height:1.65;letter-spacing:-.03em}
-  .guide-share-intro-actions{display:grid!important;grid-template-columns:minmax(150px,.7fr) minmax(0,2.4fr);align-items:end;gap:8px}
+  .guide-share-intro-actions{display:block!important}
 .guide-share-copy-all{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:34px;padding:0 11px;border:1px solid rgba(145,219,217,.5);border-radius:10px;background:rgba(255,255,255,.1);color:#e4fbf8;font-size:11px;font-weight:850;letter-spacing:-.04em;white-space:nowrap;transition:background .18s ease,border-color .18s ease,transform .18s ease}
 .guide-share-copy-all:hover,.guide-share-copy-all:focus-visible{border-color:#9be4df;background:rgba(255,255,255,.18);transform:translateY(-1px)}
 .guide-share-copy-all:focus-visible{outline:3px solid rgba(131,222,217,.3);outline-offset:3px}.guide-share-copy-all.is-copied{border-color:#7bc7a5;background:rgba(109,207,158,.16);color:#c5f4d9}.guide-share-copy-all-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
@@ -800,6 +800,7 @@
 /* v174 business share clarity: make the audience choice, recommended bundle and full bundle distinct at a glance. */
 .guide-share-intro-kicker{color:#8ed9d7;font-size:11px;font-weight:900;letter-spacing:.1em;line-height:1.4}
 .guide-share-audience{display:grid;gap:5px;min-width:110px;color:#b8d1da;font-size:11px;font-weight:800;letter-spacing:-.03em}
+.guide-share-audience-top{width:240px;max-width:100%;margin-top:2px}
 .guide-share-audience select{width:100%;min-height:44px;padding:0 28px 0 11px;border:1px solid rgba(145,219,217,.42);border-radius:10px;background:#173d5b;color:#f1fbfb;font:inherit;font-size:13px;font-weight:850;outline:none}
 .guide-share-audience select:focus-visible{outline:3px solid rgba(131,222,217,.3);outline-offset:3px}
 .guide-share-copy-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:7px}
@@ -825,11 +826,12 @@
 .guide-share-selection-status>small{color:#a9c5d0;font-size:11px;line-height:1.5;letter-spacing:-.025em}
 .guide-share-card-source,.guide-share-selected-chips a{color:#b7e9e5;font-size:12px;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){
-  .guide-share-intro-actions{display:grid!important;grid-template-columns:minmax(0,1fr);align-items:stretch;gap:12px}
+  .guide-share-intro-actions{display:block!important}
   .guide-share-message{grid-template-columns:auto minmax(0,1fr);gap:7px 10px;padding:12px}
   .guide-share-message p{grid-column:1 / -1;grid-row:2;font-size:13px}
   .guide-share-intro-copy{grid-column:2;grid-row:1;justify-self:end}
   .guide-share-audience{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px}
+  .guide-share-audience-top{width:100%;margin-top:0}
   .guide-share-audience select{min-width:0}
   .guide-share-copy-actions{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:7px}
   .guide-share-copy-actions .guide-share-copy-all{padding-inline:11px}
