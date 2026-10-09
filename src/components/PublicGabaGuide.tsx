@@ -714,9 +714,11 @@ const getInitialMessageAudienceMask = () => {
 };
 
 const getInitialMessageSelectionMask = () => {
-  if (typeof window === 'undefined') return messageKitMaskLimit;
+  if (typeof window === 'undefined') return 15;
   const requestedMask = Number(new URLSearchParams(window.location.search).get('materials'));
-  return isValidMessageSelectionMask(requestedMask) ? requestedMask : getInitialMessageAudienceMask();
+  if (isValidMessageSelectionMask(requestedMask)) return requestedMask;
+  const audienceMask = getInitialMessageAudienceMask();
+  return audienceMask === 31 ? 15 : audienceMask;
 };
 
 const getGuideShareUrl = (hash = 'top') => {
