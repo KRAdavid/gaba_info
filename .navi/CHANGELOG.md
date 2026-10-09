@@ -2816,3 +2816,12 @@ Record lifecycle transitions, approved changes, rework, and meaningful evidence 
 - 신규 CRITICAL/MAJOR 결함은 없다. Browser plugin 부재·Safari/iOS/Android 실기기·실제 사용자 독해성·독립 과학·규제 감수는 외부 검증 조건으로 남기며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
 
 증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-RAIL-20261009`, `E-UI-CONTRACT-CONTEXT-RAIL-20261009`, `E-PR-CONTEXT-RAIL-20261009`, `E-DEPLOY-CONTEXT-RAIL-20261009`, `E-LIVE-PUBLIC-CONTEXT-RAIL-20261009`, `E-NAVI-STATE-CONTEXT-RAIL-20261009`.
+
+## 2026-10-09 — 공유 보드 본문 위치 링크 모바일 가독성 보정 및 공개 배포
+
+- 공유 보드의 `본문 위치` 링크가 본문 기본 글자 크기를 상속하던 잔여 모바일 가독성 리스크를 확인하고, 기존 칩·출처 링크 스타일과 같은 11px로 정리했다. 5개 자료의 audience·materials·본문 해시·원문 출처와 `GABA란 → 03 · 전문가 영상 → 04 · 연구 지도` 순서는 유지했다.
+- PR #756과 main workflow `37879931493`의 release-verify·worker-readiness·deploy-pages·smoke-live·release-status가 성공했으며 Worker는 `STATIC_ONLY` 정책으로 skipped됐다. 공개 validator는 candidate SHA `054cda4c3014ec2fe8869985f2d839c3cc689b90`, HTTP 200, STATIC, bundle hash 73개, claims 12개, master records 6개, share pages 6개, teaser `HOLD`, `smartStoreOnly=true`, `removed750=true`, `provenance=matched`를 확인했다.
+- Chrome headless live DOM에서 `본문 위치` 5개 링크와 전문가 영상 선행 순서를 재현했다. 스크린샷 렌더러가 아닌 DOM 검증이므로 실제 iOS·Android 실기기와 실제 사용자 독해성은 외부 검증 조건으로 남긴다.
+- 신규 CRITICAL/MAJOR 결함은 없으며 NAVI는 `USER_DECISION / NOT_READY`를 유지한다.
+
+증적: `C-321`, `E-LOCAL-BUILD-CONTEXT-TYPO-20261009`, `E-UI-CONTRACT-CONTEXT-TYPO-20261009`, `E-PR-CONTEXT-TYPO-20261009`, `E-DEPLOY-CONTEXT-TYPO-20261009`, `E-LIVE-PUBLIC-CONTEXT-TYPO-20261009`, `E-NAVI-STATE-CONTEXT-TYPO-20261009`.
