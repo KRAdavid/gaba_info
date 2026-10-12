@@ -1985,7 +1985,7 @@ export default function PublicGabaGuide() {
         <section className="guide-hero guide-hero-story" id="top" aria-labelledby="guide-hero-heading" style={{ '--guide-hero-image': `url(${gabaNaturalHero})` } as CSSProperties}>
           <div className="guide-hero-copy">
             <h1 id="guide-hero-heading" tabIndex={-1}><span>저속노화,<br />{' '}회복하는 밤에서 시작됩니다.</span>{' '}<em>그 회복의 신호를<span className="guide-mobile-break"><br /></span>{' '}<span className="guide-hero-gaba-line">GABA에서<span className="guide-mobile-gaba-break"><br /></span>{' '}읽습니다</span></em></h1>
-            <p className="guide-hero-body">낮에는 몸과 뇌가 에너지를 사용합니다. 밤이 되면 몸은 회복에 필요한 과정으로 전환됩니다.</p>
+            <p className="guide-hero-body">낮에는 쓰고, 밤에는 회복합니다.</p>
             <p className="guide-editorial-note">{editorialNotice}</p>
             <div className="guide-rail guide-hero-route">
               <span className="guide-hero-route-label" aria-hidden="true">3분 읽기</span>
