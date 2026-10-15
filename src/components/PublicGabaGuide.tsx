@@ -1727,7 +1727,7 @@ export default function PublicGabaGuide() {
     setRecoveryInteractionPaused(false);
   };
 
-  const getGuideShareData = () => {
+  const sharePage = async (preferKakao = false) => {
     const selectedVideoRoute = window.location.hash === '#expert-videos' && new URLSearchParams(window.location.search).has('video');
     // Preserve the research context while the reader moves from a study card into the source-reading note.
     // Farther chapters intentionally keep their own share destination instead of carrying stale research state.
@@ -1760,39 +1760,10 @@ export default function PublicGabaGuide() {
     }
     const shareHref = shareUrl.toString();
     const shareData = { title: shareTitle, text: shareText, url: shareHref };
-    return shareData;
-  };
-
-  const sharePage = async () => {
-    const shareData = getGuideShareData();
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        setShareFallback(null);
-        announceShareStatus('공유 창을 열었어요.');
-        return;
-      } catch (error) {
-        // Keep deliberate cancellation separate; other Web Share failures
-        // recover through the same copy-link path as desktop browsers.
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          announceShareStatus('공유를 취소했어요.');
-          return;
-        }
-      }
-    }
-    const shareHref = shareData.url;
-    const copied = await writeClipboardText(shareHref);
-    if (copied) setShareFallback(null);
-    else setShareFallback({ label: '공개 안내서 링크', text: shareData.url });
-    announceShareStatus(copied ? '링크를 복사했어요. 자유롭게 공유해 보세요.' : '공유 창을 열지 못했어요. 주소창의 링크를 복사해 공유해 보세요.');
-  };
-
-  const shareToKakao = async () => {
-    const shareData = getGuideShareData();
-    const link = { mobileWebUrl: shareData.url, webUrl: shareData.url };
-    if (kakaoReady && window.Kakao?.Share?.sendDefault) {
+    if (preferKakao && kakaoReady && window.Kakao?.Share?.sendDefault) {
       try {
         const imageUrl = new URL(`${import.meta.env.BASE_URL}assets/gaba-guide-social-card.jpg`, window.location.origin).toString();
+        const link = { mobileWebUrl: shareData.url, webUrl: shareData.url };
         window.Kakao.Share.sendDefault({
           objectType: 'feed',
           content: { title: shareData.title, description: shareData.text, imageUrl, link },
@@ -1809,20 +1780,21 @@ export default function PublicGabaGuide() {
       try {
         await navigator.share(shareData);
         setShareFallback(null);
-        announceShareStatus('공유 창을 열었어요. 카카오톡을 선택하면 바로 전송됩니다.');
+        announceShareStatus(preferKakao ? '공유 창을 열었어요. 카카오톡을 선택하면 바로 전송됩니다.' : '공유 창을 열었어요.');
         return;
       } catch (error) {
+        // Keep deliberate cancellation separate; other Web Share failures
+        // recover through the same copy-link path as desktop browsers.
         if (error instanceof DOMException && error.name === 'AbortError') {
           announceShareStatus('공유를 취소했어요.');
           return;
         }
       }
     }
-    const text = `${shareData.text}\n${shareData.url}`;
-    const copied = await writeClipboardText(text);
+    const copied = await writeClipboardText(shareHref);
     if (copied) setShareFallback(null);
-    else setShareFallback({ label: '카카오톡 전달 내용', text });
-    announceShareStatus(copied ? '카카오톡에 보낼 내용을 복사했어요.' : '이 브라우저에서는 직접 공유가 지원되지 않아 전달 내용을 표시했어요.');
+    else setShareFallback({ label: '공개 안내서 링크', text: shareData.url });
+    announceShareStatus(copied ? '링크를 복사했어요. 자유롭게 공유해 보세요.' : '공유 창을 열지 못했어요. 주소창의 링크를 복사해 공유해 보세요.');
   };
 
   const writeClipboardText = async (text: string) => {
@@ -2049,7 +2021,7 @@ export default function PublicGabaGuide() {
         </nav>
         <button ref={menuToggleRef} type="button" className="guide-menu-toggle" aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'} title={menuOpen ? '메뉴 닫기' : '메뉴 열기'} aria-expanded={menuOpen} aria-controls="guide-primary-navigation" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button>
         <button type="button" className={`guide-reading-size-toggle${largeText ? ' is-active' : ''}`} aria-label={largeText ? '기본 크기로 보기' : '글자 크게 보기'} title={largeText ? '기본 크기로 보기' : '글자 크게 보기'} aria-pressed={largeText} onClick={toggleReadingSize}><span className="guide-reading-size-mark" aria-hidden="true">가</span><span className="guide-reading-size-label">{largeText ? '기본 크기' : '글자 크게'}</span><span className="guide-reading-size-compact-label" aria-hidden="true">{largeText ? '기본' : '크게'}</span></button>
-        <button type="button" className="guide-header-share" aria-label="페이지 공유하기" title="페이지 공유하기" onClick={sharePage}><Share2 size={16} aria-hidden="true" /> <span className="guide-header-share-label">공유하기</span><span className="guide-header-share-compact" aria-hidden="true">공유</span></button>
+        <button type="button" className="guide-header-share" aria-label="페이지 공유하기" title="페이지 공유하기" onClick={() => void sharePage()}><Share2 size={16} aria-hidden="true" /> <span className="guide-header-share-label">공유하기</span><span className="guide-header-share-compact" aria-hidden="true">공유</span></button>
         <div className={`guide-reading-progress${activeChapterId === 'top' ? '' : ' is-visible'}`}>
           <div className="guide-reading-progress-track" role="progressbar" aria-label="읽기 진행" aria-valuemin={0} aria-valuemax={progressChapterCount} aria-valuenow={progressValue}><span aria-hidden="true" style={{ width: `${(progressValue / progressChapterCount) * 100}%` }} /></div>
           <div className="guide-reading-progress-meta" aria-hidden="true"><span>지금 읽는 중</span><strong aria-label={activeReadingLabel}><span className="guide-reading-progress-label-full">{activeReadingLabel}</span><span className="guide-reading-progress-label-compact">{activeReadingCompactLabel}</span></strong><small>{progressCountLabel}</small></div>
@@ -2441,8 +2413,8 @@ export default function PublicGabaGuide() {
             <p className="guide-final-copy">GABA는 뇌 속에서 시작해 수면, 집중, 감각, 움직임, 피부, 근육, 성장호르몬과 면역을 거쳐 발효 식품과 안전성 연구로 이어졌습니다. 필요한 주제를 골라 읽고 자유롭게 공유해 보세요.</p>
             <p className="guide-editorial-note">{editorialNotice}</p>
             <div className="guide-final-actions">
-              <button type="button" className="guide-primary-button" onClick={sharePage}><Share2 size={17} aria-hidden="true" /> GABA 이야기 공유하기 <ArrowRight size={17} aria-hidden="true" /></button>
-              {canOfferKakaoAction ? <button type="button" className="guide-kakao-button" onClick={() => void shareToKakao()}><MessageCircle size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button> : null}
+              <button type="button" className="guide-primary-button" onClick={() => void sharePage()}><Share2 size={17} aria-hidden="true" /> GABA 이야기 공유하기 <ArrowRight size={17} aria-hidden="true" /></button>
+              {canOfferKakaoAction ? <button type="button" className="guide-kakao-button" onClick={() => void sharePage(true)}><MessageCircle size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button> : null}
               <button type="button" className="guide-quiet-button" onClick={() => window.print()}>인쇄 · PDF 저장 <ArrowRight size={17} aria-hidden="true" /></button>
             </div>
             <div className="guide-share-intro" aria-label={`${activeMessageAudienceLabel} GABA 공유 자료 안내`}>
