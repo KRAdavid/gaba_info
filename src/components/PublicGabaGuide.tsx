@@ -1033,6 +1033,7 @@ export default function PublicGabaGuide() {
   const [videoFrameReady, setVideoFrameReady] = useState(false);
   const [videoTimedOut, setVideoTimedOut] = useState(false);
   const [activeChapterId, setActiveChapterId] = useState<ActiveChapterId>('top');
+  const [mobileDockHidden, setMobileDockHidden] = useState(false);
   const [activeRecoveryCard, setActiveRecoveryCard] = useState(0);
   const [recoveryPaused, setRecoveryPaused] = useState(false);
   const [recoveryInteractionPaused, setRecoveryInteractionPaused] = useState(false);
@@ -1061,6 +1062,7 @@ export default function PublicGabaGuide() {
   const recoveryTouchStart = useRef<{ x: number; y: number } | null>(null);
   const videoFeatureRef = useRef<HTMLElement | null>(null);
   const videoFilterRailRef = useRef<HTMLDivElement | null>(null);
+  const mobileDockLastScrollY = useRef(0);
   useEffect(() => {
     if (!publicGuideKakaoKey) return;
     const markReady = () => {
@@ -1256,6 +1258,30 @@ export default function PublicGabaGuide() {
     window.addEventListener('hashchange', syncReadingContextFromHash);
     return () => {
       window.removeEventListener('hashchange', syncReadingContextFromHash);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!window.matchMedia('(max-width: 700px)').matches) return;
+    mobileDockLastScrollY.current = window.scrollY;
+    setMobileDockHidden(window.scrollY > 180);
+    let frame = 0;
+    const updateDockVisibility = () => {
+      frame = 0;
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - mobileDockLastScrollY.current;
+      if (currentScrollY < 80 || delta < -8) setMobileDockHidden(false);
+      else if (currentScrollY > 180 && delta > 8) setMobileDockHidden(true);
+      mobileDockLastScrollY.current = currentScrollY;
+    };
+    const handleScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateDockVisibility);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
@@ -2524,7 +2550,7 @@ export default function PublicGabaGuide() {
       </main>
 
       <footer className="guide-footer"><div className="guide-container guide-footer-grid"><a className="guide-logo" href="#top" onClick={() => scrollTo('top')}><span>뇌와 우리</span><small>GABA를 쉽게 읽는 공개 안내서</small></a><p>GABA를 쉽게 이해하고<br />자유롭게 공유하는 공개 안내서입니다.</p><div><a href="#history" onClick={(event) => { event.preventDefault(); scrollTo('history'); }}>발견의 역사</a><a href="#applications" onClick={(event) => { event.preventDefault(); scrollTo('applications'); }}>활용 사례</a><a href="#top" onClick={(event) => { event.preventDefault(); scrollTo('top'); }}>맨 위로 <ArrowDown className="guide-footer-back-icon" size={13} strokeWidth={2.2} aria-hidden="true" /></a></div></div><div className="guide-container guide-footer-bottom"><span>© 2026 GABA Guide</span><span>1950년, 뇌 속에서 발견된 신호</span></div></footer>
-      <nav className="guide-mobile-dock" aria-label="빠른 읽기 메뉴">
+      <nav className={`guide-mobile-dock${mobileDockHidden ? ' is-hidden' : ''}`} aria-label="빠른 읽기 메뉴">
         <button type="button" className={activeChapterId === 'top' ? 'is-active' : undefined} aria-current={activeChapterId === 'top' ? 'page' : undefined} onClick={() => scrollTo('top')}><BookOpen size={18} strokeWidth={2.1} aria-hidden="true" /><span>처음</span></button>
         <button type="button" className={activeChapterId === 'basics' ? 'is-active' : undefined} aria-current={activeChapterId === 'basics' ? 'page' : undefined} onClick={() => scrollTo('basics')}><Network size={18} strokeWidth={2.1} aria-hidden="true" /><span>GABA</span></button>
         <button type="button" className={activeChapterId === 'research' || activeChapterId === 'academic' ? 'is-active' : undefined} aria-current={activeChapterId === 'research' || activeChapterId === 'academic' ? 'page' : undefined} onClick={() => scrollTo('research')}><FlaskConical size={18} strokeWidth={2.1} aria-hidden="true" /><span>연구</span></button>
