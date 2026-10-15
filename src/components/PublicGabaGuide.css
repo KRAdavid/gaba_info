@@ -2358,3 +2358,39 @@
   .guide-share-studio{padding-bottom:92px}
 }
 @media(prefers-reduced-motion:reduce){.guide-mobile-dock{scroll-behavior:auto}}
+
+/* v179 desktop app shell: make the app-like reading surface visible in the first viewport. */
+.guide-app-preview{position:relative;min-height:560px;margin-top:10px;isolation:isolate}
+.guide-app-preview-backdrop{position:absolute;inset:22px 0 54px 16%;border:1px solid rgba(207,230,236,.85);border-radius:40px;background-position:center;background-size:cover;box-shadow:0 24px 48px rgba(23,66,89,.14)}
+.guide-app-preview-backdrop:after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(19,47,86,.64),rgba(18,154,163,.12) 55%,rgba(255,255,255,.12))}
+.guide-app-preview-screen{position:absolute;z-index:1;top:0;left:4%;display:flex;width:min(370px,74%);min-height:520px;flex-direction:column;padding:20px 22px 16px;border:1px solid rgba(255,255,255,.72);border-radius:32px;background:rgba(255,255,255,.92);box-shadow:0 26px 54px rgba(19,47,86,.2);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.guide-app-preview-top{display:flex;align-items:center;justify-content:space-between;color:#7d94a5;font-size:10px;font-weight:850;letter-spacing:.17em}
+.guide-app-preview-hero-copy{margin-top:auto;padding:28px 2px 22px}
+.guide-app-preview-hero-copy>span{color:var(--guide-teal-dark);font-size:10px;font-weight:850;letter-spacing:.16em}
+.guide-app-preview-hero-copy h2{margin:13px 0 8px;font-size:clamp(31px,3.3vw,46px);letter-spacing:-.09em;line-height:1.05}
+.guide-app-preview-hero-copy p{margin:0;color:#647d91;font-size:14px;line-height:1.65}
+.guide-app-preview-hero-copy a{display:inline-flex;align-items:center;gap:7px;margin-top:19px;padding:10px 14px;border-radius:999px;background:var(--guide-ink);color:#fff;font-size:12px;font-weight:850;text-decoration:none}
+.guide-app-preview-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.guide-app-preview-cards a{display:flex;align-items:flex-start;gap:8px;min-height:76px;padding:12px 11px;border:1px solid #dcebef;border-radius:17px;background:#f8fcfd;color:var(--guide-teal-dark);text-decoration:none}
+.guide-app-preview-cards span{display:grid;gap:4px}
+.guide-app-preview-cards small{color:#8ca2b1;font-size:9px;font-weight:800}
+.guide-app-preview-cards strong{color:var(--guide-ink);font-size:12px;letter-spacing:-.05em}
+.guide-app-preview-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:14px;padding-top:10px;border-top:1px solid #e3eef1}
+.guide-app-preview-nav a{display:grid;place-items:center;gap:4px;padding:7px 2px;border-radius:11px;color:#9ab1be;font-size:9px;font-weight:850;text-decoration:none}
+.guide-app-preview-nav a:first-child{background:#e8f8f8;color:var(--guide-teal-dark)}
+.guide-app-preview-tag{position:absolute;z-index:2;right:1%;bottom:30px;display:inline-flex;padding:11px 14px;border:1px solid rgba(255,255,255,.72);border-radius:999px;background:rgba(19,47,86,.82);color:#fff;font-size:11px;font-weight:850}
+@media(max-width:700px){
+  .guide-app-preview{min-height:330px;margin-inline:-5px}
+  .guide-app-preview-backdrop{inset:28px 0 17px 18%}
+  .guide-app-preview-screen{left:3%;width:min(285px,78%);min-height:310px;padding:14px 14px 10px;border-radius:23px}
+  .guide-app-preview-top{font-size:8px}
+  .guide-app-preview-hero-copy{padding:18px 0 14px}
+  .guide-app-preview-hero-copy h2{margin:8px 0 5px;font-size:29px}
+  .guide-app-preview-hero-copy p{font-size:12px}
+  .guide-app-preview-hero-copy a{margin-top:11px;padding:8px 11px;font-size:10px}
+  .guide-app-preview-cards a{min-height:58px;padding:9px 8px}
+  .guide-app-preview-cards strong{font-size:10px}
+  .guide-app-preview-nav{margin-top:8px;padding-top:6px}
+  .guide-app-preview-nav a{font-size:8px}
+  .guide-app-preview-tag{right:0;bottom:1px;padding:8px 10px;font-size:9px}
+}
