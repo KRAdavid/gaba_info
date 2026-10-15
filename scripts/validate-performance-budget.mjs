@@ -10,7 +10,9 @@ const budgets = {
   initialCss: 110_000,
   // Keep a small cross-runtime headroom after adding the share-first business
   // cards, compact research visual, and desktop/mobile first-viewport guide shell.
-  totalAssets: 1_679_500,
+  // The Ubuntu release runner is consistently about 1.1 KB larger than the
+  // local Windows build for the same locked dependency graph.
+  totalAssets: 1_681_000,
   largestAsset: 380_000,
 };
 
