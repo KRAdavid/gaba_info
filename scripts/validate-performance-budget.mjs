@@ -9,8 +9,8 @@ const budgets = {
   initialJs: 380_000,
   initialCss: 110_000,
   // Keep a small cross-runtime headroom after adding the share-first business
-  // cards, compact research visual, and app-style first-viewport guide shell.
-  totalAssets: 1_677_500,
+  // cards, compact research visual, and desktop/mobile first-viewport guide shell.
+  totalAssets: 1_679_500,
   largestAsset: 380_000,
 };
 
