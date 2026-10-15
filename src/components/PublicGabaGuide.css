@@ -2415,3 +2415,17 @@
   .guide-app-preview-tag{display:none}
   .guide-hero-story .guide-hero-scroll{display:none}
 }
+
+/* v181 tablet-first opening: keep iPad-sized screens in the same visual rhythm as phones. */
+@media (min-width:701px) and (max-width:900px){
+  .guide-hero-story{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;align-items:stretch;min-height:calc(100svh - 70px);padding:24px 32px 48px;background:#edf7f8}
+  .guide-hero-story:before,.guide-hero-story:after{display:none}
+  .guide-app-preview{grid-row:1;width:min(100%,620px);min-height:min(600px,calc(100svh - 112px));margin:0 auto}
+  .guide-app-preview-backdrop{inset:0 0 24px 16%;border-radius:36px;background-position:center;box-shadow:0 20px 40px rgba(23,66,89,.16)}
+  .guide-app-preview-screen{top:4%;left:6%;width:min(440px,72%);min-height:calc(100% - 58px);padding:22px 24px 17px;border-radius:30px;color:var(--guide-ink)}
+  .guide-app-preview-hero-copy h2{font-size:42px}
+  .guide-hero-copy{grid-row:2;max-width:680px;margin:0 auto;padding-top:26px}
+  .guide-hero h1{font-size:48px;line-height:1.14}
+  .guide-hero-story .guide-hero-body{font-size:16px}
+  .guide-hero-story .guide-hero-scroll{display:none}
+}
