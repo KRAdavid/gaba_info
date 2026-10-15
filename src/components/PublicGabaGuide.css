@@ -2394,3 +2394,22 @@
   .guide-app-preview-nav a{font-size:8px}
   .guide-app-preview-tag{right:0;bottom:1px;padding:8px 10px;font-size:9px}
 }
+
+/* v180 mobile first viewport: show the app shell before the long-form hero copy. */
+@media(max-width:700px){
+  .guide-hero-story{grid-template-rows:auto auto;align-items:stretch;min-height:calc(100svh - 70px);padding:18px 16px 36px;background:#edf7f8}
+  .guide-hero-story:before,.guide-hero-story:after{display:none}
+  .guide-hero-copy{grid-row:2;max-width:100%;padding-top:20px}
+  .guide-hero h1{font-size:29px;line-height:1.14}
+  .guide-hero h1>span{color:var(--guide-ink)}
+  .guide-hero h1 em{color:var(--guide-teal-dark)}
+  .guide-hero-story .guide-hero-body{color:#5b7081;font-size:14px}
+  .guide-hero-story .guide-editorial-note{color:#6c8290;font-size:11px}
+  .guide-hero-story .guide-rail{color:#6f8792;font-size:11px}
+  .guide-app-preview{grid-row:1;min-height:calc(100svh - 156px);margin:0;width:100%}
+  .guide-app-preview-backdrop{inset:0 0 18px;border-radius:30px;background-position:center;box-shadow:0 18px 35px rgba(23,66,89,.16)}
+  .guide-app-preview-screen{top:5%;left:5%;width:90%;min-height:calc(100svh - 210px);padding:18px 17px 13px;border-radius:27px}
+  .guide-app-preview-hero-copy h2{margin:10px 0 7px;font-size:34px}
+  .guide-app-preview-tag{right:5%;bottom:3px;padding:8px 11px;font-size:9px}
+  .guide-hero-story .guide-hero-scroll{display:none}
+}
