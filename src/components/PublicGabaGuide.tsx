@@ -15,7 +15,6 @@ import {
   FlaskConical,
   Globe2,
   Menu,
-  MessageCircle,
   Moon,
   Network,
   Pause,
@@ -980,7 +979,6 @@ export default function PublicGabaGuide() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shareStatus, setShareStatus] = useState('');
   const [shareFallback, setShareFallback] = useState<{ label: string; text: string } | null>(null);
-  const [kakaoReady, setKakaoReady] = useState(false);
   const [copiedResearchTopicId, setCopiedResearchTopicId] = useState<string | null>(null);
   const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(null);
   const [messageKitCopied, setMessageKitCopied] = useState<'selected' | 'all' | 'intro' | false>(false);
@@ -1025,13 +1023,10 @@ export default function PublicGabaGuide() {
   useEffect(() => {
     if (!publicGuideKakaoKey) return;
     const markReady = () => {
-      if (!window.Kakao) return;
+      if (!window.Kakao?.Share?.sendDefault) return;
       try {
         if (!window.Kakao.isInitialized()) window.Kakao.init(publicGuideKakaoKey);
-        setKakaoReady(Boolean(window.Kakao.Share?.sendDefault));
-      } catch {
-        setKakaoReady(false);
-      }
+      } catch { /* use the native share fallback */ }
     };
     if (window.Kakao) {
       markReady();
@@ -1041,7 +1036,6 @@ export default function PublicGabaGuide() {
     script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
     script.async = true;
     script.onload = markReady;
-    script.onerror = () => setKakaoReady(false);
     document.head.appendChild(script);
     return () => {
       script.onload = null;
@@ -1049,7 +1043,6 @@ export default function PublicGabaGuide() {
     };
   }, []);
   const activeVideo = expertVideos.find((video) => video.id === activeVideoId) ?? expertVideos[0];
-  const canOfferKakaoAction = kakaoReady || (typeof navigator !== 'undefined' && typeof navigator.share === 'function');
   const activeVideoIndex = Math.max(0, expertVideos.findIndex((video) => video.id === activeVideo.id));
   const visibleExpertVideos = activeVideoTopic === '전체' ? expertVideos : expertVideos.filter((video) => video.topic === activeVideoTopic);
   const getExpertVideoState = (videoId: string) => {
@@ -1760,7 +1753,7 @@ export default function PublicGabaGuide() {
     }
     const shareHref = shareUrl.toString();
     const shareData = { title: shareTitle, text: shareText, url: shareHref };
-    if (preferKakao && kakaoReady && window.Kakao?.Share?.sendDefault) {
+    if (preferKakao && publicGuideKakaoKey && window.Kakao?.Share?.sendDefault) {
       try {
         const imageUrl = new URL(`${import.meta.env.BASE_URL}assets/gaba-guide-social-card.jpg`, window.location.origin).toString();
         const link = { mobileWebUrl: shareData.url, webUrl: shareData.url };
@@ -1772,9 +1765,7 @@ export default function PublicGabaGuide() {
         setShareFallback(null);
         announceShareStatus('카카오톡 공유 창을 열었어요. 받는 사람을 선택하면 바로 전송됩니다.');
         return;
-      } catch {
-        setKakaoReady(false);
-      }
+      } catch { /* use the native share fallback */ }
     }
     if (navigator.share) {
       try {
@@ -2414,7 +2405,7 @@ export default function PublicGabaGuide() {
             <p className="guide-editorial-note">{editorialNotice}</p>
             <div className="guide-final-actions">
               <button type="button" className="guide-primary-button" onClick={() => void sharePage()}><Share2 size={17} aria-hidden="true" /> GABA 이야기 공유하기 <ArrowRight size={17} aria-hidden="true" /></button>
-              {canOfferKakaoAction ? <button type="button" className="guide-kakao-button" onClick={() => void sharePage(true)}><MessageCircle size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button> : null}
+              <button type="button" className="guide-kakao-button" onClick={() => void sharePage(true)}><Share2 size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button>
               <button type="button" className="guide-quiet-button" onClick={() => window.print()}>인쇄 · PDF 저장 <ArrowRight size={17} aria-hidden="true" /></button>
             </div>
             <div className="guide-share-intro" aria-label={`${activeMessageAudienceLabel} GABA 공유 자료 안내`}>
