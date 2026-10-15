@@ -2365,6 +2365,7 @@
 .guide-app-preview-backdrop:after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(19,47,86,.64),rgba(18,154,163,.12) 55%,rgba(255,255,255,.12))}
 .guide-app-preview-screen{position:absolute;z-index:3;top:0;left:4%;display:flex;width:min(370px,74%);min-height:520px;flex-direction:column;padding:20px 22px 16px;border:1px solid rgba(255,255,255,.72);border-radius:32px;background:rgba(255,255,255,.92);color:var(--guide-ink);box-shadow:0 26px 54px rgba(19,47,86,.2);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .guide-app-preview-top{display:flex;align-items:center;justify-content:space-between;color:#7d94a5;font-size:10px;font-weight:850;letter-spacing:.17em}
+.guide-app-preview-disclosure{margin:14px 0 0;color:#8ca2b1;font-size:10px;letter-spacing:-.04em;line-height:1.4}
 .guide-app-preview-hero-copy{margin-top:auto;padding:28px 2px 22px}
 .guide-app-preview-hero-copy>span{color:var(--guide-teal-dark);font-size:10px;font-weight:850;letter-spacing:.16em}
 .guide-app-preview-hero-copy h2{margin:13px 0 8px;font-size:clamp(31px,3.3vw,46px);letter-spacing:-.09em;line-height:1.05}
@@ -2384,6 +2385,7 @@
   .guide-app-preview-backdrop{inset:28px 0 17px 18%}
   .guide-app-preview-screen{left:3%;width:min(285px,78%);min-height:310px;padding:14px 14px 10px;border-radius:23px}
   .guide-app-preview-top{font-size:8px}
+  .guide-app-preview-disclosure{margin-top:11px;font-size:9px}
   .guide-app-preview-hero-copy{padding:18px 0 14px}
   .guide-app-preview-hero-copy h2{margin:8px 0 5px;font-size:29px}
   .guide-app-preview-hero-copy p{font-size:12px}

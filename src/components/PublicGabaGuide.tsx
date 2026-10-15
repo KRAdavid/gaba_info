@@ -826,6 +826,7 @@ function GuideAppPreview() {
           <span>GABA GUIDE</span>
           <span aria-hidden="true">•••</span>
         </header>
+        <p className="guide-app-preview-disclosure">제품과 무관한 공개 과학 정보</p>
         <div className="guide-app-preview-hero-copy">
           <span>오늘 읽을 것</span>
           <h2>잠 · 집중 · 회복</h2>
