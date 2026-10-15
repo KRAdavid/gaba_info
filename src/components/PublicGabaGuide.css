@@ -2244,7 +2244,6 @@
 /* v163 print publishing: hide the video board and keep editorial imagery together on paper. */
 @media print{.guide-video-board{display:none!important}.guide-editorial-band{break-inside:avoid}}
 
-
 @media(max-width:350px){.guide-video-feature{grid-template-columns:104px 1fr;align-items:start}.guide-video-feature-copy{grid-column:2}}
 .guide-footer-back-icon{display:inline-block;margin-left:4px;vertical-align:-.2em;transform:rotate(180deg)}
 
@@ -2424,4 +2423,20 @@
   .guide-hero h1{font-size:48px;line-height:1.14}
   .guide-hero-story .guide-hero-body{font-size:16px}
   .guide-hero-story .guide-hero-scroll{display:none}
+}
+
+/* v182 mobile-first opening: quiet chrome, shorter first viewport. */
+@media(max-width:700px){
+  .guide-header{height:64px;padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right))}
+  .guide-header .guide-logo{flex:1 1 auto;min-width:0;max-width:none}
+  .guide-logo small{display:none}
+  .guide-menu-toggle,.guide-reading-size-toggle,.gaba-guide .guide-header-share{position:static!important;right:auto!important;flex:0 0 42px!important;width:42px!important;min-width:42px!important;height:42px!important;padding:0!important}
+  .guide-menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+  .guide-reading-size-toggle{display:inline-flex;gap:0}
+  .guide-reading-size-toggle span:not(.guide-reading-size-mark),.gaba-guide .guide-header-share span{display:none!important}
+  .gaba-guide .guide-header-share{display:inline-flex!important;align-items:center;justify-content:center;border-radius:12px;font-size:0!important}
+  .guide-hero-story{min-height:auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom))}
+  .guide-app-preview{min-height:550px}
+  .guide-app-preview-screen{top:4%;left:4%;width:92%;min-height:480px;padding:16px 16px 12px}
+  .guide-app-preview-nav{display:none}
 }
