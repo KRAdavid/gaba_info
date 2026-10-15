@@ -817,30 +817,33 @@ function FermentedSafetyIcon({ type }: { type: FermentedSafetyStep['icon'] }) {
   return <ShieldCheck aria-hidden="true" />;
 }
 
-function NeuronNetwork() {
+function GuideAppPreview() {
   return (
-    <div className="guide-neuron-visual" aria-label="신경세포 사이를 오가는 GABA 신호를 단순화한 그림" role="img">
-      <div className="guide-neuron-halo guide-neuron-halo-one" />
-      <div className="guide-neuron-halo guide-neuron-halo-two" />
-      <svg viewBox="0 0 620 460" aria-hidden="true">
-        <defs>
-          <radialGradient id="gaba-node" cx="50%" cy="40%"><stop offset="0" stopColor="#65d4d1" /><stop offset="1" stopColor="#15979f" /></radialGradient>
-          <linearGradient id="neuron-line" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#b7d9e7" /><stop offset="1" stopColor="#6a9ec2" /></linearGradient>
-        </defs>
-        <g fill="none" stroke="url(#neuron-line)" strokeLinecap="round">
-          <path d="M158 258C105 192 115 102 58 60M158 258C92 259 55 302 34 358M158 258C123 331 147 391 117 433M158 258C219 213 252 177 271 99M158 258C226 279 261 329 320 353" strokeWidth="6" />
-          <path d="M418 183C472 132 541 133 602 75M418 183C498 193 544 238 592 301M418 183C423 115 399 76 409 22M418 183C364 169 341 121 310 80M418 183C485 298 464 360 508 430" strokeWidth="6" />
-          <path d="M247 233C306 210 348 203 418 183" strokeWidth="9" />
-          <path d="M273 255C330 258 352 266 412 243" strokeWidth="3" opacity=".7" />
-        </g>
-        <g fill="#d1e8ef" stroke="#8bb9ce" strokeWidth="4"><circle cx="158" cy="258" r="46" /><circle cx="418" cy="183" r="55" /></g>
-        <circle cx="158" cy="258" r="18" fill="#7aa6c4" opacity=".8" /><circle cx="418" cy="183" r="24" fill="url(#gaba-node)" />
-        <g fill="#1eabb0"><circle cx="301" cy="224" r="7" /><circle cx="337" cy="210" r="5" /><circle cx="357" cy="226" r="6" /><circle cx="383" cy="203" r="4" /></g>
-        <g fill="#f5b967"><circle cx="267" cy="197" r="5" /><circle cx="290" cy="181" r="4" /><circle cx="350" cy="190" r="4" /></g>
-      </svg>
-      <span className="guide-neuron-label guide-neuron-label-left">신호를 전달하는<br />신경세포</span>
-      <span className="guide-neuron-label guide-neuron-label-right">GABA<br /><small>신경 활동 조절</small></span>
-      <span className="guide-neuron-caption">복잡한 신호 사이에서<br />필요한 만큼 조절하기</span>
+    <div className="guide-app-preview" aria-label="GABA 공개 안내서의 핵심 내용을 보여주는 앱형 카드">
+      <div className="guide-app-preview-backdrop" style={{ backgroundImage: `url(${gabaNaturalHero})` }} aria-hidden="true" />
+      <article className="guide-app-preview-screen">
+        <header className="guide-app-preview-top">
+          <span>GABA GUIDE</span>
+          <span aria-hidden="true">•••</span>
+        </header>
+        <div className="guide-app-preview-hero-copy">
+          <span>오늘 읽을 것</span>
+          <h2>잠 · 집중 · 회복</h2>
+          <p>우리 몸의 균형을 읽는<br />작은 신호, GABA</p>
+          <a href="#opening-bridge">3분 읽기 <ArrowRight size={15} aria-hidden="true" /></a>
+        </div>
+        <div className="guide-app-preview-cards">
+          <a href="#basics"><Network size={15} aria-hidden="true" /><span><small>GABA란</small><strong>신경계의 균형</strong></span></a>
+          <a href="#research"><FlaskConical size={15} aria-hidden="true" /><span><small>연구 지도</small><strong>5개 영역</strong></span></a>
+        </div>
+        <nav className="guide-app-preview-nav" aria-label="핵심 이동">
+          <a href="#top" aria-current="page"><BookOpen size={14} aria-hidden="true" /><span>처음</span></a>
+          <a href="#basics"><Network size={14} aria-hidden="true" /><span>GABA</span></a>
+          <a href="#research"><FlaskConical size={14} aria-hidden="true" /><span>연구</span></a>
+          <a href="#final"><Share2 size={14} aria-hidden="true" /><span>공유</span></a>
+        </nav>
+      </article>
+      <span className="guide-app-preview-tag">수면 · 인지 · 회복</span>
     </div>
   );
 }
@@ -2071,7 +2074,7 @@ export default function PublicGabaGuide() {
             </div>
             <button type="button" className="guide-quiet-button guide-hero-actions" aria-label="사업자 자료 4개로 이동" onClick={openBusinessMaterials}>사업자 자료 · 핵심 4개</button>
           </div>
-          <NeuronNetwork />
+          <GuideAppPreview />
           <button type="button" className="guide-hero-scroll" onClick={() => scrollTo('opening-bridge')} aria-label="수면과 회복부터 3분 읽기 시작"><ArrowDown size={16} aria-hidden="true" /> <span>3분 읽기 시작</span></button>
         </section>
 
