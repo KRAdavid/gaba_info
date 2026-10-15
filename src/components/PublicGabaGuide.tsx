@@ -1720,7 +1720,7 @@ export default function PublicGabaGuide() {
     setRecoveryInteractionPaused(false);
   };
 
-  const sharePage = async (preferKakao = false) => {
+  const sharePage = async (preferKakao = true) => {
     const selectedVideoRoute = window.location.hash === '#expert-videos' && new URLSearchParams(window.location.search).has('video');
     // Preserve the research context while the reader moves from a study card into the source-reading note.
     // Farther chapters intentionally keep their own share destination instead of carrying stale research state.
