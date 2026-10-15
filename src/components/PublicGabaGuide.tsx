@@ -2405,7 +2405,7 @@ export default function PublicGabaGuide() {
             <p className="guide-editorial-note">{editorialNotice}</p>
             <div className="guide-final-actions">
               <button type="button" className="guide-primary-button" onClick={() => void sharePage()}><Share2 size={17} aria-hidden="true" /> GABA 이야기 공유하기 <ArrowRight size={17} aria-hidden="true" /></button>
-              <button type="button" className="guide-kakao-button" onClick={() => void sharePage(true)}><Share2 size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button>
+              <button type="button" className="guide-primary-button" onClick={() => void sharePage(true)}><Share2 size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button>
               <button type="button" className="guide-quiet-button" onClick={() => window.print()}>인쇄 · PDF 저장 <ArrowRight size={17} aria-hidden="true" /></button>
             </div>
             <div className="guide-share-intro" aria-label={`${activeMessageAudienceLabel} GABA 공유 자료 안내`}>
