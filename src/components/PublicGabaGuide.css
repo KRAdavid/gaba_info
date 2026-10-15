@@ -2427,15 +2427,12 @@
 
 /* v182 mobile-first opening: quiet chrome, shorter first viewport. */
 @media(max-width:700px){
-  .guide-header{height:64px;padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right))}
-  .guide-header .guide-logo{flex:1 1 auto;min-width:0;max-width:none}
+  .guide-header{height:64px}
   .guide-logo small{display:none}
-  .guide-menu-toggle,.guide-reading-size-toggle,.gaba-guide .guide-header-share{position:static!important;right:auto!important;flex:0 0 42px!important;width:42px!important;min-width:42px!important;height:42px!important;padding:0!important}
-  .guide-menu-toggle{display:inline-flex;align-items:center;justify-content:center}
-  .guide-reading-size-toggle{display:inline-flex;gap:0}
+  .guide-menu-toggle,.guide-reading-size-toggle,.gaba-guide .guide-header-share{position:static!important;display:inline-flex;flex:0 0 42px!important;width:42px!important;min-width:42px!important;height:42px!important;padding:0!important;justify-content:center}
   .guide-reading-size-toggle span:not(.guide-reading-size-mark),.gaba-guide .guide-header-share span{display:none!important}
   .gaba-guide .guide-header-share{display:inline-flex!important;align-items:center;justify-content:center;border-radius:12px;font-size:0!important}
-  .guide-hero-story{min-height:auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom))}
+  .guide-hero-story{min-height:auto;padding-bottom:96px}
   .guide-app-preview{min-height:550px}
   .guide-app-preview-screen{top:4%;left:4%;width:92%;min-height:480px;padding:16px 16px 12px}
   .guide-app-preview-nav{display:none}
