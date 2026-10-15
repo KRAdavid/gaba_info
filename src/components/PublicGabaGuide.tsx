@@ -15,6 +15,7 @@ import {
   FlaskConical,
   Globe2,
   Menu,
+  MessageCircle,
   Moon,
   Network,
   Pause,
@@ -33,6 +34,10 @@ import gabaNaturalHero from '../assets/gaba-natural-hero-q55.webp';
 import gabaRecoveryIllustrationSheet from '../assets/gaba-recovery-illustration-sheet-card.webp';
 import gabaSleepEditorial from '../assets/gaba-sleep-editorial-q55.webp';
 import './PublicGabaGuide.css';
+
+const publicGuideKakaoKey = typeof import.meta.env.VITE_KAKAO_JS_KEY === 'string'
+  ? import.meta.env.VITE_KAKAO_JS_KEY.trim()
+  : '';
 
 type EvidenceTone = 'established' | 'human' | 'early' | 'mixed';
 
@@ -975,6 +980,7 @@ export default function PublicGabaGuide() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shareStatus, setShareStatus] = useState('');
   const [shareFallback, setShareFallback] = useState<{ label: string; text: string } | null>(null);
+  const [kakaoReady, setKakaoReady] = useState(false);
   const [copiedResearchTopicId, setCopiedResearchTopicId] = useState<string | null>(null);
   const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(null);
   const [messageKitCopied, setMessageKitCopied] = useState<'selected' | 'all' | 'intro' | false>(false);
@@ -1016,7 +1022,34 @@ export default function PublicGabaGuide() {
   const recoveryTouchStart = useRef<{ x: number; y: number } | null>(null);
   const videoFeatureRef = useRef<HTMLElement | null>(null);
   const videoFilterRailRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!publicGuideKakaoKey) return;
+    const markReady = () => {
+      if (!window.Kakao) return;
+      try {
+        if (!window.Kakao.isInitialized()) window.Kakao.init(publicGuideKakaoKey);
+        setKakaoReady(Boolean(window.Kakao.Share?.sendDefault));
+      } catch {
+        setKakaoReady(false);
+      }
+    };
+    if (window.Kakao) {
+      markReady();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
+    script.async = true;
+    script.onload = markReady;
+    script.onerror = () => setKakaoReady(false);
+    document.head.appendChild(script);
+    return () => {
+      script.onload = null;
+      script.onerror = null;
+    };
+  }, []);
   const activeVideo = expertVideos.find((video) => video.id === activeVideoId) ?? expertVideos[0];
+  const canOfferKakaoAction = kakaoReady || (typeof navigator !== 'undefined' && typeof navigator.share === 'function');
   const activeVideoIndex = Math.max(0, expertVideos.findIndex((video) => video.id === activeVideo.id));
   const visibleExpertVideos = activeVideoTopic === '전체' ? expertVideos : expertVideos.filter((video) => video.topic === activeVideoTopic);
   const getExpertVideoState = (videoId: string) => {
@@ -1694,7 +1727,7 @@ export default function PublicGabaGuide() {
     setRecoveryInteractionPaused(false);
   };
 
-  const sharePage = async () => {
+  const getGuideShareData = () => {
     const selectedVideoRoute = window.location.hash === '#expert-videos' && new URLSearchParams(window.location.search).has('video');
     // Preserve the research context while the reader moves from a study card into the source-reading note.
     // Farther chapters intentionally keep their own share destination instead of carrying stale research state.
@@ -1727,6 +1760,11 @@ export default function PublicGabaGuide() {
     }
     const shareHref = shareUrl.toString();
     const shareData = { title: shareTitle, text: shareText, url: shareHref };
+    return shareData;
+  };
+
+  const sharePage = async () => {
+    const shareData = getGuideShareData();
     if (navigator.share) {
       try {
         await navigator.share(shareData);
@@ -1742,10 +1780,49 @@ export default function PublicGabaGuide() {
         }
       }
     }
+    const shareHref = shareData.url;
     const copied = await writeClipboardText(shareHref);
     if (copied) setShareFallback(null);
-    else setShareFallback({ label: '공개 안내서 링크', text: shareHref });
+    else setShareFallback({ label: '공개 안내서 링크', text: shareData.url });
     announceShareStatus(copied ? '링크를 복사했어요. 자유롭게 공유해 보세요.' : '공유 창을 열지 못했어요. 주소창의 링크를 복사해 공유해 보세요.');
+  };
+
+  const shareToKakao = async () => {
+    const shareData = getGuideShareData();
+    const link = { mobileWebUrl: shareData.url, webUrl: shareData.url };
+    if (kakaoReady && window.Kakao?.Share?.sendDefault) {
+      try {
+        const imageUrl = new URL(`${import.meta.env.BASE_URL}assets/gaba-guide-social-card.jpg`, window.location.origin).toString();
+        window.Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: { title: shareData.title, description: shareData.text, imageUrl, link },
+          buttons: [{ title: 'GABA 안내서 열기', link }],
+        });
+        setShareFallback(null);
+        announceShareStatus('카카오톡 공유 창을 열었어요. 받는 사람을 선택하면 바로 전송됩니다.');
+        return;
+      } catch {
+        setKakaoReady(false);
+      }
+    }
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        setShareFallback(null);
+        announceShareStatus('공유 창을 열었어요. 카카오톡을 선택하면 바로 전송됩니다.');
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          announceShareStatus('공유를 취소했어요.');
+          return;
+        }
+      }
+    }
+    const text = `${shareData.text}\n${shareData.url}`;
+    const copied = await writeClipboardText(text);
+    if (copied) setShareFallback(null);
+    else setShareFallback({ label: '카카오톡 전달 내용', text });
+    announceShareStatus(copied ? '카카오톡에 보낼 내용을 복사했어요.' : '이 브라우저에서는 직접 공유가 지원되지 않아 전달 내용을 표시했어요.');
   };
 
   const writeClipboardText = async (text: string) => {
@@ -2365,6 +2442,7 @@ export default function PublicGabaGuide() {
             <p className="guide-editorial-note">{editorialNotice}</p>
             <div className="guide-final-actions">
               <button type="button" className="guide-primary-button" onClick={sharePage}><Share2 size={17} aria-hidden="true" /> GABA 이야기 공유하기 <ArrowRight size={17} aria-hidden="true" /></button>
+              {canOfferKakaoAction ? <button type="button" className="guide-kakao-button" onClick={() => void shareToKakao()}><MessageCircle size={17} aria-hidden="true" /> 카카오톡으로 보내기 <ArrowRight size={17} aria-hidden="true" /></button> : null}
               <button type="button" className="guide-quiet-button" onClick={() => window.print()}>인쇄 · PDF 저장 <ArrowRight size={17} aria-hidden="true" /></button>
             </div>
             <div className="guide-share-intro" aria-label={`${activeMessageAudienceLabel} GABA 공유 자료 안내`}>
