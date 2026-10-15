@@ -12,6 +12,29 @@ const publicSiteUrl = normalizePublicSiteUrl(process.env.PUBLIC_SITE_URL || DEFA
 const candidateSha = process.env.RELEASE_SHA || process.env.GITHUB_SHA || execFileSync('git', ['rev-parse', 'HEAD'], {encoding: 'utf8'}).trim();
 if (!/^[a-f0-9]{40}$/.test(candidateSha)) throw new Error('release manifest candidate SHA must be a full commit SHA');
 
+async function stampShellRelease(directory) {
+  async function walk(path) {
+    for (const entry of await readdir(path, {withFileTypes: true})) {
+      const filePath = resolve(path, entry.name);
+      if (entry.isDirectory()) {
+        await walk(filePath);
+        continue;
+      }
+      if (entry.name.endsWith('.html')) {
+        const before = await readFile(filePath, 'utf8');
+        const after = before.replaceAll('__GABA_RELEASE_SHA__', candidateSha);
+        if (after !== before) await writeFile(filePath, after, 'utf8');
+      }
+    }
+  }
+  await walk(directory);
+}
+
+// Stamp the entry shell before hashing so the manifest describes the exact
+// HTML that reaches GitHub Pages. The shell uses this value to recover from a
+// browser that retained the previous short-lived Pages HTML cache.
+await stampShellRelease(outputDirectory);
+
 const routePaths = [
   '/', '/products/', '/research/', '/guide/', '/focus/',
   '/share/active/', '/share/sleep/', '/share/irregular/', '/share/sensory/', '/share/unrested/', '/share/steady/',
