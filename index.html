@@ -44,11 +44,17 @@
         var hasSharedResult = params.has('rhythm') || params.get('challenge') === '7days';
         var shouldOpenGuide = relative === '/' && !params.has('view') && !hasSharedResult;
         var isStampedShell = /^[a-f0-9]{40}$/.test(shellRelease);
-        var updateUrl = function (release) {
+        var targetUrl = function (release) {
           if (shouldOpenGuide) params.set('view', 'guide');
           if (release) params.set('release', release.slice(0, 12));
-          var target = window.location.pathname + '?' + params.toString() + window.location.hash;
+          return window.location.pathname + '?' + params.toString() + window.location.hash;
+        };
+        var updateUrl = function (release) {
+          var target = targetUrl(release);
           window.history.replaceState(null, '', target);
+        };
+        var reloadWithRelease = function (release) {
+          window.location.replace(targetUrl(release));
         };
 
         if (relative === '/' && (shouldOpenGuide || (isStampedShell && !params.has('release')))) {
@@ -64,7 +70,7 @@
             .then(function (manifest) {
               var latestRelease = manifest && manifest.candidateSha;
               if (/^[a-f0-9]{40}$/.test(latestRelease || '') && latestRelease !== shellRelease) {
-                updateUrl(latestRelease);
+                reloadWithRelease(latestRelease);
               }
             })
             .catch(function () { /* keep the cached shell usable when offline */ });
