@@ -975,6 +975,43 @@ const ResearchOutcomeChart = memo(function ResearchOutcomeChart({ topic, showSum
   );
 });
 
+const ShareReadyResearchVisual = memo(function ShareReadyResearchVisual({ topic }: { topic: ResearchTopic }) {
+  const chart = topic.chart;
+  if (chart.kind === 'comparison') {
+    const row = chart.rows[0];
+    return (
+      <div className="guide-share-mini-visual" role="img" aria-label={`${topic.title} 연구 결과. ${row.label}: ${chart.referenceLabel} ${row.reference}, ${chart.resultLabel} ${row.result}. 막대는 실제 수치가 아닌 변화 방향을 보여줍니다.`}>
+        <div className="guide-share-mini-visual-head"><span>{row.label}</span><small>변화 방향</small></div>
+        <div className="guide-share-mini-bars" aria-hidden="true">
+          <div className="guide-share-mini-bar-wrap"><span className="guide-share-mini-bar is-reference" /><b>비교</b></div>
+          <div className="guide-share-mini-bar-wrap"><span className="guide-share-mini-bar is-result" /><b>GABA</b></div>
+          <ArrowDownRight className="guide-share-mini-arrow" size={22} strokeWidth={2.4} />
+        </div>
+        <p><strong>{row.result}</strong><span>실제 수치가 아닌 방향 비교</span></p>
+      </div>
+    );
+  }
+  if (chart.kind === 'metrics') {
+    const metric = chart.metrics[0];
+    return (
+      <div className="guide-share-mini-visual" role="img" aria-label={`${topic.title} 연구 결과. ${metric.label} ${metric.value}. ${metric.note}`}>
+        <div className="guide-share-mini-visual-head"><span>{metric.label}</span><small>연구에서 기록된 값</small></div>
+        <strong className="guide-share-mini-value">{metric.value}</strong>
+        <span className="guide-share-mini-track" aria-hidden="true"><i style={{ width: `${metric.scale}%` }} /></span>
+        <p><strong>{metric.note}</strong><span>연구 조건 안에서의 비교</span></p>
+      </div>
+    );
+  }
+  const signal = chart.rows[0];
+  return (
+    <div className="guide-share-mini-visual" role="img" aria-label={`${topic.title} 연구 결과. ${signal.label} ${signal.value}. ${chart.note}`}>
+      <div className="guide-share-mini-visual-head"><span>{signal.label}</span><small>관찰된 방향</small></div>
+      <div className={`guide-share-mini-signal is-${signal.direction}`}><OutcomeDirectionGraphic direction={signal.direction} /><strong>{signal.value}</strong></div>
+      <p><strong>연구 지표의 변화</strong><span>연구 대상과 조건은 상세보기에서 확인</span></p>
+    </div>
+  );
+});
+
 export default function PublicGabaGuide() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shareStatus, setShareStatus] = useState('');
@@ -2036,6 +2073,47 @@ export default function PublicGabaGuide() {
           </div>
           <NeuronNetwork />
           <button type="button" className="guide-hero-scroll" onClick={() => scrollTo('opening-bridge')} aria-label="수면과 회복부터 3분 읽기 시작"><ArrowDown size={16} aria-hidden="true" /> <span>3분 읽기 시작</span></button>
+        </section>
+
+        <section className="guide-share-studio guide-story-section" id="share-studio" aria-labelledby="share-studio-heading">
+          <div className="guide-container">
+            <div className="guide-share-studio-head">
+              <div>
+                <p className="guide-section-number">사업자 공유 키트</p>
+                <h2 id="share-studio-heading" tabIndex={-1}>한 장씩,<br />바로 공유하세요</h2>
+              </div>
+              <p>한 화면에 한 가지 메시지.<br />광고와 카톡에 맞춘 3장 구성입니다.</p>
+            </div>
+            <div className="guide-share-studio-grid">
+              <article className="guide-share-story-card is-hero" style={{ '--guide-share-card-image': `url(${gabaNaturalHero})` } as CSSProperties}>
+                <div className="guide-share-story-card-shade" aria-hidden="true" />
+                <div className="guide-share-story-card-content">
+                  <span className="guide-share-story-index">01 · 시작</span>
+                  <h3>GABA를<br />3분 만에</h3>
+                  <p>수면 · 집중 · 회복</p>
+                  <button type="button" onClick={() => void sharePage(true)}><Share2 size={15} aria-hidden="true" /> 이 장 공유</button>
+                </div>
+              </article>
+              <article className="guide-share-story-card is-research">
+                <div className="guide-share-story-card-content">
+                  <span className="guide-share-story-index">02 · 연구</span>
+                  <h3>연구 결과,<br />한눈에</h3>
+                  <ShareReadyResearchVisual topic={researchPreviewTopic} />
+                  <button type="button" onClick={() => scrollTo('research')}><span>{researchPreviewTopic.title} 연구 보기</span><ArrowRight size={15} aria-hidden="true" /></button>
+                </div>
+              </article>
+              <article className="guide-share-story-card is-share">
+                <div className="guide-share-story-card-content">
+                  <span className="guide-share-story-index">03 · 전달</span>
+                  <div className="guide-share-talk-mark" aria-hidden="true"><Share2 size={26} strokeWidth={2.1} /></div>
+                  <h3>GABA 이야기<br />공유하기</h3>
+                  <p>사업자용 핵심 자료 4개</p>
+                  <button type="button" onClick={openBusinessMaterials}><span>자료 고르기</span><ArrowRight size={15} aria-hidden="true" /></button>
+                </div>
+              </article>
+            </div>
+            <p className="guide-share-studio-note"><span>공유 원칙</span> 본문은 짧게, 출처와 상세 연구는 안내서에서 이어집니다.</p>
+          </div>
         </section>
 
         <section className="guide-opening-bridge guide-story-section" id="opening-bridge" aria-labelledby="opening-bridge-heading">
