@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="description" content="수면과 회복의 관계부터 1950년 GABA 발견, 신경계 연구, 국내외 활용과 발효 GABA의 안전성 기록까지 쉽게 읽는 공개 안내서입니다." />
     <meta name="theme-color" content="#132f56" />
     <meta property="og:title" content="저속노화, 회복하는 밤에서 시작됩니다 | GABA Guide" />
@@ -31,17 +34,40 @@
     <title>저속노화, 회복하는 밤에서 시작됩니다 | GABA Guide</title>
     <script>
       // The public root is the GABA guide. Keep the canonical entry point
-      // deterministic even when an older app shell is still in a browser cache.
+      // deterministic and recover an older cached shell after a new Pages release.
       (function () {
         var base = '/gaba_info';
+        var shellRelease = '__GABA_RELEASE_SHA__';
         var path = window.location.pathname.replace(/\/+$/, '') || '/';
         var relative = path === base ? '/' : path.indexOf(base + '/') === 0 ? path.slice(base.length) || '/' : path;
         var params = new URLSearchParams(window.location.search);
         var hasSharedResult = params.has('rhythm') || params.get('challenge') === '7days';
-        if (relative === '/' && !params.has('view') && !hasSharedResult) {
-          params.set('view', 'guide');
+        var shouldOpenGuide = relative === '/' && !params.has('view') && !hasSharedResult;
+        var isStampedShell = /^[a-f0-9]{40}$/.test(shellRelease);
+        var updateUrl = function (release) {
+          if (shouldOpenGuide) params.set('view', 'guide');
+          if (release) params.set('release', release.slice(0, 12));
           var target = window.location.pathname + '?' + params.toString() + window.location.hash;
           window.history.replaceState(null, '', target);
+        };
+
+        if (relative === '/' && (shouldOpenGuide || (isStampedShell && !params.has('release')))) {
+          updateUrl(isStampedShell ? shellRelease : '');
+        }
+
+        // GitHub Pages serves HTML with a short cache window. If a browser
+        // reuses an older shell, compare its stamped SHA with the current
+        // release manifest and reload only when the public release changed.
+        if (relative === '/' && isStampedShell) {
+          fetch(base + '/release-manifest.json?refresh=' + Date.now(), {cache: 'no-store'})
+            .then(function (response) { return response.ok ? response.json() : null; })
+            .then(function (manifest) {
+              var latestRelease = manifest && manifest.candidateSha;
+              if (/^[a-f0-9]{40}$/.test(latestRelease || '') && latestRelease !== shellRelease) {
+                updateUrl(latestRelease);
+              }
+            })
+            .catch(function () { /* keep the cached shell usable when offline */ });
         }
       }());
     </script>
