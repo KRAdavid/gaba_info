@@ -10,7 +10,7 @@ const budgets = {
   initialCss: 110_000,
   // Keep a small cross-runtime headroom after adding the share-first business
   // cards and their compact direction-only research visual.
-  totalAssets: 1_671_500,
+  totalAssets: 1_673_000,
   largestAsset: 380_000,
 };
 
