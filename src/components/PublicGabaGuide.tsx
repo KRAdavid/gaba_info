@@ -1034,6 +1034,7 @@ export default function PublicGabaGuide() {
   const [videoTimedOut, setVideoTimedOut] = useState(false);
   const [activeChapterId, setActiveChapterId] = useState<ActiveChapterId>('top');
   const [mobileDockHidden, setMobileDockHidden] = useState(false);
+  const [activeEditorialSlide, setActiveEditorialSlide] = useState(0);
   const [activeRecoveryCard, setActiveRecoveryCard] = useState(0);
   const [recoveryPaused, setRecoveryPaused] = useState(false);
   const [recoveryInteractionPaused, setRecoveryInteractionPaused] = useState(false);
@@ -1134,6 +1135,7 @@ export default function PublicGabaGuide() {
       : activeChapterId === 'research' && activeResearchTopicIndex >= 0
         ? `현재 읽는 장: ${activeReadingLabel}. 전체 ${progressChapterCount}장 중 ${Math.max(0, activeProgressIndex + 1)}장, 연구 영역 ${activeResearchTopicIndex + 1}번째 중 ${researchTopics.length}개.`
         : `현재 읽는 장: ${activeReadingLabel}. 전체 ${progressChapterCount}장 중 ${Math.max(0, activeProgressIndex + 1)}장.`;
+  const editorialSlide = recoveryCards[activeEditorialSlide % 6];
   const recoveryCard = recoveryCards[activeRecoveryCard];
   const recoveryArtPosition = `${recoveryCard.artIndex % 2 ? '100%' : '0%'} ${Math.floor(recoveryCard.artIndex / 2) * 25}%`;
   const recoveryIsPaused = recoveryPaused || recoveryInteractionPaused;
@@ -2109,39 +2111,24 @@ export default function PublicGabaGuide() {
           <div className="guide-container">
             <div className="guide-share-studio-head">
               <div>
-                <p className="guide-section-number">사업자 공유 키트</p>
-                <h2 id="share-studio-heading" tabIndex={-1}>한 장씩,<br />바로 공유하세요</h2>
+                <p className="guide-section-number">사업자 공유 에디토리얼</p>
+                <h2 id="share-studio-heading" tabIndex={-1}>한 장면씩,<br />GABA를 읽습니다</h2>
               </div>
-              <p>한 화면에 한 가지 메시지.<br />광고와 카톡에 맞춘 3장 구성입니다.</p>
+              <p>이미지로 먼저 읽고,<br />필요한 장면만 바로 공유하세요.</p>
             </div>
-            <div className="guide-share-studio-grid">
-              <article className="guide-share-story-card is-hero" style={{ '--guide-share-card-image': `url(${gabaNaturalHero})` } as CSSProperties}>
-                <div className="guide-share-story-card-shade" aria-hidden="true" />
-                <div className="guide-share-story-card-content">
-                  <span className="guide-share-story-index">01 · 시작</span>
-                  <h3>GABA를<br />3분 만에</h3>
-                  <p>수면 · 집중 · 회복</p>
-                  <button type="button" onClick={() => void sharePage(true)}><Share2 size={15} aria-hidden="true" /> 이 장 공유</button>
-                </div>
-              </article>
-              <article className="guide-share-story-card is-research">
-                <div className="guide-share-story-card-content">
-                  <span className="guide-share-story-index">02 · 연구</span>
-                  <h3>연구 결과,<br />한눈에</h3>
-                  <ShareReadyResearchVisual topic={researchPreviewTopic} />
-                  <button type="button" onClick={() => scrollTo('research')}><span>{researchPreviewTopic.title} 연구 보기</span><ArrowRight size={15} aria-hidden="true" /></button>
-                </div>
-              </article>
-              <article className="guide-share-story-card is-share">
-                <div className="guide-share-story-card-content">
-                  <span className="guide-share-story-index">03 · 전달</span>
-                  <div className="guide-share-talk-mark" aria-hidden="true"><Share2 size={26} strokeWidth={2.1} /></div>
-                  <h3>GABA 이야기<br />공유하기</h3>
-                  <p>사업자용 핵심 자료 4개</p>
-                  <button type="button" onClick={openBusinessMaterials}><span>자료 고르기</span><ArrowRight size={15} aria-hidden="true" /></button>
-                </div>
-              </article>
+            <article className={`guide-recovery-card is-${editorialSlide.tone}`} role="group" aria-live="polite" aria-label={`GABA 에디토리얼 ${activeEditorialSlide + 1} / 6: ${editorialSlide.eyebrow}`}>
+              <div className="guide-recovery-card-top">
+                <div className="guide-recovery-card-copy"><h3 className="guide-recovery-card-eyebrow">{editorialSlide.eyebrow}</h3><p>{editorialSlide.body}</p></div>
+                <div className="guide-recovery-card-art" style={{ backgroundImage: `url(${gabaRecoveryIllustrationSheet})`, backgroundPosition: `${editorialSlide.artIndex % 2 ? '100%' : '0%'} ${Math.floor(editorialSlide.artIndex / 2) * 25}%` }} aria-hidden="true" />
+              </div>
+              <div className="guide-recovery-card-footer"><div className="guide-recovery-progress" aria-hidden="true"><i /></div><span>{String(activeEditorialSlide + 1).padStart(2, '0')} / 06</span><span>이미지로 읽는 GABA</span></div>
+            </article>
+            <div className="guide-recovery-controls" aria-label="사업자용 에디토리얼 카드 조작">
+              <button type="button" onClick={() => setActiveEditorialSlide((current) => (current + 5) % 6)} aria-label="이전 에디토리얼 카드"><ChevronLeft size={17} aria-hidden="true" /></button>
+              <button type="button" className="guide-recovery-toggle" onClick={() => void sharePage(true)}><Share2 size={14} aria-hidden="true" /> 이 장면 공유</button>
+              <button type="button" onClick={() => setActiveEditorialSlide((current) => (current + 1) % 6)} aria-label="다음 에디토리얼 카드"><ChevronRight size={17} aria-hidden="true" /></button>
             </div>
+            <div className="guide-hero-actions"><button type="button" className="guide-primary-button" onClick={openBusinessMaterials}>사업자 자료 고르기 <ArrowRight size={15} aria-hidden="true" /></button><button type="button" className="guide-quiet-button" onClick={() => scrollTo('research')}>연구 결과와 출처 보기 <ArrowRight size={15} aria-hidden="true" /></button></div>
             <p className="guide-share-studio-note"><span>공유 원칙</span> 본문은 짧게, 출처와 상세 연구는 안내서에서 이어집니다.</p>
           </div>
         </section>
