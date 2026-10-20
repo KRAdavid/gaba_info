@@ -2116,7 +2116,7 @@ export default function PublicGabaGuide() {
               </div>
               <p>이미지로 먼저 읽고,<br />필요한 장면만 바로 공유하세요.</p>
             </div>
-            <article className={`guide-recovery-card is-${editorialSlide.tone}`} role="group" aria-live="polite" aria-label={`GABA 에디토리얼 ${activeEditorialSlide + 1} / 6: ${editorialSlide.eyebrow}`}>
+            <article className={`guide-recovery-card is-${editorialSlide.tone}`} aria-live="polite">
               <div className="guide-recovery-card-top">
                 <div className="guide-recovery-card-copy"><h3 className="guide-recovery-card-eyebrow">{editorialSlide.eyebrow}</h3><p>{editorialSlide.body}</p></div>
                 <div className="guide-recovery-card-art" style={{ backgroundImage: `url(${gabaRecoveryIllustrationSheet})`, backgroundPosition: `${editorialSlide.artIndex % 2 ? '100%' : '0%'} ${Math.floor(editorialSlide.artIndex / 2) * 25}%` }} aria-hidden="true" />
@@ -2124,9 +2124,9 @@ export default function PublicGabaGuide() {
               <div className="guide-recovery-card-footer"><div className="guide-recovery-progress" aria-hidden="true"><i /></div><span>{String(activeEditorialSlide + 1).padStart(2, '0')} / 06</span><span>이미지로 읽는 GABA</span></div>
             </article>
             <div className="guide-recovery-controls" aria-label="사업자용 에디토리얼 카드 조작">
-              <button type="button" onClick={() => setActiveEditorialSlide((current) => (current + 5) % 6)} aria-label="이전 에디토리얼 카드"><ChevronLeft size={17} aria-hidden="true" /></button>
+              <button type="button" onClick={() => setActiveEditorialSlide((current) => (current + 5) % 6)} aria-label="이전 카드"><ChevronLeft size={17} aria-hidden="true" /></button>
               <button type="button" className="guide-recovery-toggle" onClick={() => void sharePage(true)}><Share2 size={14} aria-hidden="true" /> 이 장면 공유</button>
-              <button type="button" onClick={() => setActiveEditorialSlide((current) => (current + 1) % 6)} aria-label="다음 에디토리얼 카드"><ChevronRight size={17} aria-hidden="true" /></button>
+              <button type="button" onClick={() => setActiveEditorialSlide((current) => (current + 1) % 6)} aria-label="다음 카드"><ChevronRight size={17} aria-hidden="true" /></button>
             </div>
             <div className="guide-hero-actions"><button type="button" className="guide-primary-button" onClick={openBusinessMaterials}>사업자 자료 고르기 <ArrowRight size={15} aria-hidden="true" /></button><button type="button" className="guide-quiet-button" onClick={() => scrollTo('research')}>연구 결과와 출처 보기 <ArrowRight size={15} aria-hidden="true" /></button></div>
             <p className="guide-share-studio-note"><span>공유 원칙</span> 본문은 짧게, 출처와 상세 연구는 안내서에서 이어집니다.</p>
