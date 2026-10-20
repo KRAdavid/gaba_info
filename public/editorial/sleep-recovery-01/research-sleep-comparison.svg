@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">GABA 수면 연구 결과 비교</title>
+  <desc id="desc">16명의 수면 상태가 좋지 않은 성인을 대상으로 한 교차 설계 연구에서 GABA 섭취 기간에 잠들기까지 걸린 시간은 짧아지고 비렘수면 시간은 늘어났습니다. 두 결과는 뇌파로 측정되었습니다.</desc>
+  <rect width="1200" height="900" rx="48" fill="#F7F8F5"/>
+  <text x="88" y="105" fill="#152B3F" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="38" font-weight="700">연구에서 실제로 달라진 점</text>
+  <text x="88" y="155" fill="#607487" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="22">GABA 100mg 섭취 기간과 대조 기간 비교 · 뇌파(EEG) 측정</text>
+
+  <rect x="72" y="210" width="1056" height="260" rx="32" fill="#FFFFFF" stroke="#D8E3E5" stroke-width="3"/>
+  <text x="112" y="276" fill="#152B3F" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="30" font-weight="700">잠들기까지 걸린 시간</text>
+  <text x="112" y="320" fill="#607487" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="22">GABA 섭취 기간</text>
+  <text x="112" y="392" fill="#168C91" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="48" font-weight="700">짧아짐</text>
+  <path d="M475 370 H850" stroke="#168C91" stroke-width="16" stroke-linecap="round"/>
+  <path d="M850 370 l-40 -28 M850 370 l-40 28" fill="none" stroke="#168C91" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="930" y="392" fill="#152B3F" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="25" font-weight="700">더 빨리 잠듦</text>
+
+  <rect x="72" y="505" width="1056" height="260" rx="32" fill="#FFFFFF" stroke="#D8E3E5" stroke-width="3"/>
+  <text x="112" y="571" fill="#152B3F" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="30" font-weight="700">비렘수면 시간</text>
+  <text x="112" y="615" fill="#607487" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="22">GABA 섭취 기간</text>
+  <text x="112" y="687" fill="#168C91" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="48" font-weight="700">늘어남</text>
+  <path d="M475 665 H850" stroke="#168C91" stroke-width="16" stroke-linecap="round"/>
+  <path d="M850 665 l-40 -28 M850 665 l-40 28" fill="none" stroke="#168C91" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="930" y="687" fill="#152B3F" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="25" font-weight="700">수면 시간 증가</text>
+
+  <text x="88" y="830" fill="#607487" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="20">연구 대상: 수면 상태가 좋지 않은 성인 16명 · 연구 기간: 조건별 1주 · PMID 30263304</text>
+</svg>
