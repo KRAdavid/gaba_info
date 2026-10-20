@@ -676,7 +676,7 @@ requireMatch(publicGuideStyles, /v176 result-first chart[\s\S]*?guide-outcome-co
 for (const marker of [
   /저속노화,<br \/>\{' '\}\s*회복하는 밤에서 시작됩니다\.<\/span>\{' '\}\s*<em>그 회복의 신호를/,
   /<span className="guide-hero-gaba-line">GABA에서<span className="guide-mobile-gaba-break"><br \/><\/span>\{' '\}읽습니다<\/span>/,
-  /잠은 멈춤이 아니라,<br \/>\{' '\}\s*회복이 시작되는 시간입니다/,
+  /수면은 멈춤이 아니라,<br \/>\{' '\}\s*회복이 시작되는 시간입니다/,
   /처음에는 이름도<span className="guide-mobile-break"><br \/><\/span>\{' '\}\s*없었습니다\./,
   /GABA는 연구실을 넘어<br \/>\{' '\}\s*여러 분야로 이어지고 있습니다/,
   /발효는 GABA를<br \/>\{' '\}\s*식품의 언어로 바꾸었습니다/,

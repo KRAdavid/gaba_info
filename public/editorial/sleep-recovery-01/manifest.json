@@ -1,0 +1,77 @@
+{
+  "storyId": "sleep-recovery-01",
+  "title": "수면은 회복의 첫 화면입니다",
+  "desk": "sleep-recovery",
+  "format": "cinematic-editorial-carousel",
+  "guideAnchors": ["#sleep", "#basics"],
+  "slides": [
+    {
+      "role": "cover",
+      "asset": "cover-sleep-recovery-v2.png",
+      "alt": "새벽빛이 들어오는 침실과 잠든 사람의 뒷모습"
+    },
+    {
+      "role": "scene",
+      "asset": "scene-before-sleep-v2.png",
+      "alt": "밤에 침대 가장자리에 앉아 창밖을 바라보는 사람"
+    },
+    {
+      "role": "meaning",
+      "asset": "morning-recovery-v2.png",
+      "alt": "아침 햇빛이 들어오는 침실과 정돈되지 않은 침구"
+    },
+    {
+      "role": "evidence",
+      "asset": "research-sleep-comparison.svg",
+      "alt": "GABA 수면 연구에서 잠들기까지 걸린 시간은 짧아지고 비렘수면 시간은 늘어난 결과를 보여주는 비교 도표"
+    }
+  ],
+  "editorialCards": [
+    {
+      "role": "표지",
+      "kicker": "GABA MAGAZINE · 01",
+      "title": "수면은 회복의 첫 화면입니다",
+      "body": "하루를 멈추는 시간이 아니라, 뇌와 몸이 다음 날을 준비하는 시간입니다."
+    },
+    {
+      "role": "장면",
+      "kicker": "수면에 들어가기 전",
+      "title": "몸은 누웠는데, 긴장은 남아 있을 때",
+      "body": "밤이 되어도 신경계의 활동이 바로 낮아지는 것은 아닙니다. 수면은 몸이 전환되는 과정입니다."
+    },
+    {
+      "role": "맥락",
+      "kicker": "GABA를 읽는 한 문장",
+      "title": "GABA는 신경 신호의 균형을 조절합니다",
+      "body": "뇌와 척수에서 신경세포의 과도한 활성화를 낮추고, 흥분과 억제의 균형을 조절하는 신경전달물질입니다."
+    },
+    {
+      "role": "의미",
+      "kicker": "수면과 회복",
+      "title": "아침의 회복은 밤의 기록에서 시작됩니다",
+      "body": "수면 연구는 GABA가 수면 과정의 어떤 지표와 연결되는지 사람 대상 기록으로 살펴봅니다."
+    },
+    {
+      "role": "연구 결과",
+      "kicker": "사람 대상 연구 · EEG",
+      "title": "연구에서 실제로 달라진 점",
+      "body": "수면 상태가 좋지 않은 성인 16명이 GABA 100mg과 대조 조건을 각각 1주씩 경험했습니다."
+    },
+    {
+      "role": "출처",
+      "kicker": "원문으로 이어 읽기",
+      "title": "두 가지 변화가 기록됐습니다",
+      "body": "GABA 섭취 기간에는 잠드는 시간이 더 짧았고, 전체 비렘수면 시간은 더 길었습니다."
+    }
+  ],
+  "source": {
+    "title": "Effect of oral γ-aminobutyric acid (GABA) administration on sleep and its absorption in humans",
+    "pmid": "30263304",
+    "doi": "10.1007/s10068-016-0076-9",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30263304/"
+  },
+  "share": {
+    "title": "수면은 회복의 첫 화면입니다",
+    "description": "GABA 수면 연구에서 실제로 기록된 변화를 쉽게 정리했습니다."
+  }
+}

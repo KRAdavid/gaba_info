@@ -367,6 +367,57 @@ const researchTopics: ResearchTopic[] = [
   },
 ];
 
+const sleepRecoveryIssueSlides = [
+  {
+    role: '표지',
+    kicker: 'GABA MAGAZINE · 01',
+    title: '수면은 회복의 첫 화면입니다',
+    body: '하루를 멈추는 시간이 아니라, 뇌와 몸이 다음 날을 준비하는 시간입니다.',
+    image: `${import.meta.env.BASE_URL}editorial/sleep-recovery-01/cover-sleep-recovery-v2.png`,
+    alt: '새벽빛이 들어오는 실제 침실과 잠든 사람',
+  },
+  {
+    role: '장면',
+    kicker: '수면에 들어가기 전',
+    title: '몸은 누웠는데, 긴장은 남아 있을 때',
+    body: '밤이 되어도 신경계의 활동이 바로 낮아지는 것은 아닙니다. 수면은 몸이 전환되는 과정입니다.',
+    image: `${import.meta.env.BASE_URL}editorial/sleep-recovery-01/scene-before-sleep-v2.png`,
+    alt: '밤에 침대 가장자리에 앉아 휴대전화를 내려놓는 사람',
+  },
+  {
+    role: '맥락',
+    kicker: 'GABA를 읽는 한 문장',
+    title: 'GABA는 신경 신호의 균형을 조절합니다',
+    body: '뇌와 척수에서 신경세포의 과도한 활성화를 낮추고, 흥분과 억제의 균형을 조절하는 신경전달물질입니다.',
+    image: null,
+    alt: '',
+  },
+  {
+    role: '의미',
+    kicker: '수면과 회복',
+    title: '아침의 회복은 밤의 기록에서 시작됩니다',
+    body: '수면 연구는 GABA가 수면 과정의 어떤 지표와 연결되는지 사람 대상 기록으로 살펴봅니다.',
+    image: `${import.meta.env.BASE_URL}editorial/sleep-recovery-01/morning-recovery-v2.png`,
+    alt: '아침 햇빛이 들어오는 침실과 정돈되지 않은 침구',
+  },
+  {
+    role: '연구 결과',
+    kicker: '사람 대상 연구 · EEG',
+    title: '연구에서 실제로 달라진 점',
+    body: '수면 상태가 좋지 않은 성인 16명이 GABA 100mg과 대조 조건을 각각 1주씩 경험했습니다.',
+    image: `${import.meta.env.BASE_URL}editorial/sleep-recovery-01/research-sleep-comparison.svg`,
+    alt: 'GABA 수면 연구에서 잠드는 시간과 비렘수면 시간을 비교한 도표',
+  },
+  {
+    role: '출처',
+    kicker: '원문으로 이어 읽기',
+    title: '두 가지 변화가 기록됐습니다',
+    body: 'GABA 섭취 기간에는 잠드는 시간이 더 짧았고, 전체 비렘수면 시간은 더 길었습니다.',
+    image: null,
+    alt: '',
+  },
+] as const;
+
 const sleepResultTopic: Pick<ResearchTopic, 'id' | 'chart'> = {
   id: 'sleep-result',
   chart: {
@@ -1034,6 +1085,7 @@ export default function PublicGabaGuide() {
   const [videoTimedOut, setVideoTimedOut] = useState(false);
   const [activeChapterId, setActiveChapterId] = useState<ActiveChapterId>('top');
   const [mobileDockHidden, setMobileDockHidden] = useState(false);
+  const [activeIssueSlide, setActiveIssueSlide] = useState(0);
   const [activeRecoveryCard, setActiveRecoveryCard] = useState(0);
   const [recoveryPaused, setRecoveryPaused] = useState(false);
   const [recoveryInteractionPaused, setRecoveryInteractionPaused] = useState(false);
@@ -1734,6 +1786,53 @@ export default function PublicGabaGuide() {
     setActiveRecoveryCard(index);
   };
 
+  const moveIssueSlide = (direction: -1 | 1) => {
+    setActiveIssueSlide((current) => (current + direction + sleepRecoveryIssueSlides.length) % sleepRecoveryIssueSlides.length);
+  };
+
+  const shareEditorialIssue = async () => {
+    const shareUrl = new URL(window.location.href);
+    shareUrl.searchParams.set('view', 'guide');
+    shareUrl.searchParams.delete('video');
+    shareUrl.hash = 'issue-sleep-recovery';
+    const shareData = {
+      title: '수면은 회복의 첫 화면입니다',
+      text: '수면과 GABA 수면 연구를 장면과 도표로 읽는 GABA 매거진 첫 호입니다.',
+      url: shareUrl.toString(),
+    };
+    if (publicGuideKakaoKey && window.Kakao?.Share?.sendDefault) {
+      try {
+        const imageUrl = new URL(`${import.meta.env.BASE_URL}editorial/sleep-recovery-01/cover-sleep-recovery-v2.png`, window.location.origin).toString();
+        const link = { mobileWebUrl: shareData.url, webUrl: shareData.url };
+        window.Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: { title: shareData.title, description: shareData.text, imageUrl, link },
+          buttons: [{ title: '첫 호 읽기', link }],
+        });
+        setShareFallback(null);
+        announceShareStatus('첫 호 공유 창을 열었어요. 받는 사람을 선택하면 바로 전송됩니다.');
+        return;
+      } catch { /* use the native share fallback */ }
+    }
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        setShareFallback(null);
+        announceShareStatus('첫 호 공유 창을 열었어요.');
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          announceShareStatus('공유를 취소했어요.');
+          return;
+        }
+      }
+    }
+    const copied = await writeClipboardText(shareData.url);
+    if (copied) setShareFallback(null);
+    else setShareFallback({ label: '첫 호 링크', text: shareData.url });
+    announceShareStatus(copied ? '첫 호 링크를 복사했어요. 자유롭게 공유해 보세요.' : '공유 창을 열지 못했어요. 주소창의 링크를 복사해 공유해 보세요.');
+  };
+
   const announceShareStatus = (message: string) => {
     if (shareStatusTimer.current !== null) window.clearTimeout(shareStatusTimer.current);
     shareStatusStartY.current = window.scrollY;
@@ -2131,14 +2230,47 @@ export default function PublicGabaGuide() {
           </div>
         </section>
 
+        <section className="guide-featured-issue guide-story-section" id="issue-sleep-recovery" aria-labelledby="issue-sleep-recovery-heading">
+          <div className="guide-container">
+            <div className="guide-featured-issue-head">
+              <div>
+                <p className="guide-section-number">첫 번째 소재 · 수면과 회복</p>
+                <h2 id="issue-sleep-recovery-heading" tabIndex={-1}>수면은 회복의<br />첫 화면입니다</h2>
+              </div>
+              <p>한 장면씩 읽고,<br />마지막에 연구로 확인합니다.</p>
+            </div>
+            {(() => {
+              const issueSlide = sleepRecoveryIssueSlides[activeIssueSlide];
+              return <article className={`guide-featured-issue-card is-${issueSlide.image ? 'visual' : 'text'}`} aria-live="polite">
+                <div className="guide-featured-issue-copy">
+                  <span className="guide-featured-issue-kicker">{issueSlide.kicker}</span>
+                  <span className="guide-featured-issue-role">{issueSlide.role}</span>
+                  <h3>{issueSlide.title}</h3>
+                  <p>{issueSlide.body}</p>
+                  {issueSlide.role === '연구 결과' ? <p className="guide-featured-issue-meta">수면 상태가 좋지 않은 성인 16명 · GABA 100mg · 조건별 1주 · 뇌파(EEG) 측정</p> : null}
+                  {issueSlide.role === '출처' ? <a className="guide-featured-issue-source" href="https://pubmed.ncbi.nlm.nih.gov/30263304/" target="_blank" rel="noopener noreferrer">Yamatsu et al. 2016 · PMID 30263304 <ExternalLink size={13} aria-hidden="true" /></a> : null}
+                </div>
+                {issueSlide.image ? <div className={`guide-featured-issue-image is-${issueSlide.role === '연구 결과' ? 'chart' : 'photo'}`}><img src={issueSlide.image} alt={issueSlide.alt} loading={activeIssueSlide === 0 ? 'eager' : 'lazy'} /></div> : <div className="guide-featured-issue-signal" aria-hidden="true"><span /><span /><span /><span /><span /></div>}
+              </article>;
+            })()}
+            <div className="guide-featured-issue-controls" aria-label="첫 번째 매거진 카드 조작">
+              <button type="button" onClick={() => moveIssueSlide(-1)} aria-label="이전 매거진 카드"><ChevronLeft size={18} aria-hidden="true" /></button>
+              <div className="guide-featured-issue-dots" role="tablist" aria-label="매거진 카드 선택">{sleepRecoveryIssueSlides.map((slide, index) => <button key={slide.role} type="button" role="tab" aria-selected={activeIssueSlide === index} aria-label={`${index + 1}번째 카드 · ${slide.role}`} className={activeIssueSlide === index ? 'is-active' : ''} onClick={() => setActiveIssueSlide(index)} />)}</div>
+              <button type="button" onClick={() => moveIssueSlide(1)} aria-label="다음 매거진 카드"><ChevronRight size={18} aria-hidden="true" /></button>
+            </div>
+            <div className="guide-featured-issue-actions"><button type="button" className="guide-primary-button" onClick={() => void shareEditorialIssue()}><Share2 size={15} aria-hidden="true" /> 첫 호 공유하기</button><a className="guide-quiet-button" href="https://pubmed.ncbi.nlm.nih.gov/30263304/" target="_blank" rel="noopener noreferrer">대표 연구 원문 보기 <ExternalLink size={14} aria-hidden="true" /></a></div>
+            <p className="guide-featured-issue-note"><span>읽는 순서</span> 장면을 먼저 보고, 연구 대상·조건·측정 항목·결과를 이어서 확인합니다.</p>
+          </div>
+        </section>
+
         <section className="guide-opening-bridge guide-story-section" id="opening-bridge" aria-labelledby="opening-bridge-heading">
           <div className="guide-container">
             <div className="guide-opening-bridge-head">
               <div>
                 <p className="guide-section-number">수면과 회복</p>
-                <h2 id="opening-bridge-heading" tabIndex={-1}>잠은 멈춤이 아니라,<br />{' '}회복이 시작되는 시간입니다</h2>
+                <h2 id="opening-bridge-heading" tabIndex={-1}>수면은 멈춤이 아니라,<br />{' '}회복이 시작되는 시간입니다</h2>
               </div>
-              <p>잠의 역할을 이해하면<br />GABA를 읽는 이유가 보입니다.</p>
+              <p>수면의 역할을 이해하면<br />GABA를 읽는 이유가 보입니다.</p>
             </div>
             <div className="guide-opening-bridge-visual" role="img" aria-label="낮의 활동, 밤의 수면, 회복으로 이어지는 하루의 리듬">
               <span className="guide-opening-bridge-visual-line" aria-hidden="true" />
@@ -2150,8 +2282,8 @@ export default function PublicGabaGuide() {
             </div>
             <div className="guide-opening-bridge-grid">
               <article><span>01</span><div><h3>낮에는 움직입니다</h3><p>뇌와 몸은 움직이며 에너지를 쓰고, 하루의 정보를 받아들입니다.</p></div></article>
-              <article><span>02</span><div><h3>밤에는 정리합니다</h3><p>잠든 동안 뇌는 정보를 정리하고, 몸은 회복을 시작합니다.</p></div></article>
-              <article><span>03</span><div><h3>회복할 시간이 필요합니다</h3><p>잠이 줄어들면 몸이 회복에 사용할 수 있는 시간도 함께 줄어듭니다.</p></div></article>
+              <article><span>02</span><div><h3>밤에는 정리합니다</h3><p>수면 중에는 뇌가 정보를 정리하고, 몸은 회복을 시작합니다.</p></div></article>
+              <article><span>03</span><div><h3>회복할 시간이 필요합니다</h3><p>수면 시간이 줄어들면 몸이 회복에 사용할 수 있는 시간도 함께 줄어듭니다.</p></div></article>
             </div>
             <div className="guide-opening-bridge-source">
               <BookOpen size={18} aria-hidden="true" />
